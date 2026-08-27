@@ -62,34 +62,53 @@ func calcularMultaTotal(diasAtraso: Int, multaBase: Double) -> Double {
 let formato = DateFormatter()
 formato.dateFormat = "dd/MM/yyyy"
 
-// MARK: - Ingreso de datos (todo por teclado)
+// MARK: - Ingreso de datos
 
 print("=== SISTEMA DE PRESTAMO DE LIBROS ===")
 
 print("Titulo del libro:")
 let tituloLibro = readLine() ?? ""
 
-print("Seleccione tipo de usuario:")
-print("1. Alumno")
-print("2. Docente")
-print("3. Administrativo")
-let tipoUsuario = Int(readLine() ?? "") ?? 0
+print("Tipo de usuario (1=Alumno, 2=Docente, 3=Administrativo):")
+var tipoUsuario = Int(readLine() ?? "") ?? 0
+while tipoUsuario < 1 || tipoUsuario > 3 {
+    print("Opcion invalida. Ingrese 1, 2 o 3:")
+    tipoUsuario = Int(readLine() ?? "") ?? 0
+}
 
 print("Fecha de prestamo (dd/MM/yyyy):")
-let textoFechaPrestamo = readLine() ?? ""
-let fechaPrestamo = formato.date(from: textoFechaPrestamo) ?? Date()
+var textoFechaPrestamo = readLine() ?? ""
+var fechaPrestamoOpcional = formato.date(from: textoFechaPrestamo)
+while fechaPrestamoOpcional == nil {
+    print("Formato invalido. Use dd/MM/yyyy:")
+    textoFechaPrestamo = readLine() ?? ""
+    fechaPrestamoOpcional = formato.date(from: textoFechaPrestamo)
+}
+let fechaPrestamo = fechaPrestamoOpcional!
 
 print("Fecha de devolucion (dd/MM/yyyy):")
-let textoFechaDevolucion = readLine() ?? ""
-let fechaDevolucionReal = formato.date(from: textoFechaDevolucion) ?? Date()
+var textoFechaDevolucion = readLine() ?? ""
+var fechaDevolucionOpcional = formato.date(from: textoFechaDevolucion)
+
+// Validacion: formato correcto Y que no sea una fecha anterior a la de prestamo
+while fechaDevolucionOpcional == nil || fechaDevolucionOpcional! < fechaPrestamo {
+    if fechaDevolucionOpcional == nil {
+        print("Formato invalido. Use dd/MM/yyyy:")
+    } else {
+        print("La fecha de devolucion no puede ser anterior a la fecha de prestamo. Ingrese de nuevo:")
+    }
+    textoFechaDevolucion = readLine() ?? ""
+    fechaDevolucionOpcional = formato.date(from: textoFechaDevolucion)
+}
+let fechaDevolucionReal = fechaDevolucionOpcional!
+
+// MARK: - Calculos automaticos
 
 let diasOtorgados = diasSegunTipo(tipo: tipoUsuario)
 let multaBase = multaBaseSegunTipo(tipo: tipoUsuario)
 
 let calendario = Calendar.current
 let fechaLimite = calendario.date(byAdding: .day, value: diasOtorgados, to: fechaPrestamo)!
-
-// MARK: - Calcular dias de atraso
 
 let componentes = calendario.dateComponents([.day], from: fechaLimite, to: fechaDevolucionReal)
 var diasAtraso = componentes.day ?? 0
@@ -98,8 +117,6 @@ if diasAtraso < 0 {
 }
 
 let multaTotal = calcularMultaTotal(diasAtraso: diasAtraso, multaBase: multaBase)
-
-// MARK: - Estado y situacion
 
 var estado = "Devuelto a tiempo"
 if diasAtraso > 0 {
