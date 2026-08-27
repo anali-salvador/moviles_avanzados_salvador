@@ -28,19 +28,6 @@ func multaBaseSegunTipo(tipo: String) -> Double {
     }
 }
 
-// MARK: - Función para calcular días de atraso
-
-func diasDeAtraso(fechaLimite: Date, fechaDevolucion: Date) -> Int {
-    let calendario = Calendar.current
-    let componentes = calendario.dateComponents([.day], from: fechaLimite, to: fechaDevolucion)
-    let dias = componentes.day ?? 0
-    if dias > 0 {
-        return dias
-    } else {
-        return 0
-    }
-}
-
 // MARK: - Función para calcular la multa progresiva (día por día)
 
 func calcularMultaTotal(diasAtraso: Int, multaBase: Double) -> Double {
@@ -67,23 +54,27 @@ func calcularMultaTotal(diasAtraso: Int, multaBase: Double) -> Double {
     return multaTotal
 }
 
-// MARK: - Registro del préstamo
+// MARK: - Ingreso de datos por teclado
 
-let tituloLibro = "Swift para principiantes"
-let tipoUsuario = "Alumno"
+print("Ingrese el titulo del libro:")
+let tituloLibro = readLine() ?? ""
+
+print("Ingrese el tipo de usuario (Alumno, Docente, Administrativo):")
+let tipoUsuario = readLine() ?? ""
 
 let diasOtorgados = diasSegunTipo(tipo: tipoUsuario)
 let multaBase = multaBaseSegunTipo(tipo: tipoUsuario)
 
+print("Ingrese los dias de atraso (0 si no hay atraso):")
+let atraso = Int(readLine() ?? "") ?? 0
+
+// MARK: - Cálculos
+
 let fechaPrestamo = Date()
 let calendario = Calendar.current
 let fechaLimite = calendario.date(byAdding: .day, value: diasOtorgados, to: fechaPrestamo)!
+let fechaDevolucion = calendario.date(byAdding: .day, value: atraso, to: fechaLimite)!
 
-// MARK: - Devolución del libro (simulada con 4 días después de la fecha límite, para probar)
-
-let fechaDevolucion = calendario.date(byAdding: .day, value: 4, to: fechaLimite)!
-
-let atraso = diasDeAtraso(fechaLimite: fechaLimite, fechaDevolucion: fechaDevolucion)
 let multaTotal = calcularMultaTotal(diasAtraso: atraso, multaBase: multaBase)
 
 // MARK: - Estado, situación y suspensión
@@ -105,6 +96,8 @@ if atraso >= 10 {
 let formato = DateFormatter()
 formato.dateStyle = .medium
 
+print("")
+print("----- RESULTADO -----")
 print("Título del libro: \(tituloLibro)")
 print("Tipo de usuario: \(tipoUsuario)")
 print("Días otorgados: \(diasOtorgados)")
