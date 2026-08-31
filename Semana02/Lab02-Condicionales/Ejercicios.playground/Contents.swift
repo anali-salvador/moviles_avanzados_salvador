@@ -70,3 +70,43 @@ print("TOTAL A PAGAR: S/. \(totalFinalCarrito)") // Muestra el monto final que d
 if huboError { // Verifica si en algún momento se activó la bandera de error
     print("Nota: algunos productos no se incluyeron por datos inválidos.") // Advierte que el carrito no incluyó todos los productos originales
 }
+
+
+
+
+// ===== EJERCICIO 7: JUEGO DE ADIVINANZA (asistido por IA) =====
+
+let numeroSecreto = 42 // Define el número que el "jugador" debe adivinar, fijo para esta simulación
+
+// Arreglo con los 5 intentos simulados (en un juego real, estos vendrían de un input del usuario)
+let intentosSimulados = [20, 60, 50, 45, 42] // Los intentos van acercándose al número secreto (42) para probar todos los casos
+
+var indiceIntento = 0 // Contador que indica en qué posición del arreglo de intentos vamos (empieza en 0)
+var numeroDeIntentos = 0 // Cuenta cuántos intentos se han realizado en total
+var adivino = false // Bandera que se activa cuando el jugador acierta el número secreto
+
+print("===== JUEGO DE ADIVINANZA =====") // Encabezado del juego
+print("Adivina el número secreto (entre 1 y 100)") // Mensaje de bienvenida al juego
+
+while indiceIntento < intentosSimulados.count && !adivino { // Se repite mientras queden intentos disponibles Y no se haya adivinado
+    let intentoActual = intentosSimulados[indiceIntento] // Toma el intento actual del arreglo, según la posición
+    numeroDeIntentos += 1 // Suma 1 al contador de intentos realizados
+
+    print("Intento \(numeroDeIntentos): \(intentoActual)") // Muestra qué número se está probando en este intento
+
+    if intentoActual == numeroSecreto { // Compara si el intento actual es EXACTAMENTE igual al número secreto
+        print("¡Correcto! Adivinaste el número en \(numeroDeIntentos) intentos.") // Felicita al jugador y muestra cuántos intentos usó
+        adivino = true // Activa la bandera para detener el bucle (ya se encontró el número)
+    } else if intentoActual > numeroSecreto { // Si el intento es MAYOR que el número secreto
+        print("Muy alto") // Indica que el número probado es demasiado grande
+    } else { // Si no fue igual ni mayor, entonces necesariamente es menor
+        print("Muy bajo") // Indica que el número probado es demasiado pequeño
+    }
+
+    indiceIntento += 1 // Avanza a la siguiente posición del arreglo, para probar el siguiente intento en la próxima vuelta
+}
+
+// Después del bucle, se verifica si se acabaron los intentos SIN haber adivinado
+if !adivino { // Si la bandera "adivino" nunca se activó
+    print("Perdiste. El número era: \(numeroSecreto)") // Muestra el mensaje de derrota, revelando el número secreto
+}
