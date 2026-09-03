@@ -54,3 +54,51 @@ for estacion in estacionesConexion {
 let totalEstacionesClave = linea1Transbordos.union(linea2Transbordos)
 print("\nTotal de estaciones clave únicas (\(totalEstacionesClave.count) en total):")
 print(totalEstacionesClave)
+
+
+
+
+import Foundation
+
+// 1. Declaración de un Diccionario [Clave: Valor] con información detallada por estación
+var mapaEstaciones: [String: [String: Any]] = [
+    "La Cultura": [
+        "distrito": "San Borja",
+        "tiempoHaciaGrauMin": 12,
+        "tieneAscensor": true
+    ],
+    "Gamarra": [
+        "distrito": "La Victoria",
+        "tiempoHaciaGrauMin": 5,
+        "tieneAscensor": false
+    ],
+    "Miguel Grau": [
+        "distrito": "Cercado de Lima",
+        "tiempoHaciaGrauMin": 0,
+        "tieneAscensor": true
+    ]
+]
+
+print("--- EJERCICIO DICCIONARIOS ---")
+
+// Agregar una nueva estación al diccionario
+mapaEstaciones["Angamos"] = [
+    "distrito": "Surquillo",
+    "tiempoHaciaGrauMin": 18,
+    "tieneAscensor": true
+]
+
+// Consultar datos de una estación en específico
+let nombreEstacion = "La Cultura"
+if let datos = mapaEstaciones[nombreEstacion] {
+    print("Información de la estación '\(nombreEstacion)':")
+    print("Distrito: \(datos["distrito"] ?? "Desconocido")")
+    print("Tiempo a Grau: \(datos["tiempoHaciaGrauMin"] ?? 0) min")
+}
+
+// Recorrer el diccionario completo
+print("\nResumen general de estaciones:")
+for (estacion, detalles) in mapaEstaciones {
+    let distrito = detalles["distrito"] as? String ?? "N/A"
+    print("• \(estacion) - Ubicada en: \(distrito)")
+}
