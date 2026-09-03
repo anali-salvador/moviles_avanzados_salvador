@@ -28,3 +28,29 @@ print("\nListado de estaciones ordenadas:")
 for (index, estacion) in estacionLinea1.enumerated() {
     print("Estación \(index + 1): \(estacion)")
 }
+
+
+
+
+import Foundation
+
+// 1. Declaración de Sets (elementos únicos sin duplicados)
+var linea1Transbordos: Set<String> = ["Miguel Grau", "La Cultura", "Gamarra", "Atocongo"]
+var linea2Transbordos: Set<String> = ["Miguel Grau", "Óvalo Santa Anita", "Evitamiento", "La Cultura"]
+
+print("--- EJERCICIO SETS ---")
+
+// Insertar un duplicado (Swift lo ignorará automágicamente)
+linea1Transbordos.insert("La Cultura")
+
+// Intersección: Encontrar estaciones donde se cruzan o conectan ambas líneas
+let estacionesConexion = linea1Transbordos.intersection(linea2Transbordos)
+print("Estaciones de conexión entre Línea 1 y Línea 2:")
+for estacion in estacionesConexion {
+    print("- \(estacion)")
+}
+
+// Unión: Obtener la lista total de puntos clave sin repetir ninguno
+let totalEstacionesClave = linea1Transbordos.union(linea2Transbordos)
+print("\nTotal de estaciones clave únicas (\(totalEstacionesClave.count) en total):")
+print(totalEstacionesClave)
