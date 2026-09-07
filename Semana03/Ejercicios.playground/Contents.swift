@@ -85,3 +85,58 @@ for (posicion, alumno) in ranking.enumerated() { // Recorre el arreglo ya ordena
     let promedioTexto = String(format: "%.2f", alumno.value) // Formatea el promedio de este alumno a 2 decimales
     print("\(posicion + 1). \(alumno.key) - \(promedioTexto)") // Imprime la posición en el ranking, el nombre y el promedio
 }
+
+
+
+
+
+// ===== EJERCICIO 7: INVENTARIO CON MENÚ (asistido por IA) =====
+
+// Estructura simple usando 3 arreglos paralelos para simular productos con nombre, precio y stock
+var nombresInv: [String] = ["Laptop", "Mouse", "Teclado", "Monitor", "Audífonos"] // Nombres de los productos
+var preciosInv: [Double] = [3500.0, 45.50, 120.0, 890.0, 80.0] // Precio unitario de cada producto
+var stockInv: [Int] = [5, 25, 3, 8, 15] // Stock disponible de cada producto
+
+print("===== SISTEMA DE INVENTARIO =====") // Encabezado del sistema
+
+// Función simulada de menú: en un Playground no hay interacción real de menú en bucle infinito,
+// así que se simula recorriendo las 5 opciones una por una para demostrar cada funcionalidad.
+
+// Opción 1: Ver inventario completo
+print("\n--- OPCIÓN 1: Ver inventario completo ---") // Muestra el título de la opción
+for i in 0..<nombresInv.count { // Recorre cada producto por su posición
+    print("\(nombresInv[i]) | Precio: S/. \(preciosInv[i]) | Stock: \(stockInv[i])") // Imprime los 3 datos del producto
+}
+
+// Opción 2: Buscar un producto específico por nombre
+print("\n--- OPCIÓN 2: Buscar producto ---") // Muestra el título de la opción
+let productoBuscado = "Teclado" // Nombre del producto que se va a buscar (simulado, sin input real)
+if let indice = nombresInv.firstIndex(of: productoBuscado) { // Busca la posición del producto en el arreglo, si existe
+    print("Producto encontrado: \(nombresInv[indice]) | Precio: S/. \(preciosInv[indice]) | Stock: \(stockInv[indice])") // Muestra sus datos
+} else {
+    print("Producto '\(productoBuscado)' no encontrado en el inventario") // Mensaje si no se encuentra
+}
+
+// Opción 3: Ver productos con stock bajo (menos de 10 unidades)
+print("\n--- OPCIÓN 3: Productos con stock bajo ---") // Muestra el título de la opción
+for i in 0..<nombresInv.count { // Recorre cada producto por su posición
+    if stockInv[i] < 10 { // Verifica si el stock de este producto es menor a 10
+        print("⚠️ \(nombresInv[i]): solo quedan \(stockInv[i]) unidades") // Muestra la alerta de stock bajo
+    }
+}
+
+// Opción 4: Calcular el valor total del inventario (precio x stock, sumado de todos los productos)
+print("\n--- OPCIÓN 4: Valor total del inventario ---") // Muestra el título de la opción
+var valorTotalInventario = 0.0 // Acumulador para el valor total
+for i in 0..<nombresInv.count { // Recorre cada producto por su posición
+    let valorProducto = preciosInv[i] * Double(stockInv[i]) // Calcula el valor de este producto (precio x cantidad en stock)
+    valorTotalInventario += valorProducto // Suma ese valor al acumulador total
+}
+print("Valor total del inventario: S/. \(String(format: "%.2f", valorTotalInventario))") // Muestra el valor total formateado
+
+// Opción 5: Salir (mensaje de cierre del sistema)
+print("\n--- OPCIÓN 5: Salir ---") // Muestra el título de la opción
+print("Gracias por usar el sistema de inventario. ¡Hasta pronto!") // Mensaje de despedida
+
+print("\n=============================") // Línea separadora final
+print("REPORTE FINAL GENERADO CORRECTAMENTE") // Confirmación de que el reporte se completó
