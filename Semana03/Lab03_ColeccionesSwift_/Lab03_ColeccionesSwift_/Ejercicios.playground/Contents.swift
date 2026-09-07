@@ -1,5 +1,9 @@
 import Foundation
 
+// Desarrollado por: Anali Salvador
+
+// ===== EJERCICIO 1: ARRAYS =====
+
 // 1. Declaración de un Array ordenado con la secuencia de estaciones de la Línea 1
 var estacionLinea1: [String] = [
     "Villa El Salvador",
@@ -11,7 +15,6 @@ var estacionLinea1: [String] = [
     "La Cultura"
 ]
 
-// 2. Operaciones con Arrays
 print("--- EJERCICIO ARRAYS ---")
 
 // Agregar una nueva estación al final
@@ -29,36 +32,27 @@ for (index, estacion) in estacionLinea1.enumerated() {
     print("Estación \(index + 1): \(estacion)")
 }
 
+// ===== FIX: 3 errores =====
+
+// FIX 1: no se puede agregar un Int (7) a un array declarado como [String]
+var frutas = ["Manzana", "Plátano", "Naranja"]
+frutas.append("Uva") // Corregido: se agrega un String válido, no un número
+
+// FIX 2: 'colores' se declaró con let, no se puede modificar con append
+var colores = ["Rojo", "Azul", "Verde"] // Corregido: se cambió let por var
+colores.append("Amarillo")
+
+// FIX 3: el array 'numeros' solo tiene 5 elementos (índices 0 al 4), el índice 5 no existe
+let numeros = [10, 20, 30, 40, 50]
+print(numeros[4]) // Corregido: se accede al último índice válido (4), no al 5
+
+// PREDICT: ¿Qué imprime este código?
+let vagones = ["A", "B", "C"]
+print(vagones.count) // PREDICT: 3
+// El .count devuelve la cantidad de elementos del array, no el último índice
 
 
-
-import Foundation
-
-// 1. Declaración de Sets (elementos únicos sin duplicados)
-var linea1Transbordos: Set<String> = ["Miguel Grau", "La Cultura", "Gamarra", "Atocongo"]
-var linea2Transbordos: Set<String> = ["Miguel Grau", "Óvalo Santa Anita", "Evitamiento", "La Cultura"]
-
-print("--- EJERCICIO SETS ---")
-
-// Insertar un duplicado (Swift lo ignorará automágicamente)
-linea1Transbordos.insert("La Cultura")
-
-// Intersección: Encontrar estaciones donde se cruzan o conectan ambas líneas
-let estacionesConexion = linea1Transbordos.intersection(linea2Transbordos)
-print("Estaciones de conexión entre Línea 1 y Línea 2:")
-for estacion in estacionesConexion {
-    print("- \(estacion)")
-}
-
-// Unión: Obtener la lista total de puntos clave sin repetir ninguno
-let totalEstacionesClave = linea1Transbordos.union(linea2Transbordos)
-print("\nTotal de estaciones clave únicas (\(totalEstacionesClave.count) en total):")
-print(totalEstacionesClave)
-
-
-
-
-import Foundation
+// ===== EJERCICIO 2: DICCIONARIOS =====
 
 // 1. Declaración de un Diccionario [Clave: Valor] con información detallada por estación
 var mapaEstaciones: [String: [String: Any]] = [
@@ -79,7 +73,7 @@ var mapaEstaciones: [String: [String: Any]] = [
     ]
 ]
 
-print("--- EJERCICIO DICCIONARIOS ---")
+print("\n--- EJERCICIO DICCIONARIOS ---")
 
 // Agregar una nueva estación al diccionario
 mapaEstaciones["Angamos"] = [
@@ -102,3 +96,41 @@ for (estacion, detalles) in mapaEstaciones {
     let distrito = detalles["distrito"] as? String ?? "N/A"
     print("• \(estacion) - Ubicada en: \(distrito)")
 }
+
+// ANALYZE: ¿Por qué se usa [String: Any] y no [String: String]?
+// Porque cada estación tiene datos de DISTINTOS tipos: el distrito es String,
+// el tiempo es Int, y si tiene ascensor es Bool. "Any" permite guardar
+// cualquier tipo de dato dentro del mismo diccionario. La desventaja es
+// que hay que convertir el tipo (as? String, as? Int) cada vez que se usa.
+
+
+// ===== EJERCICIO 3: SETS =====
+
+// 1. Declaración de Sets (elementos únicos sin duplicados)
+var linea1Transbordos: Set<String> = ["Miguel Grau", "La Cultura", "Gamarra", "Atocongo"]
+var linea2Transbordos: Set<String> = ["Miguel Grau", "Óvalo Santa Anita", "Evitamiento", "La Cultura"]
+
+print("\n--- EJERCICIO SETS ---")
+
+// Insertar un duplicado (Swift lo ignorará automáticamente)
+linea1Transbordos.insert("La Cultura")
+
+// Intersección: Encontrar estaciones donde se cruzan o conectan ambas líneas
+let estacionesConexion = linea1Transbordos.intersection(linea2Transbordos)
+print("Estaciones de conexión entre Línea 1 y Línea 2:")
+for estacion in estacionesConexion {
+    print("- \(estacion)")
+}
+
+// Unión: Obtener la lista total de puntos clave sin repetir ninguno
+let totalEstacionesClave = linea1Transbordos.union(linea2Transbordos)
+print("\nTotal de estaciones clave únicas (\(totalEstacionesClave.count) en total):")
+print(totalEstacionesClave)
+
+// PREDICT: ¿Cuántos elementos tendrá este Set después de insertar duplicados?
+var pruebaSet: Set<Int> = [1, 2, 3]
+pruebaSet.insert(2)
+pruebaSet.insert(4)
+print(pruebaSet.count) // PREDICT: 4
+// Aunque se insertó el 2 dos veces, un Set nunca guarda valores repetidos,
+// por eso el conteo final es 4 (1, 2, 3, 4), no 5.
