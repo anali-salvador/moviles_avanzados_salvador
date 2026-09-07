@@ -450,6 +450,44 @@ func flujoFiltrarPorEstado() {
 }
 
 // ============================================================
+// RF07 — Buscar estaciones por distrito
+// ============================================================
+
+func buscarPorDistrito(_ nombreDistrito: String) -> [(estacion: String, lineas: [String])] {
+    let objetivo = normalizar(nombreDistrito)
+    var encontradas: [String: Set<String>] = [:]
+
+    for (nombreLinea, datosLinea) in LINEAS {
+        for estacion in datosLinea.estaciones {
+            if let distritoEstacion = DISTRITOS[estacion], normalizar(distritoEstacion) == objetivo {
+                encontradas[estacion, default: []].insert(nombreLinea)
+            }
+        }
+    }
+
+    return encontradas.map { (estacion: $0.key, lineas: Array($0.value).sorted()) }
+        .sorted { $0.estacion < $1.estacion }
+}
+
+func mostrarEstacionesPorDistrito(_ nombreDistrito: String) {
+    let encontradas = buscarPorDistrito(nombreDistrito)
+
+    if encontradas.isEmpty {
+        print("\n⚠ No se encontraron estaciones registradas en \"\(nombreDistrito)\". " +
+              "Puede que el distrito no exista en el sistema, o que aún no se haya verificado el dato para esa zona.")
+        return
+    }
+
+    print("\n--- Estaciones en \(nombreDistrito) (\(encontradas.count)) ---")
+    var lineasDelDistrito: Set<String> = []
+    for (i, item) in encontradas.enumerated() {
+        print("\(i + 1). \(item.estacion) (\(item.lineas.joined(separator: ", ")))")
+        lineasDelDistrito.formUnion(item.lineas)
+    }
+    print("\nLíneas que pasan por \(nombreDistrito): \(lineasDelDistrito.sorted().joined(separator: ", "))")
+}
+
+// ============================================================
 // MENÚ PRINCIPAL (RF05)
 // ============================================================
 
@@ -494,6 +532,11 @@ func opcion4RutaTransbordo() {
     mostrarRuta(origen, lineaDestino)
 }
 
+func opcion6BuscarDistrito() {
+    let distrito = pedirTexto("\nIngresa el distrito: ", contexto: "de distrito")
+    mostrarEstacionesPorDistrito(distrito)
+}
+
 func mostrarMenu() {
     print("\n=== Simulador Metro de Lima ===")
     print("1. Ver estaciones de una línea")
@@ -518,7 +561,8 @@ func iniciar() {
         case 3: opcion3Conexiones()
         case 4: opcion4RutaTransbordo()
         case 5: flujoFiltrarPorEstado()
-        case 6, 7, 8:
+        case 6: opcion6BuscarDistrito()
+        case 7, 8:
             print("\n⚠ Esta opción todavía está en desarrollo.")
         case 9:
             print("\n¡Hasta pronto!")
