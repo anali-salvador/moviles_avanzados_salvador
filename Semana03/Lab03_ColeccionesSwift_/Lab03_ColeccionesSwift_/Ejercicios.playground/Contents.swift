@@ -134,3 +134,43 @@ pruebaSet.insert(4)
 print(pruebaSet.count) // PREDICT: 4
 // Aunque se insertó el 2 dos veces, un Set nunca guarda valores repetidos,
 // por eso el conteo final es 4 (1, 2, 3, 4), no 5.
+
+
+
+
+
+
+// ===== EJERCICIO 4: COMBINACIÓN DE COLECCIONES =====
+
+print("\n--- EJERCICIO 4: INVENTARIO DE PRODUCTOS ---")
+
+// TODO 10: Inventario de productos usando Array + Diccionario combinados
+var nombresProductos: [String] = ["Laptop", "Mouse", "Teclado", "Monitor"]
+var inventario: [String: Int] = [
+    "Laptop": 5,
+    "Mouse": 20,
+    "Teclado": 15,
+    "Monitor": 8
+]
+
+// Recorre la lista de nombres (Array) y consulta el stock de cada uno (Dictionary)
+for producto in nombresProductos {
+    if let stock = inventario[producto] {
+        if stock < 10 {
+            print("⚠️ \(producto): \(stock) unidades (STOCK BAJO)")
+        } else {
+            print("✅ \(producto): \(stock) unidades")
+        }
+    }
+}
+
+// Agregar un producto nuevo a ambas colecciones
+nombresProductos.append("Audífonos")
+inventario["Audífonos"] = 3
+
+print("\nInventario actualizado:")
+for producto in nombresProductos {
+    if let stock = inventario[producto] {
+        print("\(producto): \(stock) unidades")
+    }
+}
