@@ -326,6 +326,10 @@ func repetirOSalir(_ accion: () -> Void) {
     }
 }
 
+// ============================================================
+// RF02
+// ============================================================
+
 struct FichaEstacion {
     let nombre: String
     let lineas: [String]
@@ -742,6 +746,94 @@ func mostrarTiempoEntreEstaciones(_ nombreOrigen: String, _ nombreDestino: Strin
     print("\(nombreOrigen) → \(nombreDestino) (\(resultado.linea)): \(resultado.distancia) estaciones de distancia")
     print("Tiempo estimado: ~\(resultado.minutos) min (estimado, ~2 min/estación)")
 }
+
+// ============================================================
+// RF10
+// ============================================================
+
+func tramoConContador(_ nombreLinea: String, _ desde: String, _ hasta: String) {
+    let arr = LINEAS[nombreLinea]!.estaciones
+    guard let iD = arr.firstIndex(where: { normalizar($0) == normalizar(desde) }),
+          let iH = arr.firstIndex(where: { normalizar($0) == normalizar(hasta) }) else { return }
+    let paso = iH > iD ? 1 : -1
+    var i = iD
+    var faltan = abs(iH - iD)
+    while i != iH {
+        print("En \(arr[i]) (\(nombreLinea)) — faltan \(faltan) estaciones para llegar a \(arr[iH]) "
+            + "(≈\(Int((Double(faltan) * MINUTOS_POR_ESTACION).rounded())) min)")
+        i += paso
+        faltan -= 1
+    }
+    print("Llegada: \(arr[iH]) (\(nombreLinea)) — 0 estaciones restantes")
+}
+
+func planificarViaje(_ nombreOrigen: String, _ nombreDestino: String) {
+    let (nO, lineasO) = lineasDeEstacion(nombreOrigen)
+    let (nD, lineasD) = lineasDeEstacion(nombreDestino)
+    guard let origen = nO, let destino = nD else {
+        print("\n⚠ Una o ambas estaciones no fueron encontradas. Verifica los nombres.")
+        return
+    }
+    let comunes = Set(lineasO).intersection(lineasD)
+    print("\n--- Planificación de viaje ---")
+    if let linea = comunes.sorted().first {
+        tramoConContador(linea, origen, destino)
+        return
+    }
+    for lo in lineasO {
+        for cruce in CRUCES {
+            var lineaFinal: String? = nil
+            var estacionSalida: String? = nil
+            var estacionEntrada: String? = nil
+            if cruce.lineaA == lo && lineasD.contains(cruce.lineaB) {
+                lineaFinal = cruce.lineaB; estacionSalida = cruce.estacionL1; estacionEntrada = cruce.estacionL2
+            } else if cruce.lineaB == lo && lineasD.contains(cruce.lineaA) {
+                lineaFinal = cruce.lineaA; estacionSalida = cruce.estacionL2; estacionEntrada = cruce.estacionL1
+            }
+            if let lf = lineaFinal, let es = estacionSalida, let ee = estacionEntrada {
+                tramoConContador(lo, origen, es)
+                print("--- Transbordo a \(lf) (\(cruce.funcional ? "funcional" : "no funcional aún")) ---")
+                tramoConContador(lf, ee, destino)
+                return
+            }
+        }
+    }
+    print("No se encontró una ruta entre estas estaciones con los cruces disponibles.")
+}
+
+func tiempoASiguienteEstacion(_ nombreEstacion: String) {
+    let (nombre, lineas) = lineasDeEstacion(nombreEstacion)
+    guard let est = nombre else {
+        print("\n⚠ La estación \"\(nombreEstacion)\" no fue encontrada.")
+        return
+    }
+    print("\n--- Siguiente estación desde \(est) ---")
+    for linea in lineas {
+        let arr = LINEAS[linea]!.estaciones
+        guard let idx = arr.firstIndex(of: est) else { continue }
+        if idx + 1 < arr.count {
+            let minutos = Int(MINUTOS_POR_ESTACION.rounded())
+            print("(\(linea)) Próxima estación: \(arr[idx + 1]) — aprox. \(minutos) min")
+        } else {
+            print("(\(linea)) \(est) es la última estación de esta línea.")
+        }
+    }
+}
+
+func mostrarLugaresCercanos(_ nombreEstacion: String) {
+    let (nombre, _) = lineasDeEstacion(nombreEstacion)
+    guard let est = nombre else {
+        print("\n⚠ La estación \"\(nombreEstacion)\" no fue encontrada.")
+        return
+    }
+    print("\n--- Lugares cercanos a \(est) ---")
+    if let lugares = LUGARES_CERCANOS[est], !lugares.isEmpty {
+        for l in lugares { print("- \(l)") }
+    } else {
+        print("No verificado (aún no se registró un lugar de interés cercano a esta estación).")
+    }
+}
+
 // ============================================================
 // RF11
 // ============================================================
@@ -770,3 +862,174 @@ func pagarPasaje() {
         print(String(format: "⚠ Saldo insuficiente (S/ %.2f). Recarga tu tarjeta.", tarjetaUsuario.saldo))
     }
 }
+
+// ============================================================
+// RF12
+// ============================================================
+
+func adminAgregarEstacion() {
+    let linea = elegirLinea()
+    let nombre = pedirTexto("Nombre de la nueva estación: ", contexto: "de estación")
+    guard let datos = LINEAS[linea] else { return }
+    LINEAS[linea] = LineaInfo(estado: datos.estado, estaciones: datos.estaciones + [nombre], estacionesOperativas: datos.estacionesOperativas)
+    print("✅ Estación \"\(nombre)\" agregada a \(linea).")
+}
+
+func adminCrearLinea() {
+    let nombre = pedirTexto("\nNombre de la nueva línea (ej. Línea 5): ", contexto: "de línea")
+    let estado = pedirTexto("Estado (operativa / construcción / proyecto): ", contexto: "de estado")
+    var estaciones: [String] = []
+    print("Ingresa las estaciones una por una. Escribe \"fin\" para terminar.")
+    while true {
+        let est = pedirTexto("Estación: ", contexto: "de estación")
+        if normalizar(est) == "fin" { break }
+        estaciones.append(est)
+    }
+    LINEAS[nombre] = LineaInfo(estado: estado, estaciones: estaciones, estacionesOperativas: estado == "operativa" ? nil : [])
+    print("✅ \(nombre) creada con \(estaciones.count) estaciones.")
+}
+
+func adminEditarLinea() {
+    let linea = elegirLinea()
+    guard let datos = LINEAS[linea] else { return }
+    let nuevoEstado = pedirTexto("Nuevo estado para \(linea) (operativa / construcción / proyecto): ", contexto: "de estado")
+    LINEAS[linea] = LineaInfo(estado: nuevoEstado, estaciones: datos.estaciones, estacionesOperativas: datos.estacionesOperativas)
+    print("✅ \(linea) actualizada. Nuevo estado: \(nuevoEstado)")
+}
+
+func flujoAdmin() {
+    print("\n--- Modo administrador ---")
+    print("1. Agregar estación a línea existente")
+    print("2. Crear línea nueva")
+    print("3. Editar/modificar línea existente")
+    let op = pedirNumero("Elige: ", minimo: 1, maximo: 3, contexto: "(1 al 3)")
+    if op == 1 { adminAgregarEstacion() }
+    else if op == 2 { adminCrearLinea() }
+    else { adminEditarLinea() }
+}
+
+// ============================================================
+// MENÚ PRINCIPAL
+// ============================================================
+
+func elegirLinea() -> String {
+    print("\nLíneas disponibles:")
+    let nombres = Array(LINEAS.keys).sorted()
+    for (i, nombre) in nombres.enumerated() {
+        print("\(i + 1). \(nombre)")
+    }
+    let opcion = pedirNumero("Elige un número de línea: ", minimo: 1, maximo: nombres.count, contexto: "de línea (1 al \(nombres.count))")
+    return nombres[opcion - 1]
+}
+
+func opcion1VerEstaciones() {
+    let linea = elegirLinea()
+    mostrarEstaciones(linea)
+}
+
+func opcion2BuscarEstacion() {
+    let nombre = pedirTexto("\nIngresa el nombre de la estación: ", contexto: "de estación")
+    mostrarFicha(nombre)
+}
+
+func opcion3Conexiones() {
+    print("\n1. Consultar conexiones de una estación")
+    print("2. Consultar conexiones de una línea completa")
+    let sub = pedirNumero("Elige una opción: ", minimo: 1, maximo: 2, contexto: "(1 o 2)")
+    if sub == 1 {
+        let nombre = pedirTexto("Ingresa el nombre de la estación: ", contexto: "de estación")
+        mostrarConexionEstacion(nombre)
+    } else {
+        let linea = elegirLinea()
+        mostrarConexionesLinea(linea)
+    }
+}
+
+func opcion4RutaTransbordo() {
+    let origen = pedirTexto("\nIngresa tu estación de origen: ", contexto: "de estación")
+    print("¿A qué línea deseas llegar?")
+    let lineaDestino = elegirLinea()
+    mostrarRuta(origen, lineaDestino)
+}
+
+func opcion6BuscarDistrito() {
+    let distrito = pedirTexto("\nIngresa el distrito: ", contexto: "de distrito")
+    mostrarEstacionesPorDistrito(distrito)
+}
+
+func opcion8TiempoEntreEstaciones() {
+    let origen = pedirTexto("\nIngresa estación de origen: ", contexto: "de estación")
+    let destino = pedirTexto("Ingresa estación de destino: ", contexto: "de estación")
+    mostrarTiempoEntreEstaciones(origen, destino)
+}
+
+func opcion9InfoLinea() {
+    let linea = elegirLinea()
+    mostrarInfoLinea(linea)
+}
+
+func mostrarMenu() {
+    print("=== Simulador Metro de Lima ===")
+    print("\n--- Funciones principales ---")
+    print("1. Ver estaciones de una línea")
+    print("2. Buscar estación")
+    print("3. Consultar conexión de una estación o línea")
+    print("4. Buscar ruta de transbordo")
+    print("\n--- Funciones adicionales ---")
+    print("5. Filtrar líneas por estado")
+    print("6. Buscar estaciones por distrito")
+    print("7. Planificar ruta a un punto de interés")
+    print("8. Calcular tiempo entre dos estaciones")
+    print("9. Ver información general de una línea")
+    print("10. Planificar viaje completo (estación a estación)")
+    print("11. Ver siguiente estación desde donde estoy")
+    print("12. Ver lugares cercanos a una estación")
+    print("13. Ver saldo de tarjeta")
+    print("14. Recargar tarjeta")
+    print("15. Pagar pasaje")
+    print("16. Modo administrador")
+    print("\n17. Salir")
+}
+
+func iniciar() {
+    while true {
+        mostrarMenu()
+        let opcion = pedirNumero("\nElige una opción: ", minimo: 1, maximo: 17, contexto: "del menú (1 al 17)")
+
+        switch opcion {
+        case 1: repetirOSalir { opcion1VerEstaciones() }
+        case 2: repetirOSalir { opcion2BuscarEstacion() }
+        case 3: repetirOSalir { opcion3Conexiones() }
+        case 4: repetirOSalir { opcion4RutaTransbordo() }
+        case 5: repetirOSalir { flujoFiltrarPorEstado() }
+        case 6: repetirOSalir { opcion6BuscarDistrito() }
+        case 7: repetirOSalir { flujoPuntoInteres() }
+        case 8: repetirOSalir { opcion8TiempoEntreEstaciones() }
+        case 9: repetirOSalir { opcion9InfoLinea() }
+        case 10: repetirOSalir {
+            let o = pedirTexto("\nEstación de origen: ", contexto: "de estación")
+            let d = pedirTexto("Estación de destino: ", contexto: "de estación")
+            planificarViaje(o, d)
+        }
+        case 11: repetirOSalir {
+            let e = pedirTexto("\nIngresa tu estación actual: ", contexto: "de estación")
+            tiempoASiguienteEstacion(e)
+        }
+        case 12: repetirOSalir {
+            let e = pedirTexto("\nIngresa la estación: ", contexto: "de estación")
+            mostrarLugaresCercanos(e)
+        }
+        case 13: repetirOSalir { mostrarSaldo() }
+        case 14: repetirOSalir { recargarTarjeta() }
+        case 15: repetirOSalir { pagarPasaje() }
+        case 16: repetirOSalir { flujoAdmin() }
+        case 17:
+            print("\n¡Hasta pronto!")
+            return
+        default:
+            break
+        }
+    }
+}
+
+iniciar()
