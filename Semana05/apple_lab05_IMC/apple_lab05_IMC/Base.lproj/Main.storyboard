@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calcular el IMC de una Persona" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt1-Lb-kK1">
+                                <rect key="frame" x="40" y="60" width="295" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peso (kg)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk1-Lb-aA1">
+                                <rect key="frame" x="72" y="122.5" width="74.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 70" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pk2-Tf-bB2">
+                                <rect key="frame" x="158.5" y="116" width="160" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="wP1-cN-001"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altura (m)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Al1-Lb-cC3">
+                                <rect key="frame" x="65.5" y="176.5" width="81" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 1.70" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Al2-Tf-dD4">
+                                <rect key="frame" x="158.5" y="170" width="160" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="wA1-cN-002"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb1-Bt-eE5">
+                                <rect key="frame" x="152" y="236" width="71" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Calcular"/>
+                                <connections>
+                                    <action selector="calcularResultado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ac1-Cb-gG7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado IMC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd1-Lb-lL2">
+                                <rect key="frame" x="126" y="294" width="123" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado IMC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rs1-Lb-fF6">
+                                <rect key="frame" x="131" y="322.5" width="113" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Pk2-Tf-bB2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="51" id="k01-cN-003"/>
+                            <constraint firstItem="Tt1-Lb-kK1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="k14-cN-016"/>
+                            <constraint firstItem="Tt1-Lb-kK1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="k15-cN-017"/>
+                            <constraint firstItem="Tt1-Lb-kK1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="k16-cN-018"/>
+                            <constraint firstItem="Pk2-Tf-bB2" firstAttribute="top" secondItem="Tt1-Lb-kK1" secondAttribute="bottom" constant="32" id="k02-cN-004"/>
+                            <constraint firstItem="Pk2-Tf-bB2" firstAttribute="leading" secondItem="Pk1-Lb-aA1" secondAttribute="trailing" constant="12" id="k03-cN-005"/>
+                            <constraint firstItem="Pk1-Lb-aA1" firstAttribute="centerY" secondItem="Pk2-Tf-bB2" secondAttribute="centerY" id="k04-cN-006"/>
+                            <constraint firstItem="Al2-Tf-dD4" firstAttribute="leading" secondItem="Pk2-Tf-bB2" secondAttribute="leading" id="k05-cN-007"/>
+                            <constraint firstItem="Al2-Tf-dD4" firstAttribute="top" secondItem="Pk2-Tf-bB2" secondAttribute="bottom" constant="20" id="k06-cN-008"/>
+                            <constraint firstItem="Al2-Tf-dD4" firstAttribute="leading" secondItem="Al1-Lb-cC3" secondAttribute="trailing" constant="12" id="k07-cN-009"/>
+                            <constraint firstItem="Al1-Lb-cC3" firstAttribute="centerY" secondItem="Al2-Tf-dD4" secondAttribute="centerY" id="k08-cN-010"/>
+                            <constraint firstItem="Cb1-Bt-eE5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="k09-cN-011"/>
+                            <constraint firstItem="Cb1-Bt-eE5" firstAttribute="top" secondItem="Al2-Tf-dD4" secondAttribute="bottom" constant="32" id="k10-cN-012"/>
+                            <constraint firstItem="Rs1-Lb-fF6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="k11-cN-013"/>
+                            <constraint firstItem="Hd1-Lb-lL2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="k17-cN-019"/>
+                            <constraint firstItem="Hd1-Lb-lL2" firstAttribute="top" secondItem="Cb1-Bt-eE5" secondAttribute="bottom" constant="24" id="k18-cN-020"/>
+                            <constraint firstItem="Rs1-Lb-fF6" firstAttribute="top" secondItem="Hd1-Lb-lL2" secondAttribute="bottom" constant="8" id="k12-cN-014"/>
+                            <constraint firstItem="Rs1-Lb-fF6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="k13-cN-015"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="heightTextField" destination="Al2-Tf-dD4" id="Ou2-Ht-hH8"/>
+                        <outlet property="resultLabel" destination="Rs1-Lb-fF6" id="Ou3-Rs-iI9"/>
+                        <outlet property="weightTextField" destination="Pk2-Tf-bB2" id="Ou1-Wt-jJ0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
