@@ -13,7 +13,28 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diseño y Desarrollo de Software" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ3-aZ-7Lm">
+                                <rect key="frame" x="56" y="323.5" width="263" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anali Salvador" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pV8-Xr-2Nd">
+                                <rect key="frame" x="105" y="360" width="165" height="29"/>
+                                <color key="backgroundColor" red="1" green="0.95" blue="0.6" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kQ3-aZ-7Lm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="c1A-hX-9Tq"/>
+                            <constraint firstItem="kQ3-aZ-7Lm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="c2B-vY-4Rw"/>
+                            <constraint firstItem="pV8-Xr-2Nd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="c3C-hZ-6Ps"/>
+                            <constraint firstItem="pV8-Xr-2Nd" firstAttribute="top" secondItem="kQ3-aZ-7Lm" secondAttribute="bottom" constant="16" id="c4D-sp-8Kn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
