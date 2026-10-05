@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculadora de Préstamos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt1-Pr-aA1">
+                                <rect key="frame" x="62.5" y="60" width="250" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capital (S/)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp1-Lb-bB2">
+                                <rect key="frame" x="66.5" y="122.5" width="93" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 10000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cp2-Tf-cC3">
+                                <rect key="frame" x="171.5" y="116" width="160" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="wCp-cN-001"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasa anual (%)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ts1-Lb-dD4">
+                                <rect key="frame" x="44.5" y="176.5" width="115" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 12" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ts2-Tf-eE5">
+                                <rect key="frame" x="171.5" y="170" width="160" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="wTs-cN-002"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plazo (años)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz1-Lb-fF6">
+                                <rect key="frame" x="61.5" y="230.5" width="98" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 5" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pz2-Tf-gG7">
+                                <rect key="frame" x="171.5" y="224" width="160" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="wPz-cN-003"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb1-Pr-hH8">
+                                <rect key="frame" x="152" y="290" width="71" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Calcular"/>
+                                <connections>
+                                    <action selector="calcularPrestamo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ac1-Pr-kK1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd1-Pr-iI9">
+                                <rect key="frame" x="145" y="348" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa los datos del préstamo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rs1-Pr-jJ0">
+                                <rect key="frame" x="65" y="376.5" width="245" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Tt1-Pr-aA1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="p01-cN-101"/>
+                            <constraint firstItem="Tt1-Pr-aA1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p02-cN-102"/>
+                            <constraint firstItem="Tt1-Pr-aA1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="p03-cN-103"/>
+                            <constraint firstItem="Cp2-Tf-cC3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="64" id="p04-cN-104"/>
+                            <constraint firstItem="Cp2-Tf-cC3" firstAttribute="top" secondItem="Tt1-Pr-aA1" secondAttribute="bottom" constant="32" id="p05-cN-105"/>
+                            <constraint firstItem="Cp2-Tf-cC3" firstAttribute="leading" secondItem="Cp1-Lb-bB2" secondAttribute="trailing" constant="12" id="p06-cN-106"/>
+                            <constraint firstItem="Cp1-Lb-bB2" firstAttribute="centerY" secondItem="Cp2-Tf-cC3" secondAttribute="centerY" id="p07-cN-107"/>
+                            <constraint firstItem="Ts2-Tf-eE5" firstAttribute="leading" secondItem="Cp2-Tf-cC3" secondAttribute="leading" id="p08-cN-108"/>
+                            <constraint firstItem="Ts2-Tf-eE5" firstAttribute="top" secondItem="Cp2-Tf-cC3" secondAttribute="bottom" constant="20" id="p09-cN-109"/>
+                            <constraint firstItem="Ts2-Tf-eE5" firstAttribute="leading" secondItem="Ts1-Lb-dD4" secondAttribute="trailing" constant="12" id="p10-cN-110"/>
+                            <constraint firstItem="Ts1-Lb-dD4" firstAttribute="centerY" secondItem="Ts2-Tf-eE5" secondAttribute="centerY" id="p11-cN-111"/>
+                            <constraint firstItem="Pz2-Tf-gG7" firstAttribute="leading" secondItem="Cp2-Tf-cC3" secondAttribute="leading" id="p12-cN-112"/>
+                            <constraint firstItem="Pz2-Tf-gG7" firstAttribute="top" secondItem="Ts2-Tf-eE5" secondAttribute="bottom" constant="20" id="p13-cN-113"/>
+                            <constraint firstItem="Pz2-Tf-gG7" firstAttribute="leading" secondItem="Pz1-Lb-fF6" secondAttribute="trailing" constant="12" id="p14-cN-114"/>
+                            <constraint firstItem="Pz1-Lb-fF6" firstAttribute="centerY" secondItem="Pz2-Tf-gG7" secondAttribute="centerY" id="p15-cN-115"/>
+                            <constraint firstItem="Cb1-Pr-hH8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p16-cN-116"/>
+                            <constraint firstItem="Cb1-Pr-hH8" firstAttribute="top" secondItem="Pz2-Tf-gG7" secondAttribute="bottom" constant="32" id="p17-cN-117"/>
+                            <constraint firstItem="Hd1-Pr-iI9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p18-cN-118"/>
+                            <constraint firstItem="Hd1-Pr-iI9" firstAttribute="top" secondItem="Cb1-Pr-hH8" secondAttribute="bottom" constant="24" id="p19-cN-119"/>
+                            <constraint firstItem="Rs1-Pr-jJ0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p20-cN-120"/>
+                            <constraint firstItem="Rs1-Pr-jJ0" firstAttribute="top" secondItem="Hd1-Pr-iI9" secondAttribute="bottom" constant="8" id="p21-cN-121"/>
+                            <constraint firstItem="Rs1-Pr-jJ0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="p22-cN-122"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="capitalTextField" destination="Cp2-Tf-cC3" id="Ou1-Cp-lL2"/>
+                        <outlet property="plazoTextField" destination="Pz2-Tf-gG7" id="Ou3-Pz-nN4"/>
+                        <outlet property="resultLabel" destination="Rs1-Pr-jJ0" id="Ou4-Rs-oO5"/>
+                        <outlet property="tasaTextField" destination="Ts2-Tf-eE5" id="Ou2-Ts-mM3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
