@@ -16,6 +16,12 @@ class ViewControllerConfirmacion: UIViewController {
         self.tfDNI.text = pCliente.Dni
     }
 
+    // MARK: - Botón Volver
+
+    @IBAction func btnVolver(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     
     
 }

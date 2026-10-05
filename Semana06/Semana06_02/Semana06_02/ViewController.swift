@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             pCodigo: 0,
             pApellido: self.tfApellido.text!,
             pNombre: self.tfNombre.text!,
-            pDni: self.tfDni.text!
+            pDni: self.tfDNI.text!
         )
         
         // crear el Storyboard con el nombre Main, se asocia a la pantalla 2
@@ -44,3 +44,4 @@ class ViewController: UIViewController {
             completion: nil
         )
     }
+}

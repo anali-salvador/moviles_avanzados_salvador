@@ -76,7 +76,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Continuar"/>
                                 <connections>
                                     <action selector="btnContinuar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plB-DI-eru"/>
-                                    <segue destination="8UM-zy-3Cb" kind="show" id="lsw-xv-rbg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -158,6 +157,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-Bt-n01">
+                                <rect key="frame" x="147" y="360" width="99" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Volver"/>
+                                <connections>
+                                    <action selector="btnVolver:" destination="8UM-zy-3Cb" eventType="touchUpInside" id="Vlv-Ac-t01"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QD3-pm-Sio"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
