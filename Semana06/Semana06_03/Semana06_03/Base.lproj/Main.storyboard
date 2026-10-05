@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NAV-Nc-001">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="NAV-Sc-001">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NAV-Nc-001" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NAV-Nb-001">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NAV-Rs-001"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NAV-Fr-001" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-650" y="0.0"/>
+        </scene>
+        <!--Nueva Venta-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nueva Venta" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVt-Lb-000">
+                                <rect key="frame" x="40" y="104" width="295" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electrodoméstico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-Lb-001">
+                                <rect key="frame" x="24" y="152.0" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. Refrigeradora" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Tf-001">
+                                <rect key="frame" x="24" y="178.5" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio unitario (S/)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-Lb-002">
+                                <rect key="frame" x="24" y="230.5" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 1500.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Tf-002">
+                                <rect key="frame" x="24" y="257.0" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantidad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-Lb-003">
+                                <rect key="frame" x="24" y="309.0" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Tf-003">
+                                <rect key="frame" x="24" y="335.5" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-Lb-004">
+                                <rect key="frame" x="24" y="387.5" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 12" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Tf-004">
+                                <rect key="frame" x="24" y="414.0" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasa interes mensual (%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-Lb-005">
+                                <rect key="frame" x="24" y="466.0" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ej. 1.5" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Tf-005">
+                                <rect key="frame" x="24" y="492.5" width="327" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVb-Bt-001">
+                                <rect key="frame" x="24" y="577" width="327" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NVb-Ht-001"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Calcular">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="RSv-Vc-001" kind="show" identifier="showResultado" id="NVs-Sg-001"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NVt-Lb-000" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="NVc-00-001"/>
+                            <constraint firstItem="NVt-Lb-000" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NVc-00-002"/>
+                            <constraint firstItem="NVt-Lb-000" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NVc-00-003"/>
+                            <constraint firstItem="NVl-Lb-001" firstAttribute="top" secondItem="NVt-Lb-000" secondAttribute="bottom" constant="24" id="NVc-01-001"/>
+                            <constraint firstItem="NVl-Lb-001" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-01-002"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVl-Lb-001" secondAttribute="trailing" constant="24" id="NVc-01-003"/>
+                            <constraint firstItem="NVf-Tf-001" firstAttribute="top" secondItem="NVl-Lb-001" secondAttribute="bottom" constant="6" id="NVc-01-004"/>
+                            <constraint firstItem="NVf-Tf-001" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-01-005"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVf-Tf-001" secondAttribute="trailing" constant="24" id="NVc-01-006"/>
+                            <constraint firstItem="NVl-Lb-002" firstAttribute="top" secondItem="NVf-Tf-001" secondAttribute="bottom" constant="18" id="NVc-02-001"/>
+                            <constraint firstItem="NVl-Lb-002" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-02-002"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVl-Lb-002" secondAttribute="trailing" constant="24" id="NVc-02-003"/>
+                            <constraint firstItem="NVf-Tf-002" firstAttribute="top" secondItem="NVl-Lb-002" secondAttribute="bottom" constant="6" id="NVc-02-004"/>
+                            <constraint firstItem="NVf-Tf-002" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-02-005"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVf-Tf-002" secondAttribute="trailing" constant="24" id="NVc-02-006"/>
+                            <constraint firstItem="NVl-Lb-003" firstAttribute="top" secondItem="NVf-Tf-002" secondAttribute="bottom" constant="18" id="NVc-03-001"/>
+                            <constraint firstItem="NVl-Lb-003" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-03-002"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVl-Lb-003" secondAttribute="trailing" constant="24" id="NVc-03-003"/>
+                            <constraint firstItem="NVf-Tf-003" firstAttribute="top" secondItem="NVl-Lb-003" secondAttribute="bottom" constant="6" id="NVc-03-004"/>
+                            <constraint firstItem="NVf-Tf-003" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-03-005"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVf-Tf-003" secondAttribute="trailing" constant="24" id="NVc-03-006"/>
+                            <constraint firstItem="NVl-Lb-004" firstAttribute="top" secondItem="NVf-Tf-003" secondAttribute="bottom" constant="18" id="NVc-04-001"/>
+                            <constraint firstItem="NVl-Lb-004" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-04-002"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVl-Lb-004" secondAttribute="trailing" constant="24" id="NVc-04-003"/>
+                            <constraint firstItem="NVf-Tf-004" firstAttribute="top" secondItem="NVl-Lb-004" secondAttribute="bottom" constant="6" id="NVc-04-004"/>
+                            <constraint firstItem="NVf-Tf-004" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-04-005"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVf-Tf-004" secondAttribute="trailing" constant="24" id="NVc-04-006"/>
+                            <constraint firstItem="NVl-Lb-005" firstAttribute="top" secondItem="NVf-Tf-004" secondAttribute="bottom" constant="18" id="NVc-05-001"/>
+                            <constraint firstItem="NVl-Lb-005" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-05-002"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVl-Lb-005" secondAttribute="trailing" constant="24" id="NVc-05-003"/>
+                            <constraint firstItem="NVf-Tf-005" firstAttribute="top" secondItem="NVl-Lb-005" secondAttribute="bottom" constant="6" id="NVc-05-004"/>
+                            <constraint firstItem="NVf-Tf-005" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-05-005"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVf-Tf-005" secondAttribute="trailing" constant="24" id="NVc-05-006"/>
+                            <constraint firstItem="NVb-Bt-001" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="NVc-06-001"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVb-Bt-001" secondAttribute="trailing" constant="24" id="NVc-06-003"/>
+                            <constraint firstItem="NVb-Bt-001" firstAttribute="top" secondItem="NVf-Tf-005" secondAttribute="bottom" constant="32" id="NVc-06-002"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NVn-It-001"/>
+                    <connections>
+                        <outlet property="tfElectrodomestico" destination="NVf-Tf-001" id="NVo-01-000"/>
+                        <outlet property="tfPrecioUnitario" destination="NVf-Tf-002" id="NVo-02-000"/>
+                        <outlet property="tfCantidad" destination="NVf-Tf-003" id="NVo-03-000"/>
+                        <outlet property="tfMeses" destination="NVf-Tf-004" id="NVo-04-000"/>
+                        <outlet property="tfTasaInteres" destination="NVf-Tf-005" id="NVo-05-000"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Resultado-->
+        <scene sceneID="RSs-Sc-001">
+            <objects>
+                <viewController storyboardIdentifier="ResultadoViewController" id="RSv-Vc-001" customClass="ResultadoViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RSv-Vw-001">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSt-Lb-000">
+                                <rect key="frame" x="40" y="104" width="295" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-001">
+                                <rect key="frame" x="24" y="156.0" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-001">
+                                <rect key="frame" x="266" y="156.0" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IGV:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-002">
+                                <rect key="frame" x="24" y="196.5" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-002">
+                                <rect key="frame" x="266" y="196.5" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monto base:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-003">
+                                <rect key="frame" x="24" y="237.0" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-003">
+                                <rect key="frame" x="266" y="237.0" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intereses totales:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-004">
+                                <rect key="frame" x="24" y="277.5" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-004">
+                                <rect key="frame" x="266" y="277.5" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSd-Vw-001">
+                                <rect key="frame" x="24" y="330.0" width="327" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="RSd-Ht-001"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total a pagar:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-005">
+                                <rect key="frame" x="24" y="343.0" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-005">
+                                <rect key="frame" x="266" y="343.0" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuota mensual:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSl-Lb-006">
+                                <rect key="frame" x="24" y="383.5" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S/. 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-Lb-006">
+                                <rect key="frame" x="266" y="383.5" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSb-Bt-001">
+                                <rect key="frame" x="24" y="473" width="327" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="RSb-Ht-001"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Volver">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnVolver:" destination="RSv-Vc-001" eventType="touchUpInside" id="RSa-Ac-001"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="RSt-Lb-000" firstAttribute="top" secondItem="RSs-Sa-001" secondAttribute="top" constant="40" id="RSc-00-001"/>
+                            <constraint firstItem="RSt-Lb-000" firstAttribute="centerX" secondItem="RSs-Sa-001" secondAttribute="centerX" id="RSc-00-002"/>
+                            <constraint firstItem="RSt-Lb-000" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSs-Sa-001" secondAttribute="leading" constant="16" id="RSc-00-003"/>
+                            <constraint firstItem="RSv-Lb-001" firstAttribute="top" secondItem="RSt-Lb-000" secondAttribute="bottom" constant="28" id="RSc-01-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-001" secondAttribute="trailing" constant="24" id="RSc-01-002"/>
+                            <constraint firstItem="RSv-Lb-001" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-001" secondAttribute="trailing" constant="12" id="RSc-01-004"/>
+                            <constraint firstItem="RSl-Lb-001" firstAttribute="centerY" secondItem="RSv-Lb-001" secondAttribute="centerY" id="RSc-01-005"/>
+                            <constraint firstItem="RSl-Lb-001" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-01-006"/>
+                            <constraint firstItem="RSv-Lb-002" firstAttribute="top" secondItem="RSv-Lb-001" secondAttribute="bottom" constant="20" id="RSc-02-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-002" secondAttribute="trailing" constant="24" id="RSc-02-002"/>
+                            <constraint firstItem="RSv-Lb-002" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-002" secondAttribute="trailing" constant="12" id="RSc-02-004"/>
+                            <constraint firstItem="RSl-Lb-002" firstAttribute="centerY" secondItem="RSv-Lb-002" secondAttribute="centerY" id="RSc-02-005"/>
+                            <constraint firstItem="RSl-Lb-002" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-02-006"/>
+                            <constraint firstItem="RSv-Lb-003" firstAttribute="top" secondItem="RSv-Lb-002" secondAttribute="bottom" constant="20" id="RSc-03-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-003" secondAttribute="trailing" constant="24" id="RSc-03-002"/>
+                            <constraint firstItem="RSv-Lb-003" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-003" secondAttribute="trailing" constant="12" id="RSc-03-004"/>
+                            <constraint firstItem="RSl-Lb-003" firstAttribute="centerY" secondItem="RSv-Lb-003" secondAttribute="centerY" id="RSc-03-005"/>
+                            <constraint firstItem="RSl-Lb-003" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-03-006"/>
+                            <constraint firstItem="RSv-Lb-004" firstAttribute="top" secondItem="RSv-Lb-003" secondAttribute="bottom" constant="20" id="RSc-04-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-004" secondAttribute="trailing" constant="24" id="RSc-04-002"/>
+                            <constraint firstItem="RSv-Lb-004" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-004" secondAttribute="trailing" constant="12" id="RSc-04-004"/>
+                            <constraint firstItem="RSl-Lb-004" firstAttribute="centerY" secondItem="RSv-Lb-004" secondAttribute="centerY" id="RSc-04-005"/>
+                            <constraint firstItem="RSl-Lb-004" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-04-006"/>
+                            <constraint firstItem="RSd-Vw-001" firstAttribute="top" secondItem="RSv-Lb-004" secondAttribute="bottom" constant="12" id="RSc-08-001"/>
+                            <constraint firstItem="RSd-Vw-001" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-08-002"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSd-Vw-001" secondAttribute="trailing" constant="24" id="RSc-08-003"/>
+                            <constraint firstItem="RSv-Lb-005" firstAttribute="top" secondItem="RSd-Vw-001" secondAttribute="bottom" constant="12" id="RSc-05-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-005" secondAttribute="trailing" constant="24" id="RSc-05-002"/>
+                            <constraint firstItem="RSv-Lb-005" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-005" secondAttribute="trailing" constant="12" id="RSc-05-004"/>
+                            <constraint firstItem="RSl-Lb-005" firstAttribute="centerY" secondItem="RSv-Lb-005" secondAttribute="centerY" id="RSc-05-005"/>
+                            <constraint firstItem="RSl-Lb-005" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-05-006"/>
+                            <constraint firstItem="RSv-Lb-006" firstAttribute="top" secondItem="RSv-Lb-005" secondAttribute="bottom" constant="20" id="RSc-06-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSv-Lb-006" secondAttribute="trailing" constant="24" id="RSc-06-002"/>
+                            <constraint firstItem="RSv-Lb-006" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RSl-Lb-006" secondAttribute="trailing" constant="12" id="RSc-06-004"/>
+                            <constraint firstItem="RSl-Lb-006" firstAttribute="centerY" secondItem="RSv-Lb-006" secondAttribute="centerY" id="RSc-06-005"/>
+                            <constraint firstItem="RSl-Lb-006" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-06-006"/>
+                            <constraint firstItem="RSb-Bt-001" firstAttribute="leading" secondItem="RSs-Sa-001" secondAttribute="leading" constant="24" id="RSc-07-001"/>
+                            <constraint firstItem="RSs-Sa-001" firstAttribute="trailing" secondItem="RSb-Bt-001" secondAttribute="trailing" constant="24" id="RSc-07-003"/>
+                            <constraint firstItem="RSb-Bt-001" firstAttribute="top" secondItem="RSv-Lb-006" secondAttribute="bottom" constant="32" id="RSc-07-002"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RSs-Sa-001"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RSn-It-001"/>
+                    <connections>
+                        <outlet property="lblSubtotal" destination="RSv-Lb-001" id="RSo-01-000"/>
+                        <outlet property="lblIgv" destination="RSv-Lb-002" id="RSo-02-000"/>
+                        <outlet property="lblBase" destination="RSv-Lb-003" id="RSo-03-000"/>
+                        <outlet property="lblIntereses" destination="RSv-Lb-004" id="RSo-04-000"/>
+                        <outlet property="lblTotal" destination="RSv-Lb-005" id="RSo-05-000"/>
+                        <outlet property="lblCuota" destination="RSv-Lb-006" id="RSo-06-000"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSf-Fr-001" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="650" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
