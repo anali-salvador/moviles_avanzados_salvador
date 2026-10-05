@@ -132,3 +132,83 @@ print(misteriosa.descuento()) // PREDICT 6: imprime 0.1, no 0.05. Aunque la vari
 
 let monto = 2000.0 * (1 - misteriosa.descuento())
 print(misteriosa.costoEnvio(monto: monto)) // PREDICT 7: monto = 2000 * (1 - 0.1) = 1800.0, que es mayor o igual a 1500, así que imprime 0.0 (envío gratis en Lima)
+
+// ===== CASO 2 — PARTE A: BIBLIOTECA (SIN IA) =====
+// Docente: Juan León
+
+enum EstadoLibro { // Los dos estados posibles de un libro
+    case disponible, prestado // disponible: se puede prestar; prestado: alguien lo tiene
+}
+
+struct Libro { // Modelo de datos de un libro (tipo por valor)
+    let titulo: String // Título del libro, no cambia
+    let autor: String // Autor del libro, no cambia
+    var estado: EstadoLibro = .disponible // Estado actual; var porque cambia al prestar/devolver. Por defecto disponible
+}
+
+class Biblioteca { // Gestiona la colección de libros y sus operaciones
+    var libros: [Libro] = [] // Lista de libros registrados, empieza vacía
+
+    func agregar(libro: Libro) { // Registra un libro nuevo en la biblioteca
+        libros.append(libro) // Lo añade al final del array
+    }
+
+    func prestar(titulo: String) -> Bool { // Intenta prestar un libro; devuelve true si se pudo
+        for i in 0..<libros.count { // Recorre por índice para poder modificar el struct dentro del array
+            if libros[i].titulo == titulo { // Encontró el libro buscado
+                if libros[i].estado == .disponible { // Solo se presta si está disponible
+                    libros[i].estado = .prestado // Cambia el estado directamente en el array
+                    print("Préstamo aprobado: \(titulo)") // Informa el éxito
+                    return true // Préstamo realizado
+                } else { // El libro existe pero ya está prestado
+                    print("Error: \(titulo) ya está prestado") // Informa el motivo del rechazo
+                    return false // Préstamo rechazado
+                }
+            }
+        }
+        print("Error: no existe \(titulo)") // Terminó el recorrido sin encontrar el título
+        return false // No se pudo prestar porque el libro no existe
+    }
+
+    func devolver(titulo: String) -> Bool { // Intenta devolver un libro; devuelve true si se pudo
+        for i in 0..<libros.count { // Recorre por índice para poder modificar el struct dentro del array
+            if libros[i].titulo == titulo { // Encontró el libro buscado
+                if libros[i].estado == .prestado { // Solo se devuelve si estaba prestado
+                    libros[i].estado = .disponible // Vuelve a quedar disponible
+                    print("Devolución registrada: \(titulo)") // Informa el éxito
+                    return true // Devolución realizada
+                } else { // El libro existe pero no estaba prestado
+                    print("Error: \(titulo) no estaba prestado") // Informa el motivo del rechazo
+                    return false // Devolución rechazada
+                }
+            }
+        }
+        print("Error: no existe \(titulo)") // Terminó el recorrido sin encontrar el título
+        return false // No se pudo devolver porque el libro no existe
+    }
+
+    func inventario() { // Muestra todos los libros con su estado actual
+        print("===== INVENTARIO =====") // Encabezado del reporte
+        for libro in libros { // Recorre cada libro (solo lectura, no hace falta índice)
+            switch libro.estado { // switch exhaustivo sobre el enum: cubre todos los casos
+            case .disponible: // Caso libro disponible
+                print("\(libro.titulo) (\(libro.autor)) - disponible") // Imprime título, autor y estado
+            case .prestado: // Caso libro prestado
+                print("\(libro.titulo) (\(libro.autor)) - prestado") // Imprime título, autor y estado
+            }
+        }
+    }
+}
+
+// Simulación
+let biblioteca = Biblioteca() // Crea la biblioteca vacía
+biblioteca.agregar(libro: Libro(titulo: "Cien años de soledad", autor: "Gabriel García Márquez")) // Registra el libro 1 (disponible por defecto)
+biblioteca.agregar(libro: Libro(titulo: "La ciudad y los perros", autor: "Mario Vargas Llosa")) // Registra el libro 2
+biblioteca.agregar(libro: Libro(titulo: "El Quijote", autor: "Miguel de Cervantes")) // Registra el libro 3
+
+_ = biblioteca.prestar(titulo: "La ciudad y los perros") // Primer préstamo: se aprueba
+_ = biblioteca.prestar(titulo: "La ciudad y los perros") // Segundo préstamo del mismo libro: error, ya está prestado
+_ = biblioteca.devolver(titulo: "La ciudad y los perros") // Se devuelve: vuelve a estar disponible
+_ = biblioteca.prestar(titulo: "El Quijote") // Préstamo aprobado de El Quijote
+_ = biblioteca.prestar(titulo: "El Principito") // Error: el libro no existe en la biblioteca
+biblioteca.inventario() // Muestra el estado final de todos los libros
