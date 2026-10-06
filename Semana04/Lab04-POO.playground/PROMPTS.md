@@ -6,11 +6,15 @@ Claude (Anthropic)
 ## Caso 2B — Biblioteca
 
 ### Prompt 1:
+```
 CONTEXTO: Soy estudiante de Swift, cuarta semana, trabajo en un Playground de Xcode.
 TAREA: Necesito una biblioteca con enum EstadoLibro, struct Libro y class Biblioteca con prestar, devolver e inventario.
 RESTRICCIONES: Solo struct, class, herencia, protocolos, enums, arrays, bucles y funciones. Sin optionals ni guard let, sin firstIndex(where:), sin didSet, sin propiedades calculadas, sin genéricos.
 FORMATO: Solo el código Swift, con las firmas exactas que te indico.
-EJEMPLO: 
+```
+
+EJEMPLO:
+```
 Préstamo aprobado: La ciudad y los perros
 Error: La ciudad y los perros ya está prestado
 Devolución registrada: La ciudad y los perros
@@ -20,6 +24,7 @@ Error: no existe El Principito
 Cien años de soledad (Gabriel García Márquez) - disponible
 La ciudad y los perros (Mario Vargas Llosa) - disponible
 El Quijote (Miguel de Cervantes) - prestado
+```
 
 ### Respuesta de la IA:
 Generó el enum EstadoLibro, el struct Libro y la class Biblioteca completos, con los métodos prestar, devolver e inventario usando un bucle for con índice (for i in 0..<libros.count), tal como pedían las restricciones.
