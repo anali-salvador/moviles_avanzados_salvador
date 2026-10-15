@@ -13,7 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Barra de navegación con fondo vino y textos en blanco en toda la app
+        let apariencia = UINavigationBarAppearance()
+        apariencia.configureWithOpaqueBackground()
+        apariencia.backgroundColor = .vino
+        apariencia.titleTextAttributes = [.foregroundColor: UIColor.white]
+        apariencia.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        let barra = UINavigationBar.appearance()
+        barra.standardAppearance = apariencia
+        barra.scrollEdgeAppearance = apariencia
+        barra.compactAppearance = apariencia
+        barra.tintColor = .white
         return true
     }
 

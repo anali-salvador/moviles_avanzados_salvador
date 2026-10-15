@@ -63,6 +63,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sIU-gq-3KF"/>
+                    <connections>
+                        <outlet property="tableView" destination="JX3-LS-K8f" id="LTo-Tb-7w2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,9 +97,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="MTb-Vw-8r2">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-Vw-8r2">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="opcion" textLabel="MOl-Tx-6h1" style="IBUITableViewCellStyleDefault" id="MOc-Cl-2j5">
@@ -115,6 +117,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="DTv-Ab-4m1" kind="show" identifier="irDetalle" id="IrD-sg-7w3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -125,6 +130,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MCs-Gd-7p4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MTb-Vw-8r2" firstAttribute="top" secondItem="MCs-Gd-7p4" secondAttribute="top" id="MCc-Tp-1a1"/>
+                            <constraint firstItem="MTb-Vw-8r2" firstAttribute="leading" secondItem="MCw-Vw-3k9" secondAttribute="leading" id="MCc-Ld-2b2"/>
+                            <constraint firstItem="MCw-Vw-3k9" firstAttribute="trailing" secondItem="MTb-Vw-8r2" secondAttribute="trailing" id="MCc-Tr-3c3"/>
+                            <constraint firstItem="MCw-Vw-3k9" firstAttribute="bottom" secondItem="MTb-Vw-8r2" secondAttribute="bottom" id="MCc-Bt-4d4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="MTb-Vw-8r2" id="MTo-Ot-3c7"/>
@@ -134,8 +145,78 @@
             </objects>
             <point key="canvasLocation" x="1300" y="-32.394366197183103"/>
         </scene>
+        <!--Detalle View Controller-->
+        <scene sceneID="DTn-Sc-8q2">
+            <objects>
+                <viewController id="DTv-Ab-4m1" customClass="DetalleViewController" customModule="culturas_peruanas_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DTw-Vw-6n5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTi-Ft-1a2">
+                                <rect key="frame" x="16" y="119" width="361" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="DTk-Ht-1b3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTn-Lb-2c4">
+                                <rect key="frame" x="16" y="355" width="361" height="33.666666666666664"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPCIÓN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Lb-3d5">
+                                <rect key="frame" x="16" y="392.66666666666669" width="361" height="15.666666666666666"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DTt-Tx-4e6">
+                                <rect key="frame" x="16" y="420.33333333333331" width="361" height="397.66666666666669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Texto</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DTs-Gd-1t8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DTi-Ft-1a2" firstAttribute="top" secondItem="DTs-Gd-1t8" secondAttribute="top" constant="16" id="DTk-Tp-2f7"/>
+                            <constraint firstItem="DTi-Ft-1a2" firstAttribute="leading" secondItem="DTw-Vw-6n5" secondAttribute="leading" constant="16" id="DTk-Ld-3g8"/>
+                            <constraint firstItem="DTw-Vw-6n5" firstAttribute="trailing" secondItem="DTi-Ft-1a2" secondAttribute="trailing" constant="16" id="DTk-Tr-4h9"/>
+                            <constraint firstItem="DTn-Lb-2c4" firstAttribute="top" secondItem="DTi-Ft-1a2" secondAttribute="bottom" constant="16" id="DTk-Tp-5i1"/>
+                            <constraint firstItem="DTn-Lb-2c4" firstAttribute="leading" secondItem="DTw-Vw-6n5" secondAttribute="leading" constant="16" id="DTk-Ld-6j2"/>
+                            <constraint firstItem="DTw-Vw-6n5" firstAttribute="trailing" secondItem="DTn-Lb-2c4" secondAttribute="trailing" constant="16" id="DTk-Tr-7k3"/>
+                            <constraint firstItem="DTo-Lb-3d5" firstAttribute="top" secondItem="DTn-Lb-2c4" secondAttribute="bottom" constant="4" id="DTk-Tp-8l4"/>
+                            <constraint firstItem="DTo-Lb-3d5" firstAttribute="leading" secondItem="DTw-Vw-6n5" secondAttribute="leading" constant="16" id="DTk-Ld-9m5"/>
+                            <constraint firstItem="DTw-Vw-6n5" firstAttribute="trailing" secondItem="DTo-Lb-3d5" secondAttribute="trailing" constant="16" id="DTk-Tr-1n6"/>
+                            <constraint firstItem="DTt-Tx-4e6" firstAttribute="top" secondItem="DTo-Lb-3d5" secondAttribute="bottom" constant="12" id="DTk-Tp-2o7"/>
+                            <constraint firstItem="DTt-Tx-4e6" firstAttribute="leading" secondItem="DTw-Vw-6n5" secondAttribute="leading" constant="16" id="DTk-Ld-3p8"/>
+                            <constraint firstItem="DTw-Vw-6n5" firstAttribute="trailing" secondItem="DTt-Tx-4e6" secondAttribute="trailing" constant="16" id="DTk-Tr-4q9"/>
+                            <constraint firstItem="DTs-Gd-1t8" firstAttribute="bottom" secondItem="DTt-Tx-4e6" secondAttribute="bottom" id="DTk-Bt-5r1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imagenImageView" destination="DTi-Ft-1a2" id="DTx-Im-6s2"/>
+                        <outlet property="nombreLabel" destination="DTn-Lb-2c4" id="DTx-Nm-7t3"/>
+                        <outlet property="opcionLabel" destination="DTo-Lb-3d5" id="DTx-Op-8u4"/>
+                        <outlet property="textoTextView" destination="DTt-Tx-4e6" id="DTx-Tx-9v5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTf-Rs-7x9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2200" y="-32.394366197183103"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
