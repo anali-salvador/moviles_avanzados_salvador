@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         TablaContacto.delegate = self
         mostrarRutaBaseDeDatos()
         cargarInfoCoreData()
+        // probarRelacion() // ya se ejecutó una vez: no volver a crear el grupo
     }
 
     // MARK: - Conexión con Core Data
@@ -128,5 +129,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == .delete {
             eliminarContacto(at: indexPath)
         }
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let borrar = UIContextualAction(style: .destructive, title: "Eliminar") { _, _, completion in
+            self.eliminarContacto(at: indexPath)
+            completion(true)
+        }
+        borrar.image = UIImage(systemName: "trash.fill")
+        borrar.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [borrar])
     }
 }
