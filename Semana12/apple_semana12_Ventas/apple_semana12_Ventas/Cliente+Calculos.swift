@@ -12,7 +12,7 @@ extension Cliente {
             switch self {
             case .regular: return .systemGray
             case .frecuente: return .systemBlue
-            case .vip: return UIColor(red: 0.80, green: 0.60, blue: 0.05, alpha: 1)   // dorado
+            case .vip: return .systemPurple
             }
         }
     }

@@ -30,7 +30,7 @@ class VentasEquipoViewController: UIViewController {
 
         // Iniciales del usuario de la sesión, solo informativas.
         let iniciales = UILabel()
-        iniciales.text = Self.iniciales(de: Sesion.shared.usuarioActual?.nombre)
+        iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
         iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
         iniciales.textColor = .systemBlue
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
@@ -248,36 +248,6 @@ class VentasEquipoViewController: UIViewController {
 
     // MARK: - Ayudas
 
-    /// Hasta dos iniciales de un nombre, en mayúsculas.
-    static func iniciales(de nombre: String?) -> String {
-        let letras = (nombre ?? "").split(separator: " ").prefix(2).compactMap { $0.first }.map(String.init).joined()
-        return letras.isEmpty ? "?" : letras.uppercased()
-    }
-
-    /// Cuadrado redondeado con las iniciales del cliente en blanco.
-    static func avatar(_ texto: String, color: UIColor) -> UIImage {
-        let lado: CGFloat = 42
-        return UIGraphicsImageRenderer(size: CGSize(width: lado, height: lado)).image { _ in
-            color.setFill()
-            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: 10).fill()
-            let atributos: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 15, weight: .bold),
-                .foregroundColor: UIColor.white
-            ]
-            let tamano = (texto as NSString).size(withAttributes: atributos)
-            (texto as NSString).draw(at: CGPoint(x: (lado - tamano.width) / 2, y: (lado - tamano.height) / 2),
-                                     withAttributes: atributos)
-        }
-    }
-
-    static func colorAvatar(_ categoria: Cliente.Categoria) -> UIColor {
-        switch categoria {
-        case .vip: return .systemPurple
-        case .frecuente: return .systemBlue
-        case .regular: return .systemGray
-        }
-    }
-
     static func texto(_ texto: String, tachado: Bool, fuente: UIFont, color: UIColor) -> NSAttributedString {
         var atributos: [NSAttributedString.Key: Any] = [.font: fuente, .foregroundColor: color]
         if tachado {
@@ -311,7 +281,7 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
 
         var contenido = UIListContentConfiguration.subtitleCell()
         let categoria = cliente?.categoria() ?? .regular
-        contenido.image = Self.avatar(cliente?.iniciales ?? "?", color: Self.colorAvatar(categoria))
+        contenido.image = UI.cuadroTexto(cliente?.iniciales ?? "?", fondo: categoria.color)
         contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
         contenido.imageToTextPadding = 12
 

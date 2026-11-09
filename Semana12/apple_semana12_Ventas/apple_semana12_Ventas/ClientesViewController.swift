@@ -82,27 +82,37 @@ class ClientesViewController: UITableViewController {
         let categoria = cliente.categoria(para: total)
 
         var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.image = Self.circuloIniciales(cliente.iniciales)
-        contenido.imageProperties.maximumSize = CGSize(width: 40, height: 40)
+        contenido.image = UI.cuadroTexto(cliente.iniciales, fondo: categoria.color)
+        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
+        contenido.imageToTextPadding = 12
         contenido.text = cliente.nombre
-
-        let fuente = UIFont.preferredFont(forTextStyle: .subheadline)
-        let detalle = NSMutableAttributedString(
-            string: "Doc: \(cliente.documento ?? "-")  ·  ",
-            attributes: [.foregroundColor: UIColor.secondaryLabel, .font: fuente])
-        detalle.append(NSAttributedString(
-            string: categoria.rawValue,
-            attributes: [.foregroundColor: categoria.color,
-                         .font: UIFont.systemFont(ofSize: fuente.pointSize, weight: .semibold)]))
-        contenido.secondaryAttributedText = detalle
+        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
+        contenido.secondaryText = "Doc: \(cliente.documento ?? "-")"
+        contenido.secondaryTextProperties.color = .secondaryLabel
+        contenido.textToSecondaryTextVerticalPadding = 3
         celda.contentConfiguration = contenido
 
         let labelTotal = UILabel()
         labelTotal.text = UI.soles(total)
-        labelTotal.font = .monospacedDigitSystemFont(ofSize: 15, weight: .medium)
-        labelTotal.sizeToFit()
-        celda.accessoryView = labelTotal
+        labelTotal.font = .monospacedDigitSystemFont(ofSize: 15, weight: .semibold)
+
+        let labelComprado = UILabel()
+        labelComprado.text = "comprado"
+        labelComprado.font = .systemFont(ofSize: 12)
+        labelComprado.textColor = .secondaryLabel
+
+        let filaCategoria = UIStackView(arrangedSubviews: [
+            labelComprado, UI.pastilla(categoria.rawValue, color: categoria.color)
+        ])
+        filaCategoria.spacing = 6
+        filaCategoria.alignment = .center
+
+        celda.accessoryView = UI.lateral([labelTotal, filaCategoria])
         return celda
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        "Categoría y \"comprado\" se calculan con las ventas no anuladas; no se guardan."
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -181,22 +191,6 @@ class ClientesViewController: UITableViewController {
         present(alerta, animated: true)
     }
 
-    // MARK: - Iniciales
-
-    private static func circuloIniciales(_ texto: String) -> UIImage {
-        let lado: CGFloat = 40
-        return UIGraphicsImageRenderer(size: CGSize(width: lado, height: lado)).image { _ in
-            UIColor.systemBlue.withAlphaComponent(0.15).setFill()
-            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: lado, height: lado)).fill()
-            let atributos: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 15, weight: .semibold),
-                .foregroundColor: UIColor.systemBlue
-            ]
-            let tamano = (texto as NSString).size(withAttributes: atributos)
-            (texto as NSString).draw(at: CGPoint(x: (lado - tamano.width) / 2, y: (lado - tamano.height) / 2),
-                                     withAttributes: atributos)
-        }
-    }
 }
 
 // MARK: - Búsqueda
