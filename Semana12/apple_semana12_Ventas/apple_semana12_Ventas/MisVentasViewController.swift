@@ -12,6 +12,8 @@ class MisVentasViewController: UIViewController {
 
     private let valorHoy = UILabel()
     private let valorMes = UILabel()
+    private let cantidadHoy = UILabel()
+    private let cantidadMes = UILabel()
     private let selectorPeriodo = UISegmentedControl(items: ["Todas", "Hoy", "Mes"])
     private let tabla = UITableView(frame: .zero, style: .insetGrouped)
     private let buscador = UISearchController(searchResultsController: nil)
@@ -19,8 +21,7 @@ class MisVentasViewController: UIViewController {
 
     private let formatoFecha: DateFormatter = {
         let formato = DateFormatter()
-        formato.dateStyle = .short
-        formato.timeStyle = .short
+        formato.dateFormat = "dd/MM"
         return formato
     }()
 
@@ -40,8 +41,15 @@ class MisVentasViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
 
+        // Iniciales del vendedor de la sesión, solo informativas.
+        let iniciales = UILabel()
+        iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
+        iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
+        iniciales.textColor = .systemBlue
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
+
         let indicadores = UIStackView(arrangedSubviews: [
-            tarjeta("Hoy", valorHoy), tarjeta("Mes", valorMes)
+            tarjeta("Hoy", valorHoy, cantidadHoy), tarjeta("Mes", valorMes, cantidadMes)
         ])
         indicadores.spacing = 12
         indicadores.distribution = .fillEqually
@@ -101,8 +109,12 @@ class MisVentasViewController: UIViewController {
     }
 
     private func recargar() {
-        valorHoy.text = UI.soles(totalVendido(desde: inicio(de: .hoy)))
-        valorMes.text = UI.soles(totalVendido(desde: inicio(de: .mes)))
+        let hoy = vendido(desde: inicio(de: .hoy))
+        let mes = vendido(desde: inicio(de: .mes))
+        valorHoy.text = UI.soles(hoy.total)
+        valorMes.text = UI.soles(mes.total)
+        cantidadHoy.text = Self.textoCantidad(hoy.cantidad)
+        cantidadMes.text = Self.textoCantidad(mes.cantidad)
 
         var condiciones = [predicadoVendedor()]
         if let desde = inicio(de: Periodo(rawValue: selectorPeriodo.selectedSegmentIndex) ?? .todas) {
@@ -127,8 +139,8 @@ class MisVentasViewController: UIViewController {
         tabla.reloadData()
     }
 
-    /// Total de ventas no anuladas del vendedor desde una fecha.
-    private func totalVendido(desde: Date?) -> Double {
+    /// Total y cantidad de ventas no anuladas del vendedor desde una fecha.
+    private func vendido(desde: Date?) -> (total: Double, cantidad: Int) {
         var condiciones = [predicadoVendedor(), NSPredicate(format: "anulada == NO")]
         if let desde {
             condiciones.append(NSPredicate(format: "fecha >= %@", desde as NSDate))
@@ -136,7 +148,11 @@ class MisVentasViewController: UIViewController {
         let pedido: NSFetchRequest<Venta> = Venta.fetchRequest()
         pedido.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: condiciones)
         let lista = (try? contexto.fetch(pedido)) ?? []
-        return CalculoVenta.redondear(lista.reduce(0) { $0 + $1.total })
+        return (CalculoVenta.redondear(lista.reduce(0) { $0 + $1.total }), lista.count)
+    }
+
+    private static func textoCantidad(_ cantidad: Int) -> String {
+        cantidad == 1 ? "1 venta" : "\(cantidad) ventas"
     }
 
     private func tieneVentas() -> Bool {
@@ -151,7 +167,7 @@ class MisVentasViewController: UIViewController {
 
     // MARK: - Vistas
 
-    private func tarjeta(_ titulo: String, _ valor: UILabel) -> UIView {
+    private func tarjeta(_ titulo: String, _ valor: UILabel, _ cantidad: UILabel) -> UIView {
         let etiqueta = UILabel()
         etiqueta.text = titulo
         etiqueta.font = .preferredFont(forTextStyle: .subheadline)
@@ -161,7 +177,10 @@ class MisVentasViewController: UIViewController {
         valor.adjustsFontSizeToFitWidth = true
         valor.minimumScaleFactor = 0.6
 
-        let pila = UIStackView(arrangedSubviews: [etiqueta, valor])
+        cantidad.font = .preferredFont(forTextStyle: .footnote)
+        cantidad.textColor = .secondaryLabel
+
+        let pila = UIStackView(arrangedSubviews: [etiqueta, valor, cantidad])
         pila.axis = .vertical
         pila.spacing = 4
         pila.isLayoutMarginsRelativeArrangement = true
@@ -180,42 +199,41 @@ extension MisVentasViewController: UITableViewDataSource {
         ventas.count
     }
 
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        "Solo aparecen las ventas de este vendedor."
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
         let venta = ventas[indexPath.row]
         let anulada = venta.anulada
 
         let fecha = venta.fecha.map { formatoFecha.string(from: $0) } ?? "-"
-        let detalle = "\(venta.producto?.nombre ?? "-")  ·  x\(venta.cantidad)  ·  \(fecha)"
+        let detalle = "\(fecha) · \(venta.producto?.nombre ?? "-") × \(venta.cantidad)"
 
         var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.attributedText = Self.texto(venta.cliente?.nombre ?? "-", tachado: anulada,
-                                              fuente: .preferredFont(forTextStyle: .body),
-                                              color: anulada ? .secondaryLabel : .label)
-        contenido.secondaryAttributedText = Self.texto(detalle, tachado: anulada,
-                                                       fuente: .preferredFont(forTextStyle: .subheadline),
-                                                       color: .secondaryLabel)
+        contenido.image = anulada
+            ? UI.cuadroIcono("xmark", fondo: .systemRed.withAlphaComponent(0.15), color: .systemRed)
+            : UI.cuadroIcono("checkmark", fondo: .systemGreen)
+        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
+        contenido.imageToTextPadding = 12
+        contenido.text = venta.cliente?.nombre ?? "-"
+        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
+        contenido.textProperties.color = anulada ? .secondaryLabel : .label
+        contenido.secondaryText = detalle
+        contenido.secondaryTextProperties.color = .secondaryLabel
+        contenido.textToSecondaryTextVerticalPadding = 3
         celda.contentConfiguration = contenido
 
         let labelTotal = UILabel()
         labelTotal.attributedText = Self.texto(UI.soles(venta.total), tachado: anulada,
-                                               fuente: .monospacedDigitSystemFont(ofSize: 15, weight: .medium),
+                                               fuente: .monospacedDigitSystemFont(ofSize: 15, weight: .semibold),
                                                color: anulada ? .secondaryLabel : .label)
-        labelTotal.textAlignment = .right
-
-        let lateral = UIStackView(arrangedSubviews: [labelTotal])
-        lateral.axis = .vertical
-        lateral.alignment = .trailing
-        lateral.spacing = 2
+        var lateral: [UIView] = [labelTotal]
         if anulada {
-            let etiqueta = UILabel()
-            etiqueta.text = "ANULADA"
-            etiqueta.font = .systemFont(ofSize: 11, weight: .bold)
-            etiqueta.textColor = .systemRed
-            lateral.addArrangedSubview(etiqueta)
+            lateral.append(UI.pastilla("Anulada", color: .systemRed))
         }
-        lateral.frame.size = lateral.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        celda.accessoryView = lateral
+        celda.accessoryView = UI.lateral(lateral)
         celda.selectionStyle = .none
         return celda
     }
