@@ -1,26 +1,25 @@
 import UIKit
 import CoreData
 
-/// Pantalla A7: todas las ventas del equipo (Supervisor).
+/// Pantalla A7: todas las ventas del equipo (Supervisor), con anulación (A8).
 class VentasEquipoViewController: UIViewController {
+
+    private enum Periodo: Int { case todas, hoy, mes }
 
     private let celdaId = "VentaEquipoCelda"
     private var ventas: [Venta] = []
     private var vendedores: [Usuario] = []
     private var vendedorSeleccionado: Usuario?   // nil = "Todos"
+    private var textoBusqueda = ""
 
+    private let selectorPeriodo = UISegmentedControl(items: ["Todas", "Hoy", "Mes"])
     private let pilaChips = UIStackView()
+    private let barraBusqueda = UISearchBar()
     private let tabla = UITableView(frame: .zero, style: .insetGrouped)
     private let labelVacio = UILabel()
 
-    private let formatoFecha: DateFormatter = {
-        let formato = DateFormatter()
-        formato.dateStyle = .short
-        formato.timeStyle = .short
-        return formato
-    }()
-
     private var contexto: NSManagedObjectContext { UI.contexto }
+    private var esSupervisor: Bool { Sesion.shared.usuarioActual?.rol == "Supervisor" }
 
     // MARK: - Ciclo de vida
 
@@ -28,6 +27,16 @@ class VentasEquipoViewController: UIViewController {
         super.viewDidLoad()
         title = "Ventas"
         view.backgroundColor = .systemGroupedBackground
+
+        // Iniciales del usuario de la sesión, solo informativas.
+        let iniciales = UILabel()
+        iniciales.text = Self.iniciales(de: Sesion.shared.usuarioActual?.nombre)
+        iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
+        iniciales.textColor = .systemBlue
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
+
+        selectorPeriodo.selectedSegmentIndex = Periodo.todas.rawValue
+        selectorPeriodo.addTarget(self, action: #selector(cambioFiltro), for: .valueChanged)
 
         let scrollChips = UIScrollView()
         scrollChips.showsHorizontalScrollIndicator = false
@@ -37,39 +46,40 @@ class VentasEquipoViewController: UIViewController {
         pilaChips.translatesAutoresizingMaskIntoConstraints = false
         scrollChips.addSubview(pilaChips)
 
-        let nota = UILabel()
-        nota.text = "Cada venta guarda quién la registró (relación venta a vendedor)"
-        nota.font = .preferredFont(forTextStyle: .caption1)
-        nota.textColor = .secondaryLabel
-        nota.numberOfLines = 0
-        nota.translatesAutoresizingMaskIntoConstraints = false
+        barraBusqueda.searchBarStyle = .minimal
+        barraBusqueda.placeholder = "Buscar por cliente"
+        barraBusqueda.autocapitalizationType = .none
+        barraBusqueda.delegate = self
+
+        let filtros = UIStackView(arrangedSubviews: [selectorPeriodo, scrollChips, barraBusqueda])
+        filtros.axis = .vertical
+        filtros.spacing = 10
+        filtros.setCustomSpacing(2, after: scrollChips)
+        filtros.translatesAutoresizingMaskIntoConstraints = false
 
         tabla.translatesAutoresizingMaskIntoConstraints = false
         tabla.dataSource = self
         tabla.delegate = self
         tabla.allowsSelection = false
+        tabla.keyboardDismissMode = .onDrag
         tabla.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
 
-        view.addSubview(scrollChips)
-        view.addSubview(nota)
+        view.addSubview(filtros)
         view.addSubview(tabla)
         let guia = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            scrollChips.topAnchor.constraint(equalTo: guia.topAnchor, constant: 8),
-            scrollChips.leadingAnchor.constraint(equalTo: guia.leadingAnchor),
-            scrollChips.trailingAnchor.constraint(equalTo: guia.trailingAnchor),
-            scrollChips.heightAnchor.constraint(equalToConstant: 40),
-            pilaChips.leadingAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.leadingAnchor, constant: 20),
-            pilaChips.trailingAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.trailingAnchor, constant: -20),
+            filtros.topAnchor.constraint(equalTo: guia.topAnchor, constant: 8),
+            filtros.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: 16),
+            filtros.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -16),
+
+            scrollChips.heightAnchor.constraint(equalToConstant: 36),
+            pilaChips.leadingAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.leadingAnchor),
+            pilaChips.trailingAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.trailingAnchor),
             pilaChips.topAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.topAnchor),
             pilaChips.bottomAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.bottomAnchor),
             pilaChips.heightAnchor.constraint(equalTo: scrollChips.frameLayoutGuide.heightAnchor),
 
-            nota.topAnchor.constraint(equalTo: scrollChips.bottomAnchor, constant: 8),
-            nota.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: 20),
-            nota.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -20),
-
-            tabla.topAnchor.constraint(equalTo: nota.bottomAnchor, constant: 4),
+            tabla.topAnchor.constraint(equalTo: filtros.bottomAnchor),
             tabla.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tabla.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tabla.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -87,13 +97,32 @@ class VentasEquipoViewController: UIViewController {
 
     // MARK: - Datos
 
+    private func inicioPeriodo() -> Date? {
+        let ahora = Date()
+        switch Periodo(rawValue: selectorPeriodo.selectedSegmentIndex) ?? .todas {
+        case .todas: return nil
+        case .hoy: return Calendar.current.startOfDay(for: ahora)
+        case .mes: return Calendar.current.dateInterval(of: .month, for: ahora)?.start
+        }
+    }
+
+    /// Periodo, vendedor y cliente se combinan con AND.
     private func recargar() {
         cargarVendedores()
 
-        let pedido: NSFetchRequest<Venta> = Venta.fetchRequest()
-        if let vendedor = vendedorSeleccionado {
-            pedido.predicate = NSPredicate(format: "vendedor == %@", vendedor)
+        var condiciones: [NSPredicate] = []
+        if let desde = inicioPeriodo() {
+            condiciones.append(NSPredicate(format: "fecha >= %@", desde as NSDate))
         }
+        if let vendedor = vendedorSeleccionado {
+            condiciones.append(NSPredicate(format: "vendedor == %@", vendedor))
+        }
+        if !textoBusqueda.isEmpty {
+            condiciones.append(NSPredicate(format: "cliente.nombre CONTAINS[cd] %@", textoBusqueda))
+        }
+
+        let pedido: NSFetchRequest<Venta> = Venta.fetchRequest()
+        pedido.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: condiciones)
         pedido.sortDescriptors = [NSSortDescriptor(key: "fecha", ascending: false)]
         pedido.relationshipKeyPathsForPrefetching = ["vendedor", "cliente", "producto"]
         ventas = (try? contexto.fetch(pedido)) ?? []
@@ -121,15 +150,21 @@ class VentasEquipoViewController: UIViewController {
         }
     }
 
+    @objc private func cambioFiltro() {
+        recargar()
+    }
+
     // MARK: - Chips
 
     private func dibujarChips() {
         pilaChips.arrangedSubviews.forEach { $0.removeFromSuperview() }
         let nombres = ["Todos"] + vendedores.map { $0.nombre ?? $0.usuario ?? "-" }
         for (indice, nombre) in nombres.enumerated() {
-            let chip = UIButton(configuration: .gray())
-            chip.configuration?.title = nombre
-            chip.configuration?.cornerStyle = .capsule
+            var config = UIButton.Configuration.filled()
+            config.title = nombre
+            config.cornerStyle = .capsule
+            config.contentInsets = .init(top: 6, leading: 14, bottom: 6, trailing: 14)
+            let chip = UIButton(configuration: config)
             chip.tag = indice
             chip.addTarget(self, action: #selector(elegirVendedor(_:)), for: .touchUpInside)
             pilaChips.addArrangedSubview(chip)
@@ -153,28 +188,22 @@ class VentasEquipoViewController: UIViewController {
 
     // MARK: - Anular (pantalla A8)
 
-    private var esSupervisor: Bool { Sesion.shared.usuarioActual?.rol == "Supervisor" }
-
     /// Pide el motivo; el botón "Anular" solo se activa cuando hay texto.
     private func pedirAnulacion(de venta: Venta) {
         guard esSupervisor, !venta.anulada else { return }
 
-        let resumen = """
-        Cliente: \(venta.cliente?.nombre ?? "-")
-        Producto: \(venta.producto?.nombre ?? "-")
-        Cantidad: \(venta.cantidad)
-        Total: \(UI.soles(venta.total))
-
-        El stock se devolverá.
+        let mensaje = """
+        \(venta.cliente?.nombre ?? "-") · \(venta.producto?.nombre ?? "-") × \(venta.cantidad) · \(UI.soles(venta.total))
+        El stock se devolverá (+\(venta.cantidad))
         """
-        let alerta = UIAlertController(title: "Anular venta", message: resumen, preferredStyle: .alert)
+        let alerta = UIAlertController(title: "Anular venta", message: mensaje, preferredStyle: .alert)
         var observador: NSObjectProtocol?
         let quitarObservador = {
             if let observador { NotificationCenter.default.removeObserver(observador) }
             observador = nil
         }
 
-        alerta.addTextField { $0.placeholder = "Motivo"; $0.autocapitalizationType = .sentences }
+        alerta.addTextField { $0.placeholder = "Motivo (obligatorio)"; $0.autocapitalizationType = .sentences }
         alerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { _ in quitarObservador() })
         let accionAnular = UIAlertAction(title: "Anular", style: .destructive) { [weak self, weak alerta] _ in
             quitarObservador()
@@ -216,69 +245,99 @@ class VentasEquipoViewController: UIViewController {
         }
         recargar()
     }
-}
 
-extension VentasEquipoViewController: UITableViewDelegate {
+    // MARK: - Ayudas
 
-    /// Solo ventas no anuladas tienen la acción "Anular".
-    func tableView(_ tableView: UITableView,
-                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let venta = ventas[indexPath.row]
-        guard esSupervisor, !venta.anulada else { return nil }
+    /// Hasta dos iniciales de un nombre, en mayúsculas.
+    static func iniciales(de nombre: String?) -> String {
+        let letras = (nombre ?? "").split(separator: " ").prefix(2).compactMap { $0.first }.map(String.init).joined()
+        return letras.isEmpty ? "?" : letras.uppercased()
+    }
 
-        let anular = UIContextualAction(style: .destructive, title: "Anular") { [weak self] _, _, terminar in
-            self?.pedirAnulacion(de: venta)
-            terminar(true)
+    /// Cuadrado redondeado con las iniciales del cliente en blanco.
+    static func avatar(_ texto: String, color: UIColor) -> UIImage {
+        let lado: CGFloat = 42
+        return UIGraphicsImageRenderer(size: CGSize(width: lado, height: lado)).image { _ in
+            color.setFill()
+            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: 10).fill()
+            let atributos: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 15, weight: .bold),
+                .foregroundColor: UIColor.white
+            ]
+            let tamano = (texto as NSString).size(withAttributes: atributos)
+            (texto as NSString).draw(at: CGPoint(x: (lado - tamano.width) / 2, y: (lado - tamano.height) / 2),
+                                     withAttributes: atributos)
         }
-        let configuracion = UISwipeActionsConfiguration(actions: [anular])
-        configuracion.performsFirstActionWithFullSwipe = false
-        return configuracion
+    }
+
+    static func colorAvatar(_ categoria: Cliente.Categoria) -> UIColor {
+        switch categoria {
+        case .vip: return .systemPurple
+        case .frecuente: return .systemBlue
+        case .regular: return .systemGray
+        }
+    }
+
+    static func texto(_ texto: String, tachado: Bool, fuente: UIFont, color: UIColor) -> NSAttributedString {
+        var atributos: [NSAttributedString.Key: Any] = [.font: fuente, .foregroundColor: color]
+        if tachado {
+            atributos[.strikethroughStyle] = NSUnderlineStyle.single.rawValue
+        }
+        return NSAttributedString(string: texto, attributes: atributos)
     }
 }
 
 // MARK: - Tabla
 
-extension VentasEquipoViewController: UITableViewDataSource {
+extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         ventas.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        "El nombre del vendedor se lee de la relación venta ▸ vendedor."
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
         let venta = ventas[indexPath.row]
         let anulada = venta.anulada
-        let cuerpo = UIFont.preferredFont(forTextStyle: .subheadline)
+        let cliente = venta.cliente
 
-        let fecha = venta.fecha.map { formatoFecha.string(from: $0) } ?? "-"
-        let vendedor = venta.vendedor?.nombre ?? venta.vendedor?.usuario ?? "-"
+        let primerNombreVendedor = (venta.vendedor?.nombre ?? venta.vendedor?.usuario ?? "-")
+            .split(separator: " ").first.map(String.init) ?? "-"
+        let detalle = "\(primerNombreVendedor) · \(venta.producto?.nombre ?? "-") × \(venta.cantidad)"
 
         var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.attributedText = Self.texto(venta.cliente?.nombre ?? "-", tachado: anulada,
-                                              fuente: .preferredFont(forTextStyle: .body),
+        let categoria = cliente?.categoria() ?? .regular
+        contenido.image = Self.avatar(cliente?.iniciales ?? "?", color: Self.colorAvatar(categoria))
+        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
+        contenido.imageToTextPadding = 12
+
+        contenido.attributedText = Self.texto(cliente?.nombre ?? "-", tachado: anulada,
+                                              fuente: .systemFont(ofSize: 16, weight: .semibold),
                                               color: anulada ? .secondaryLabel : .label)
 
-        let detalle = NSMutableAttributedString()
-        detalle.append(Self.texto("Vendedor: \(vendedor)\n", tachado: anulada, fuente: cuerpo, color: .secondaryLabel))
-        detalle.append(Self.texto("\(venta.producto?.nombre ?? "-")  ·  x\(venta.cantidad)  ·  \(fecha)",
-                                  tachado: anulada, fuente: cuerpo, color: .secondaryLabel))
+        let cuerpo = UIFont.preferredFont(forTextStyle: .subheadline)
+        let secundario = NSMutableAttributedString(
+            attributedString: Self.texto(detalle, tachado: anulada, fuente: cuerpo, color: .secondaryLabel))
         if anulada {
-            let motivo = venta.motivoAnulacion ?? "-"
-            detalle.append(Self.texto("\nMotivo: \(motivo)", tachado: false,
-                                      fuente: .preferredFont(forTextStyle: .footnote), color: .systemGray))
+            secundario.append(Self.texto("\nMotivo: \(venta.motivoAnulacion ?? "-")", tachado: false,
+                                         fuente: .preferredFont(forTextStyle: .footnote), color: .systemGray))
         }
-        contenido.secondaryAttributedText = detalle
-        contenido.textToSecondaryTextVerticalPadding = 4
+        contenido.secondaryAttributedText = secundario
+        contenido.textToSecondaryTextVerticalPadding = 3
         celda.contentConfiguration = contenido
 
         let labelTotal = UILabel()
         labelTotal.attributedText = Self.texto(UI.soles(venta.total), tachado: anulada,
-                                               fuente: .monospacedDigitSystemFont(ofSize: 15, weight: .medium),
+                                               fuente: .monospacedDigitSystemFont(ofSize: 16, weight: .bold),
                                                color: anulada ? .secondaryLabel : .label)
         let lateral = UIStackView(arrangedSubviews: [labelTotal])
         lateral.axis = .vertical
         lateral.alignment = .trailing
-        lateral.spacing = 2
+        lateral.spacing = 3
         if anulada {
             let etiqueta = UILabel()
             etiqueta.text = "ANULADA"
@@ -291,11 +350,32 @@ extension VentasEquipoViewController: UITableViewDataSource {
         return celda
     }
 
-    static func texto(_ texto: String, tachado: Bool, fuente: UIFont, color: UIColor) -> NSAttributedString {
-        var atributos: [NSAttributedString.Key: Any] = [.font: fuente, .foregroundColor: color]
-        if tachado {
-            atributos[.strikethroughStyle] = NSUnderlineStyle.single.rawValue
+    /// Solo ventas no anuladas tienen la acción "Anular".
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let venta = ventas[indexPath.row]
+        guard esSupervisor, !venta.anulada else { return nil }
+
+        let anular = UIContextualAction(style: .destructive, title: "Anular") { [weak self] _, _, terminar in
+            self?.pedirAnulacion(de: venta)
+            terminar(true)
         }
-        return NSAttributedString(string: texto, attributes: atributos)
+        anular.backgroundColor = .systemRed
+        let configuracion = UISwipeActionsConfiguration(actions: [anular])
+        configuracion.performsFirstActionWithFullSwipe = false
+        return configuracion
+    }
+}
+
+// MARK: - Búsqueda
+
+extension VentasEquipoViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        textoBusqueda = searchText.trimmingCharacters(in: .whitespaces)
+        recargar()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
