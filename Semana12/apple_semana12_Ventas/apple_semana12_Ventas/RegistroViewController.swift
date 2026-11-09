@@ -4,27 +4,84 @@ import CoreData
 /// Pantalla A2: registro de usuario.
 class RegistroViewController: UIViewController {
 
-    private let campoNombre = UI.campo("Nombre completo")
-    private let campoUsuario = UI.campo("Usuario")
-    private let campoClave = UI.campo("Clave", oculto: true)
-    private let campoConfirmar = UI.campo("Confirmar clave", oculto: true)
+    private let campoNombre = UI.campoTarjeta("Ej. Lucía Pérez")
+    private let campoUsuario = UI.campoTarjeta("Ej. lperez")
+    private let campoClave = UI.campoTarjeta("Mínimo 6 caracteres", oculto: true)
+    private let campoConfirmar = UI.campoTarjeta("Repite la clave", oculto: true)
     private let selectorRol = UISegmentedControl(items: ["Vendedor", "Supervisor"])
-    private let labelError = UI.labelError()
+    private let avisoUsuario = UILabel()
+    private let mensajeError = MensajeError()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Crear cuenta"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGroupedBackground
 
         campoNombre.autocapitalizationType = .words
         selectorRol.selectedSegmentIndex = 0
 
-        let botonRegistrar = UI.boton("Registrarme")
+        avisoUsuario.font = .systemFont(ofSize: 12, weight: .semibold)
+        avisoUsuario.textAlignment = .right
+        campoUsuario.addTarget(self, action: #selector(usuarioCambio), for: .editingChanged)
+
+        let campos = [campoNombre, campoUsuario, campoClave, campoConfirmar]
+        for campo in campos {
+            campo.delegate = self
+            campo.returnKeyType = campo === campoConfirmar ? .done : .next
+        }
+
+        let botonRegistrar = UI.botonPrincipal("Registrarme")
         botonRegistrar.addTarget(self, action: #selector(registrar), for: .touchUpInside)
 
-        _ = UI.pila([campoNombre, campoUsuario, campoClave, campoConfirmar,
-                     selectorRol, labelError, botonRegistrar], en: view)
+        let nota = UILabel()
+        nota.text = "Al registrarte entrarás directamente a la app con las pestañas de tu rol."
+        nota.font = .preferredFont(forTextStyle: .footnote)
+        nota.textColor = .secondaryLabel
+        nota.textAlignment = .center
+        nota.numberOfLines = 0
+
+        let etiquetaRol = UI.etiquetaSeccion("Tu rol")
+        let tarjetaConfirmar = UI.tarjetaCampo("Confirmar clave", campoConfirmar)
+
+        let pila = UI.pila([
+            UI.tarjetaCampo("Nombre completo", campoNombre),
+            UI.tarjetaCampo("Usuario", campoUsuario, accesorio: avisoUsuario),
+            UI.tarjetaCampo("Clave (mínimo 6 caracteres)", campoClave),
+            tarjetaConfirmar,
+            etiquetaRol, selectorRol,
+            LoginViewController.centrado(mensajeError),
+            botonRegistrar, nota
+        ], en: view)
+        pila.spacing = 12
+        pila.setCustomSpacing(20, after: tarjetaConfirmar)
+        pila.setCustomSpacing(6, after: etiquetaRol)
+        pila.setCustomSpacing(20, after: selectorRol)
     }
+
+    // MARK: - Aviso en vivo
+
+    /// "✓ Disponible" en verde, "Ese usuario ya existe" en rojo, o nada si está vacío.
+    @objc private func usuarioCambio() {
+        let usuario = UI.texto(campoUsuario)
+        if usuario.isEmpty {
+            avisoUsuario.text = nil
+        } else if existeUsuario(usuario) {
+            avisoUsuario.text = "Ese usuario ya existe"
+            avisoUsuario.textColor = .systemRed
+        } else {
+            avisoUsuario.text = "✓ Disponible"
+            avisoUsuario.textColor = .systemGreen
+        }
+    }
+
+    /// Usuario único sin distinguir mayúsculas.
+    private func existeUsuario(_ usuario: String) -> Bool {
+        let pedido: NSFetchRequest<Usuario> = Usuario.fetchRequest()
+        pedido.predicate = NSPredicate(format: "usuario ==[c] %@", usuario)
+        return ((try? UI.contexto.count(for: pedido)) ?? 0) > 0
+    }
+
+    // MARK: - Registrar (mismas validaciones y mensajes)
 
     @objc private func registrar() {
         view.endEditing(true)
@@ -42,15 +99,11 @@ class RegistroViewController: UIViewController {
         guard clave == confirmar else {
             return mostrarError("Las claves no coinciden")
         }
-
-        let contexto = UI.contexto
-        let pedido: NSFetchRequest<Usuario> = Usuario.fetchRequest()
-        pedido.predicate = NSPredicate(format: "usuario ==[c] %@", usuario)
-        let existentes = (try? contexto.count(for: pedido)) ?? 0
-        guard existentes == 0 else {
+        guard !existeUsuario(usuario) else {
             return mostrarError("Ese usuario ya existe")
         }
 
+        let contexto = UI.contexto
         let nuevo = Usuario(context: contexto)
         nuevo.nombre = nombre
         nuevo.usuario = usuario
@@ -69,6 +122,18 @@ class RegistroViewController: UIViewController {
     }
 
     private func mostrarError(_ mensaje: String) {
-        labelError.text = mensaje
+        mensajeError.texto = mensaje
+    }
+}
+
+extension RegistroViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let orden = [campoNombre, campoUsuario, campoClave, campoConfirmar]
+        if let indice = orden.firstIndex(where: { $0 === textField }), indice + 1 < orden.count {
+            orden[indice + 1].becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
