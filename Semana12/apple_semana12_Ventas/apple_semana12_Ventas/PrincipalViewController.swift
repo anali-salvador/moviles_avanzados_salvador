@@ -9,7 +9,7 @@ class PrincipalViewController: UITabBarController {
 
         if esSupervisor {
             viewControllers = [
-                pestana(ProvisionalViewController(titulo: "Resumen"), "Resumen", "chart.bar"),
+                pestana(ResumenViewController(), "Resumen", "chart.bar"),
                 pestana(VentasEquipoViewController(), "Ventas", "list.bullet.rectangle"),
                 pestana(productos(), "Productos", "shippingbox"),
                 pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2"),
