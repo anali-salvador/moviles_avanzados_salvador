@@ -27,7 +27,7 @@ class PrincipalViewController: UITabBarController {
     }
 
     private func productos() -> UIViewController {
-        ProvisionalViewController(titulo: "Productos")
+        ProductosViewController(style: .insetGrouped)
     }
 
     private func pestana(_ controlador: UIViewController, _ titulo: String, _ icono: String) -> UINavigationController {
