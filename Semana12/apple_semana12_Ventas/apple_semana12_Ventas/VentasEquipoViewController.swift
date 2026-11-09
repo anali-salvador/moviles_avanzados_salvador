@@ -46,6 +46,7 @@ class VentasEquipoViewController: UIViewController {
 
         tabla.translatesAutoresizingMaskIntoConstraints = false
         tabla.dataSource = self
+        tabla.delegate = self
         tabla.allowsSelection = false
         tabla.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
 
@@ -148,6 +149,90 @@ class VentasEquipoViewController: UIViewController {
     @objc private func elegirVendedor(_ chip: UIButton) {
         vendedorSeleccionado = chip.tag == 0 ? nil : vendedores[chip.tag - 1]
         recargar()
+    }
+
+    // MARK: - Anular (pantalla A8)
+
+    private var esSupervisor: Bool { Sesion.shared.usuarioActual?.rol == "Supervisor" }
+
+    /// Pide el motivo; el botón "Anular" solo se activa cuando hay texto.
+    private func pedirAnulacion(de venta: Venta) {
+        guard esSupervisor, !venta.anulada else { return }
+
+        let resumen = """
+        Cliente: \(venta.cliente?.nombre ?? "-")
+        Producto: \(venta.producto?.nombre ?? "-")
+        Cantidad: \(venta.cantidad)
+        Total: \(UI.soles(venta.total))
+
+        El stock se devolverá.
+        """
+        let alerta = UIAlertController(title: "Anular venta", message: resumen, preferredStyle: .alert)
+        var observador: NSObjectProtocol?
+        let quitarObservador = {
+            if let observador { NotificationCenter.default.removeObserver(observador) }
+            observador = nil
+        }
+
+        alerta.addTextField { $0.placeholder = "Motivo"; $0.autocapitalizationType = .sentences }
+        alerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { _ in quitarObservador() })
+        let accionAnular = UIAlertAction(title: "Anular", style: .destructive) { [weak self, weak alerta] _ in
+            quitarObservador()
+            let motivo = (alerta?.textFields?.first?.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            self?.anular(venta, motivo: motivo)
+        }
+        accionAnular.isEnabled = false
+        alerta.addAction(accionAnular)
+
+        if let campo = alerta.textFields?.first {
+            observador = NotificationCenter.default.addObserver(
+                forName: UITextField.textDidChangeNotification, object: campo, queue: .main
+            ) { [weak accionAnular] _ in
+                let texto = (campo.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                accionAnular?.isEnabled = !texto.isEmpty
+            }
+        }
+        present(alerta, animated: true)
+    }
+
+    /// Marca la venta como anulada, guarda el motivo y devuelve el stock.
+    private func anular(_ venta: Venta, motivo: String) {
+        guard esSupervisor, !venta.anulada, !motivo.isEmpty else { return }
+
+        venta.anulada = true
+        venta.motivoAnulacion = motivo
+        if let producto = venta.producto {
+            producto.stock += venta.cantidad
+        }
+
+        do {
+            try contexto.save()
+        } catch {
+            contexto.rollback()
+            let aviso = UIAlertController(title: "No se pudo anular la venta",
+                                          message: error.localizedDescription, preferredStyle: .alert)
+            aviso.addAction(UIAlertAction(title: "Aceptar", style: .default))
+            present(aviso, animated: true)
+        }
+        recargar()
+    }
+}
+
+extension VentasEquipoViewController: UITableViewDelegate {
+
+    /// Solo ventas no anuladas tienen la acción "Anular".
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let venta = ventas[indexPath.row]
+        guard esSupervisor, !venta.anulada else { return nil }
+
+        let anular = UIContextualAction(style: .destructive, title: "Anular") { [weak self] _, _, terminar in
+            self?.pedirAnulacion(de: venta)
+            terminar(true)
+        }
+        let configuracion = UISwipeActionsConfiguration(actions: [anular])
+        configuracion.performsFirstActionWithFullSwipe = false
+        return configuracion
     }
 }
 
