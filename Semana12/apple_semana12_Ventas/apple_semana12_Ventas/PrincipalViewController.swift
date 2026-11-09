@@ -1,36 +1,39 @@
 import UIKit
 
-/// Pantalla principal provisional (luego se reemplaza por las pestañas por rol).
-class PrincipalViewController: UIViewController {
+/// Contenedor principal: pestañas según el rol del usuario de la sesión.
+class PrincipalViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Inicio"
-        view.backgroundColor = .systemBackground
-        navigationItem.hidesBackButton = true
+        let esSupervisor = Sesion.shared.usuarioActual?.rol == "Supervisor"
 
-        let usuario = Sesion.shared.usuarioActual
-
-        let labelNombre = UILabel()
-        labelNombre.text = usuario?.nombre ?? "-"
-        labelNombre.font = .preferredFont(forTextStyle: .title1)
-        labelNombre.textAlignment = .center
-        labelNombre.numberOfLines = 0
-
-        let labelRol = UILabel()
-        labelRol.text = "Rol: \(usuario?.rol ?? "-")"
-        labelRol.font = .preferredFont(forTextStyle: .body)
-        labelRol.textColor = .secondaryLabel
-        labelRol.textAlignment = .center
-
-        let botonCerrar = UI.boton("Cerrar sesión", principal: false)
-        botonCerrar.addTarget(self, action: #selector(cerrarSesion), for: .touchUpInside)
-
-        _ = UI.pila([labelNombre, labelRol, botonCerrar], en: view)
+        if esSupervisor {
+            viewControllers = [
+                pestana(ProvisionalViewController(titulo: "Resumen"), "Resumen", "chart.bar"),
+                pestana(ProvisionalViewController(titulo: "Ventas"), "Ventas", "list.bullet.rectangle"),
+                pestana(productos(), "Productos", "shippingbox"),
+                pestana(ProvisionalViewController(titulo: "Clientes"), "Clientes", "person.2"),
+                pestana(CuentaViewController(), "Cuenta", "person.crop.circle")
+            ]
+        } else {
+            viewControllers = [
+                pestana(productos(), "Productos", "shippingbox"),
+                pestana(ProvisionalViewController(titulo: "Clientes"), "Clientes", "person.2"),
+                pestana(ProvisionalViewController(titulo: "Venta"), "Venta", "cart.badge.plus"),
+                pestana(ProvisionalViewController(titulo: "Mis ventas"), "Mis ventas", "list.bullet.rectangle"),
+                pestana(CuentaViewController(), "Cuenta", "person.crop.circle")
+            ]
+        }
     }
 
-    @objc private func cerrarSesion() {
-        Sesion.shared.cerrar()
-        UI.cambiarRaiz(a: LoginViewController(), desde: view)
+    private func productos() -> UIViewController {
+        ProvisionalViewController(titulo: "Productos")
+    }
+
+    private func pestana(_ controlador: UIViewController, _ titulo: String, _ icono: String) -> UINavigationController {
+        controlador.title = titulo
+        let nav = UINavigationController(rootViewController: controlador)
+        nav.tabBarItem = UITabBarItem(title: titulo, image: UIImage(systemName: icono), selectedImage: nil)
+        return nav
     }
 }

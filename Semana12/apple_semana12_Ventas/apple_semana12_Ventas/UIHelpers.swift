@@ -68,7 +68,7 @@ enum UI {
     /// Reemplaza la raíz de la ventana (login <-> app) para no apilar pantallas.
     static func cambiarRaiz(a controlador: UIViewController, desde vista: UIView) {
         guard let ventana = vista.window else { return }
-        ventana.rootViewController = UINavigationController(rootViewController: controlador)
+        ventana.rootViewController = controlador
         UIView.transition(with: ventana, duration: 0.25, options: .transitionCrossDissolve, animations: nil)
     }
 }
