@@ -173,20 +173,28 @@ class ProductosViewController: UITableViewController {
         let producto = productos[indexPath.row]
 
         var contenido = UIListContentConfiguration.subtitleCell()
+        contenido.image = UI.cuadroTexto(UI.dosLetras(producto.nombre), fondo: UI.colorFijo(para: producto.nombre))
+        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
+        contenido.imageToTextPadding = 12
         contenido.text = producto.nombre
-        contenido.secondaryText = "\(producto.categoria ?? "-")  ·  \(Self.formatoPrecio(producto.precio))"
+        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
+        contenido.secondaryText = producto.categoria ?? "-"
         contenido.secondaryTextProperties.color = .secondaryLabel
+        contenido.textToSecondaryTextVerticalPadding = 3
         celda.contentConfiguration = contenido
 
-        let labelStock = UILabel()
-        labelStock.text = "Stock: \(producto.stock)"
-        labelStock.font = .preferredFont(forTextStyle: .subheadline).withSize(15)
-        labelStock.textColor = Self.colorStock(producto.stock)
-        labelStock.sizeToFit()
-        celda.accessoryView = labelStock
+        let labelPrecio = UILabel()
+        labelPrecio.text = Self.formatoPrecio(producto.precio)
+        labelPrecio.font = .monospacedDigitSystemFont(ofSize: 15, weight: .semibold)
+        let stock = UI.pastilla("\(producto.stock) u.", color: Self.colorStock(producto.stock))
+        celda.accessoryView = UI.lateral([labelPrecio, stock])
 
         celda.selectionStyle = esSupervisor ? .default : .none
         return celda
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        "Vista del supervisor. El vendedor solo consulta: sin \"+\" y sin borrar."
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -206,6 +214,7 @@ class ProductosViewController: UITableViewController {
             self?.borrar(self?.productos[indexPath.row])
             terminar(true)
         }
+        borrar.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [borrar])
     }
 
