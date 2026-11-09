@@ -19,7 +19,7 @@ class PrincipalViewController: UITabBarController {
             viewControllers = [
                 pestana(productos(), "Productos", "shippingbox"),
                 pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2"),
-                pestana(ProvisionalViewController(titulo: "Venta"), "Venta", "cart.badge.plus"),
+                pestana(NuevaVentaViewController(), "Venta", "cart.badge.plus"),
                 pestana(ProvisionalViewController(titulo: "Mis ventas"), "Mis ventas", "list.bullet.rectangle"),
                 pestana(CuentaViewController(), "Cuenta", "person.crop.circle")
             ]
