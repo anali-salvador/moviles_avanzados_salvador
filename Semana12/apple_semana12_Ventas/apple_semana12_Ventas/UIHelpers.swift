@@ -61,6 +61,11 @@ enum UI {
         return pila
     }
 
+    /// Formato de moneda: "S/ 0.00".
+    static func soles(_ monto: Double) -> String {
+        String(format: "S/ %.2f", monto)
+    }
+
     static func texto(_ campo: UITextField) -> String {
         (campo.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
     }

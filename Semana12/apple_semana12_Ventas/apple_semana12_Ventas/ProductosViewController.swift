@@ -293,7 +293,7 @@ class ProductosViewController: UITableViewController {
     // MARK: - Formato
 
     static func formatoPrecio(_ precio: Double) -> String {
-        String(format: "S/ %.2f", precio)
+        UI.soles(precio)
     }
 
     static func colorStock(_ stock: Int32) -> UIColor {

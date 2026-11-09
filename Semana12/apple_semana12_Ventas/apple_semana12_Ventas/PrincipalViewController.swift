@@ -12,13 +12,13 @@ class PrincipalViewController: UITabBarController {
                 pestana(ProvisionalViewController(titulo: "Resumen"), "Resumen", "chart.bar"),
                 pestana(ProvisionalViewController(titulo: "Ventas"), "Ventas", "list.bullet.rectangle"),
                 pestana(productos(), "Productos", "shippingbox"),
-                pestana(ProvisionalViewController(titulo: "Clientes"), "Clientes", "person.2"),
+                pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2"),
                 pestana(CuentaViewController(), "Cuenta", "person.crop.circle")
             ]
         } else {
             viewControllers = [
                 pestana(productos(), "Productos", "shippingbox"),
-                pestana(ProvisionalViewController(titulo: "Clientes"), "Clientes", "person.2"),
+                pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2"),
                 pestana(ProvisionalViewController(titulo: "Venta"), "Venta", "cart.badge.plus"),
                 pestana(ProvisionalViewController(titulo: "Mis ventas"), "Mis ventas", "list.bullet.rectangle"),
                 pestana(CuentaViewController(), "Cuenta", "person.crop.circle")
