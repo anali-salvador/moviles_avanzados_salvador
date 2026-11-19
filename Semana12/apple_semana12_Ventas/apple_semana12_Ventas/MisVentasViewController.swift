@@ -42,7 +42,7 @@ class MisVentasViewController: UIViewController {
         definesPresentationContext = true
 
         // Iniciales del vendedor de la sesión, solo informativas.
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: Self.avatar(Sesion.shared.usuarioActual?.nombre))
+        navigationItem.rightBarButtonItem = Self.botonAvatar(Sesion.shared.usuarioActual?.nombre)
 
         let indicadores = UIStackView(arrangedSubviews: [
             tarjeta("Hoy", "sun.max.fill", valorHoy, cantidadHoy, colores: Tema.degradadoTeal),
@@ -202,20 +202,17 @@ class MisVentasViewController: UIViewController {
         return Tema.tarjetaDegradado(pila, colores: colores, relleno: 16)
     }
 
-    /// Círculo teal con las iniciales del usuario de la sesión.
-    static func avatar(_ nombre: String?) -> UIView {
-        let label = UILabel()
-        label.text = UI.iniciales(de: nombre)
-        label.font = Tema.fuente(13, .bold)
-        label.textColor = .white
-        label.textAlignment = .center
-        label.backgroundColor = Tema.principal
-        label.layer.cornerRadius = 17
-        label.clipsToBounds = true
-        label.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        label.widthAnchor.constraint(equalToConstant: 34).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        return label
+    /// Botón de barra (solo informativo) con un círculo teal y las iniciales del usuario.
+    static func botonAvatar(_ nombre: String?) -> UIBarButtonItem {
+        let lado: CGFloat = 34
+        let imagen = UI.cuadroTexto(UI.iniciales(de: nombre), fondo: Tema.principalOscuro, lado: lado)
+        let vista = UIImageView(image: imagen)
+        vista.frame = CGRect(x: 0, y: 0, width: lado, height: lado)
+        vista.layer.cornerRadius = lado / 2
+        vista.clipsToBounds = true
+        let boton = UIBarButtonItem(customView: vista)
+        boton.hidesSharedBackground = true
+        return boton
     }
 }
 

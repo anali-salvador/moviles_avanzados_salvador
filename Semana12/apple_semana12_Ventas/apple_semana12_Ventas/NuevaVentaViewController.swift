@@ -91,7 +91,7 @@ class NuevaVentaViewController: UIViewController {
         circulo.heightAnchor.constraint(equalToConstant: 52).isActive = true
 
         let saludo = UILabel()
-        saludo.text = "VENDEDOR · \((usuario?.rol ?? "Vendedor").uppercased())"
+        saludo.text = "SESIÓN ACTIVA · \((usuario?.rol ?? "Vendedor").uppercased())"
         saludo.font = Tema.fuente(11, .bold)
         saludo.textColor = UIColor.white.withAlphaComponent(0.75)
 

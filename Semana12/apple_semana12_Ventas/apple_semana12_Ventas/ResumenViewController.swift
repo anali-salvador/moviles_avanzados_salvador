@@ -35,7 +35,7 @@ class ResumenViewController: UIViewController {
         scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.alwaysBounceVertical = true
         pila.axis = .vertical
-        pila.spacing = 14
+        pila.spacing = 16
         pila.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scroll)
         scroll.addSubview(pila)
@@ -81,17 +81,21 @@ class ResumenViewController: UIViewController {
         let igvMes = suma(\.igv, desde: mes.start, hasta: mes.end)
 
         let indicadores = UIStackView(arrangedSubviews: [
-            tarjetaIndicador("Vendido hoy", UI.soles(hoy), comparacion: comparacion(hoy, contra: ayer)),
-            tarjetaIndicador("IGV del mes", UI.soles(igvMes), comparacion: nil)
+            tarjetaIndicador("Vendido hoy", "banknote.fill", UI.soles(hoy), comparacion: comparacion(hoy, contra: ayer)),
+            tarjetaIndicador("IGV del mes", "percent", UI.soles(igvMes), comparacion: nil)
         ])
         indicadores.spacing = 12
         indicadores.distribution = .fillEqually
         indicadores.alignment = .fill
         pila.addArrangedSubview(indicadores)
 
-        pila.addArrangedSubview(tarjeta("Ventas de los últimos 7 días (S/)", graficoSemana(inicioHoy: inicioHoy)))
-        pila.addArrangedSubview(tarjeta("Ranking de vendedores (mes)", rankingVendedores(desde: mes.start, hasta: mes.end)))
-        pila.addArrangedSubview(tarjeta("Stock bajo (≤ 5)", stockBajo()))
+        pila.addArrangedSubview(tarjeta("Ventas de los últimos 7 días (S/)", "chart.bar.fill",
+                                        graficoSemana(inicioHoy: inicioHoy)))
+        pila.addArrangedSubview(tarjeta("Ranking de vendedores (mes)", "trophy.fill",
+                                        rankingVendedores(desde: mes.start, hasta: mes.end)))
+        pila.addArrangedSubview(tarjeta("Stock bajo (≤ 5)", "exclamationmark.triangle.fill", stockBajo(),
+                                        color: Tema.acento))
+        Tema.animarEntrada(pila.arrangedSubviews, paso: 0.06)
     }
 
     // MARK: - Consultas
@@ -113,73 +117,83 @@ class ResumenViewController: UIViewController {
 
     // MARK: - Cabecera
 
+    /// Cabecera con degradado teal: fecha, saludo en blanco y rol.
     private func cabecera(fecha: Date) -> UIView {
         let textoFecha = formatoFecha.string(from: fecha)
         let labelFecha = UILabel()
         labelFecha.text = textoFecha.prefix(1).uppercased() + textoFecha.dropFirst()
-        labelFecha.font = .preferredFont(forTextStyle: .subheadline)
-        labelFecha.textColor = .secondaryLabel
+        labelFecha.font = Tema.fuente(14, .semibold)
+        labelFecha.textColor = UIColor.white.withAlphaComponent(0.8)
 
         let usuario = Sesion.shared.usuarioActual
         let primerNombre = usuario?.nombre?.split(separator: " ").first.map(String.init) ?? "-"
         let labelHola = UILabel()
         labelHola.text = "Hola, \(primerNombre)"
-        labelHola.font = .systemFont(ofSize: 30, weight: .bold)
+        labelHola.font = Tema.fuente(32, .heavy)
+        labelHola.textColor = .white
         labelHola.adjustsFontSizeToFitWidth = true
         labelHola.minimumScaleFactor = 0.6
 
-        let textos = UIStackView(arrangedSubviews: [labelFecha, labelHola])
+        let rol = UILabel()
+        rol.text = "  \(usuario?.rol ?? "-")  "
+        rol.font = Tema.fuente(13, .bold)
+        rol.textColor = .white
+        rol.backgroundColor = UIColor.white.withAlphaComponent(0.22)
+        rol.layer.cornerRadius = 13
+        rol.clipsToBounds = true
+        rol.heightAnchor.constraint(equalToConstant: 26).isActive = true
+
+        let filaRol = UIStackView(arrangedSubviews: [rol, UIView()])
+
+        let textos = UIStackView(arrangedSubviews: [labelFecha, labelHola, filaRol])
         textos.axis = .vertical
-        textos.spacing = 2
+        textos.spacing = 4
+        textos.setCustomSpacing(10, after: labelHola)
 
-        let rol = pastilla(usuario?.rol ?? "-", color: Tema.principal, fuente: .systemFont(ofSize: 14, weight: .semibold))
-        rol.setContentHuggingPriority(.required, for: .horizontal)
-        rol.setContentCompressionResistancePriority(.required, for: .horizontal)
+        let icono = UIImageView(image: UIImage(systemName: "sparkles"))
+        icono.tintColor = UIColor.white.withAlphaComponent(0.9)
+        icono.preferredSymbolConfiguration = .init(pointSize: 34, weight: .semibold)
+        icono.setContentHuggingPriority(.required, for: .horizontal)
 
-        let fila = UIStackView(arrangedSubviews: [textos, rol])
+        let fila = UIStackView(arrangedSubviews: [textos, icono])
         fila.alignment = .center
         fila.spacing = 12
-        return fila
+        return Tema.tarjetaDegradado(fila, relleno: 22)
     }
 
     // MARK: - Indicadores
 
     private func comparacion(_ valor: Double, contra anterior: Double) -> (String, UIColor) {
-        guard anterior != 0 else { return ("Sin datos previos", .secondaryLabel) }
+        guard anterior != 0 else { return ("Sin datos previos", Tema.textoSecundario) }
         let cambio = (valor - anterior) / anterior * 100
         let porcentaje = String(format: "%.0f%%", abs(cambio))
-        if porcentaje == "0%" { return ("= 0% vs ayer", .secondaryLabel) }
+        if porcentaje == "0%" { return ("= 0% vs ayer", Tema.textoSecundario) }
         return cambio > 0 ? ("▲ \(porcentaje) vs ayer", Tema.exito)
                           : ("▼ \(porcentaje) vs ayer", Tema.error)
     }
 
-    private func tarjetaIndicador(_ nombre: String, _ valor: String, comparacion: (String, UIColor)?) -> UIView {
-        let etiqueta = UILabel()
-        etiqueta.text = nombre
-        etiqueta.font = .preferredFont(forTextStyle: .footnote)
-        etiqueta.textColor = .secondaryLabel
+    private func tarjetaIndicador(_ nombre: String, _ simbolo: String, _ valor: String,
+                                  comparacion: (String, UIColor)?) -> UIView {
+        let etiqueta = Tema.etiqueta(nombre)
 
         let monto = UILabel()
         monto.text = valor
-        monto.font = .monospacedDigitSystemFont(ofSize: 24, weight: .bold)
+        monto.font = Tema.numero(24, .heavy)
         monto.adjustsFontSizeToFitWidth = true
         monto.minimumScaleFactor = 0.5
 
-        let contenido = UIStackView(arrangedSubviews: [etiqueta, monto])
+        let contenido = UIStackView(arrangedSubviews: [Tema.icono(simbolo, lado: 34), etiqueta, monto])
         contenido.axis = .vertical
-        contenido.spacing = 4
+        contenido.spacing = 6
         contenido.alignment = .leading
+        contenido.setCustomSpacing(10, after: contenido.arrangedSubviews[0])
 
         if let (texto, color) = comparacion {
-            let labelComparacion = UILabel()
-            labelComparacion.text = texto
-            labelComparacion.textColor = color
-            labelComparacion.font = .systemFont(ofSize: 13, weight: .semibold)
-            contenido.addArrangedSubview(labelComparacion)
+            contenido.addArrangedSubview(Tema.pildora(texto, color: color, fuente: Tema.fuente(12, .bold)))
         }
         // Empuja el contenido hacia arriba si la otra tarjeta es más alta.
         contenido.addArrangedSubview(UIView())
-        return tarjeta(nil, contenido)
+        return Tema.tarjeta(contenido)
     }
 
     // MARK: - Gráfico de barras
@@ -199,30 +213,35 @@ class ResumenViewController: UIViewController {
         let columnas = UIStackView()
         columnas.axis = .horizontal
         columnas.distribution = .fillEqually
-        columnas.spacing = 8
+        columnas.spacing = 10
 
         for dia in dias {
             let valor = UILabel()
             valor.text = dia.total == 0 ? "0" : (formatoCompacto.string(from: dia.total as NSNumber) ?? "0")
-            valor.font = .monospacedDigitSystemFont(ofSize: 10, weight: .medium)
-            valor.textColor = .secondaryLabel
+            valor.font = Tema.numero(10, dia.esHoy ? .bold : .medium)
+            valor.textColor = dia.esHoy ? Tema.tono(Tema.acento) : Tema.textoSecundario
             valor.textAlignment = .center
             valor.adjustsFontSizeToFitWidth = true
             valor.minimumScaleFactor = 0.5
 
-            // Área fija donde la barra crece desde abajo.
+            // Área fija donde la barra crece desde abajo, sobre un riel suave.
             let area = UIView()
-            area.heightAnchor.constraint(equalToConstant: 120).isActive = true
+            area.backgroundColor = Tema.suave
+            area.layer.cornerRadius = 8
+            area.layer.cornerCurve = .continuous
+            area.heightAnchor.constraint(equalToConstant: 130).isActive = true
 
-            let barra = UIView()
-            barra.backgroundColor = dia.esHoy ? Tema.principal : Tema.principal.withAlphaComponent(0.18)
-            barra.layer.cornerRadius = 6
-            barra.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            let colores = dia.esHoy ? Tema.degradadoCoral.reversed() : [Tema.principalClaro, Tema.principalOscuro]
+            let barra = VistaDegradado(colores: Array(colores),
+                                       inicio: CGPoint(x: 0.5, y: 0), fin: CGPoint(x: 0.5, y: 1))
+            barra.layer.cornerRadius = 8
+            barra.layer.cornerCurve = .continuous
+            barra.clipsToBounds = true
             barra.translatesAutoresizingMaskIntoConstraints = false
             area.addSubview(barra)
 
             // Los días sin ventas muestran una barra mínima.
-            let proporcion = maximo > 0 ? max(dia.total / maximo, 0.04) : 0.04
+            let proporcion = maximo > 0 ? max(dia.total / maximo, 0.06) : 0.06
             NSLayoutConstraint.activate([
                 barra.bottomAnchor.constraint(equalTo: area.bottomAnchor),
                 barra.leadingAnchor.constraint(equalTo: area.leadingAnchor),
@@ -232,13 +251,13 @@ class ResumenViewController: UIViewController {
 
             let letra = UILabel()
             letra.text = dia.letra
-            letra.font = .systemFont(ofSize: 13, weight: dia.esHoy ? .bold : .regular)
-            letra.textColor = dia.esHoy ? .label : .secondaryLabel
+            letra.font = Tema.fuente(13, dia.esHoy ? .heavy : .medium)
+            letra.textColor = dia.esHoy ? Tema.tono(Tema.acento) : Tema.textoSecundario
             letra.textAlignment = .center
 
             let columna = UIStackView(arrangedSubviews: [valor, area, letra])
             columna.axis = .vertical
-            columna.spacing = 4
+            columna.spacing = 6
             columnas.addArrangedSubview(columna)
         }
         return columnas
@@ -266,30 +285,48 @@ class ResumenViewController: UIViewController {
 
         let lista = UIStackView()
         lista.axis = .vertical
-        lista.spacing = 14
-        for item in ranking {
-            let linea = NSMutableAttributedString(
-                string: item.nombre,
-                attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .bold), .foregroundColor: UIColor.label])
-            linea.append(NSAttributedString(
-                string: " · \(UI.soles(item.total))",
-                attributes: [.font: UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .regular),
-                             .foregroundColor: UIColor.secondaryLabel]))
-            let label = UILabel()
-            label.attributedText = linea
+        lista.spacing = 16
+        for (posicion, item) in ranking.enumerated() {
+            let numero = UILabel()
+            numero.text = "\(posicion + 1)"
+            numero.font = Tema.fuente(14, .heavy)
+            numero.textAlignment = .center
+            numero.textColor = posicion == 0 ? .white : Tema.principal
+            numero.backgroundColor = posicion == 0 ? Tema.principal : Tema.suave
+            numero.layer.cornerRadius = 15
+            numero.clipsToBounds = true
+            numero.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            numero.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+            let nombre = UILabel()
+            nombre.text = item.nombre
+            nombre.font = Tema.fuente(15, .bold)
+
+            let monto = UILabel()
+            monto.text = UI.soles(item.total)
+            monto.font = Tema.numero(15, .semibold)
+            monto.textColor = Tema.principal
+            monto.setContentHuggingPriority(.required, for: .horizontal)
+
+            let linea = UIStackView(arrangedSubviews: [nombre, monto])
+            linea.spacing = 8
 
             let barra = UIProgressView(progressViewStyle: .default)
             barra.progressTintColor = Tema.principal
-            barra.trackTintColor = Tema.principal.withAlphaComponent(0.12)
+            barra.trackTintColor = Tema.suave
             barra.progress = Float(item.total / primero.total)
-            barra.heightAnchor.constraint(equalToConstant: 8).isActive = true
-            barra.layer.cornerRadius = 4
+            barra.heightAnchor.constraint(equalToConstant: 10).isActive = true
+            barra.layer.cornerRadius = 5
             barra.clipsToBounds = true
-            barra.subviews.forEach { $0.layer.cornerRadius = 4; $0.clipsToBounds = true }
+            barra.subviews.forEach { $0.layer.cornerRadius = 5; $0.clipsToBounds = true }
 
-            let fila = UIStackView(arrangedSubviews: [label, barra])
-            fila.axis = .vertical
-            fila.spacing = 6
+            let textos = UIStackView(arrangedSubviews: [linea, barra])
+            textos.axis = .vertical
+            textos.spacing = 7
+
+            let fila = UIStackView(arrangedSubviews: [numero, textos])
+            fila.spacing = 12
+            fila.alignment = .center
             lista.addArrangedSubview(fila)
         }
         return lista
@@ -314,17 +351,22 @@ class ResumenViewController: UIViewController {
         lista.spacing = 12
         for producto in productos {
             let nombre = UILabel()
-            nombre.text = "\(producto.nombre ?? "-") · \(producto.stock) u."
-            nombre.font = .preferredFont(forTextStyle: .body)
+            nombre.text = producto.nombre ?? "-"
+            nombre.font = Tema.fuente(15, .semibold)
             nombre.numberOfLines = 0
 
-            let reponer = pastilla("Reponer", color: Tema.error, fuente: .systemFont(ofSize: 12, weight: .semibold))
-            reponer.setContentHuggingPriority(.required, for: .horizontal)
-            reponer.setContentCompressionResistancePriority(.required, for: .horizontal)
+            let unidades = UILabel()
+            unidades.text = "\(producto.stock) u."
+            unidades.font = Tema.numero(14, .bold)
+            unidades.textColor = Tema.textoSecundario
+            unidades.setContentHuggingPriority(.required, for: .horizontal)
 
-            let fila = UIStackView(arrangedSubviews: [nombre, reponer])
+            let reponer = Tema.pildora("Reponer", color: Tema.acento)
+
+            let fila = UIStackView(arrangedSubviews: [Tema.icono("shippingbox.fill", color: Tema.acento, lado: 32),
+                                                      nombre, unidades, reponer])
             fila.alignment = .center
-            fila.spacing = 8
+            fila.spacing = 10
             lista.addArrangedSubview(fila)
         }
         return lista
@@ -335,59 +377,30 @@ class ResumenViewController: UIViewController {
     private func textoVacio(_ texto: String) -> UILabel {
         let label = UILabel()
         label.text = texto
-        label.font = .preferredFont(forTextStyle: .subheadline)
-        label.textColor = .secondaryLabel
+        label.font = Tema.fuente(15, .medium)
+        label.textColor = Tema.textoSecundario
         return label
     }
 
-    /// Etiqueta con fondo de color, texto blanco y bordes de cápsula.
-    private func pastilla(_ texto: String, color: UIColor, fuente: UIFont) -> UIView {
+    /// Tarjeta con sombra, con un ícono y título arriba.
+    private func tarjeta(_ titulo: String, _ simbolo: String, _ contenido: UIView,
+                         color: UIColor = Tema.principal) -> UIView {
+        let icono = UIImageView(image: UIImage(systemName: simbolo))
+        icono.tintColor = color
+        icono.preferredSymbolConfiguration = .init(pointSize: 14, weight: .bold)
+        icono.setContentHuggingPriority(.required, for: .horizontal)
+
         let label = UILabel()
-        label.text = texto
-        label.font = fuente
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = titulo
+        label.font = Tema.fuente(15, .bold)
 
-        let fondo = UIView()
-        fondo.backgroundColor = color
-        fondo.layer.cornerRadius = (fuente.lineHeight + 8) / 2
-        fondo.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: fondo.topAnchor, constant: 4),
-            label.bottomAnchor.constraint(equalTo: fondo.bottomAnchor, constant: -4),
-            label.leadingAnchor.constraint(equalTo: fondo.leadingAnchor, constant: 12),
-            label.trailingAnchor.constraint(equalTo: fondo.trailingAnchor, constant: -12)
-        ])
-        return fondo
-    }
+        let cabecera = UIStackView(arrangedSubviews: [icono, label])
+        cabecera.spacing = 8
+        cabecera.alignment = .center
 
-    /// Tarjeta blanca con bordes redondeados y título opcional en gris pequeño.
-    private func tarjeta(_ titulo: String?, _ contenido: UIView) -> UIView {
-        var vistas: [UIView] = []
-        if let titulo {
-            let label = UILabel()
-            label.text = titulo
-            label.font = .systemFont(ofSize: 13, weight: .semibold)
-            label.textColor = .secondaryLabel
-            vistas.append(label)
-        }
-        vistas.append(contenido)
-
-        let interior = UIStackView(arrangedSubviews: vistas)
+        let interior = UIStackView(arrangedSubviews: [cabecera, contenido])
         interior.axis = .vertical
-        interior.spacing = 12
-        interior.translatesAutoresizingMaskIntoConstraints = false
-
-        let fondo = UIView()
-        fondo.backgroundColor = Tema.tarjeta
-        fondo.layer.cornerRadius = 16
-        fondo.addSubview(interior)
-        NSLayoutConstraint.activate([
-            interior.topAnchor.constraint(equalTo: fondo.topAnchor, constant: 16),
-            interior.bottomAnchor.constraint(equalTo: fondo.bottomAnchor, constant: -16),
-            interior.leadingAnchor.constraint(equalTo: fondo.leadingAnchor, constant: 16),
-            interior.trailingAnchor.constraint(equalTo: fondo.trailingAnchor, constant: -16)
-        ])
-        return fondo
+        interior.spacing = 16
+        return Tema.tarjeta(interior, relleno: 18)
     }
 }

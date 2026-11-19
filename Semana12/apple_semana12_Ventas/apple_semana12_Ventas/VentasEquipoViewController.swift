@@ -6,7 +6,6 @@ class VentasEquipoViewController: UIViewController {
 
     private enum Periodo: Int { case todas, hoy, mes }
 
-    private let celdaId = "VentaEquipoCelda"
     private var ventas: [Venta] = []
     private var vendedores: [Usuario] = []
     private var vendedorSeleccionado: Usuario?   // nil = "Todos"
@@ -15,8 +14,11 @@ class VentasEquipoViewController: UIViewController {
     private let selectorPeriodo = UISegmentedControl(items: ["Todas", "Hoy", "Mes"])
     private let pilaChips = UIStackView()
     private let barraBusqueda = UISearchBar()
-    private let tabla = UITableView(frame: .zero, style: .insetGrouped)
+    private let tabla = UITableView(frame: .zero, style: .plain)
     private let labelVacio = UILabel()
+    private let entrada = EntradaFilas()
+    private let valorFiltrado = UILabel()
+    private let detalleFiltrado = UILabel()
 
     private var contexto: NSManagedObjectContext { UI.contexto }
     private var esSupervisor: Bool { Sesion.shared.usuarioActual?.rol == "Supervisor" }
@@ -29,13 +31,10 @@ class VentasEquipoViewController: UIViewController {
         view.backgroundColor = Tema.fondo
 
         // Iniciales del usuario de la sesión, solo informativas.
-        let iniciales = UILabel()
-        iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
-        iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
-        iniciales.textColor = Tema.principal
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
+        navigationItem.rightBarButtonItem = MisVentasViewController.botonAvatar(Sesion.shared.usuarioActual?.nombre)
 
         selectorPeriodo.selectedSegmentIndex = Periodo.todas.rawValue
+        Tema.estilizar(selectorPeriodo)
         selectorPeriodo.addTarget(self, action: #selector(cambioFiltro), for: .valueChanged)
 
         let scrollChips = UIScrollView()
@@ -51,9 +50,11 @@ class VentasEquipoViewController: UIViewController {
         barraBusqueda.autocapitalizationType = .none
         barraBusqueda.delegate = self
 
-        let filtros = UIStackView(arrangedSubviews: [selectorPeriodo, scrollChips, barraBusqueda])
+        let resumen = tarjetaResumen()
+        let filtros = UIStackView(arrangedSubviews: [resumen, selectorPeriodo, scrollChips, barraBusqueda])
         filtros.axis = .vertical
         filtros.spacing = 10
+        filtros.setCustomSpacing(14, after: resumen)
         filtros.setCustomSpacing(2, after: scrollChips)
         filtros.translatesAutoresizingMaskIntoConstraints = false
 
@@ -62,15 +63,17 @@ class VentasEquipoViewController: UIViewController {
         tabla.delegate = self
         tabla.allowsSelection = false
         tabla.keyboardDismissMode = .onDrag
-        tabla.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
+        tabla.prepararParaTarjetas()
+        tabla.tableFooterView = Tema.pieTabla("El nombre del vendedor se lee de la relación venta ▸ vendedor.",
+                                              ancho: view.bounds.width)
 
         view.addSubview(filtros)
         view.addSubview(tabla)
         let guia = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             filtros.topAnchor.constraint(equalTo: guia.topAnchor, constant: 8),
-            filtros.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: 16),
-            filtros.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -16),
+            filtros.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: Tema.margen),
+            filtros.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -Tema.margen),
 
             scrollChips.heightAnchor.constraint(equalToConstant: 36),
             pilaChips.leadingAnchor.constraint(equalTo: scrollChips.contentLayoutGuide.leadingAnchor),
@@ -86,12 +89,16 @@ class VentasEquipoViewController: UIViewController {
         ])
 
         labelVacio.text = "No hay ventas"
-        labelVacio.textColor = .secondaryLabel
+        labelVacio.font = Tema.fuente(16, .medium)
+        labelVacio.textColor = Tema.textoSecundario
         labelVacio.textAlignment = .center
+
+        Tema.animarEntrada([resumen, selectorPeriodo, scrollChips])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        entrada.reiniciar()
         recargar()
     }
 
@@ -129,6 +136,48 @@ class VentasEquipoViewController: UIViewController {
 
         tabla.backgroundView = ventas.isEmpty ? labelVacio : nil
         tabla.reloadData()
+        mostrarResumen()
+    }
+
+    // MARK: - Resumen (solo muestra lo que ya está en la lista)
+
+    /// Tarjeta con degradado: total de las ventas vigentes de la lista filtrada.
+    private func tarjetaResumen() -> UIView {
+        let etiqueta = UILabel()
+        etiqueta.text = "TOTAL DEL FILTRO"
+        etiqueta.font = Tema.fuente(12, .bold)
+        etiqueta.textColor = UIColor.white.withAlphaComponent(0.85)
+
+        valorFiltrado.font = Tema.numero(26, .heavy)
+        valorFiltrado.textColor = .white
+        valorFiltrado.adjustsFontSizeToFitWidth = true
+        valorFiltrado.minimumScaleFactor = 0.6
+
+        detalleFiltrado.font = Tema.fuente(13, .semibold)
+        detalleFiltrado.textColor = UIColor.white.withAlphaComponent(0.85)
+
+        let textos = UIStackView(arrangedSubviews: [etiqueta, valorFiltrado, detalleFiltrado])
+        textos.axis = .vertical
+        textos.spacing = 2
+
+        let icono = UIImageView(image: UIImage(systemName: "chart.line.uptrend.xyaxis"))
+        icono.tintColor = .white
+        icono.preferredSymbolConfiguration = .init(pointSize: 30, weight: .semibold)
+        icono.alpha = 0.9
+        icono.setContentHuggingPriority(.required, for: .horizontal)
+
+        let fila = UIStackView(arrangedSubviews: [textos, icono])
+        fila.alignment = .center
+        fila.spacing = 12
+        return Tema.tarjetaDegradado(fila, relleno: 16)
+    }
+
+    private func mostrarResumen() {
+        let vigentes = ventas.filter { !$0.anulada }
+        let anuladas = ventas.count - vigentes.count
+        valorFiltrado.text = UI.soles(CalculoVenta.redondear(vigentes.reduce(0) { $0 + $1.total }))
+        let texto = vigentes.count == 1 ? "1 venta vigente" : "\(vigentes.count) ventas vigentes"
+        detalleFiltrado.text = anuladas > 0 ? "\(texto) · \(anuladas) anulada\(anuladas == 1 ? "" : "s")" : texto
     }
 
     /// Usuarios que tienen al menos una venta, para los chips.
@@ -160,11 +209,7 @@ class VentasEquipoViewController: UIViewController {
         pilaChips.arrangedSubviews.forEach { $0.removeFromSuperview() }
         let nombres = ["Todos"] + vendedores.map { $0.nombre ?? $0.usuario ?? "-" }
         for (indice, nombre) in nombres.enumerated() {
-            var config = UIButton.Configuration.filled()
-            config.title = nombre
-            config.cornerStyle = .capsule
-            config.contentInsets = .init(top: 6, leading: 14, bottom: 6, trailing: 14)
-            let chip = UIButton(configuration: config)
+            let chip = Tema.chip(nombre)
             chip.tag = indice
             chip.addTarget(self, action: #selector(elegirVendedor(_:)), for: .touchUpInside)
             pilaChips.addArrangedSubview(chip)
@@ -176,8 +221,7 @@ class VentasEquipoViewController: UIViewController {
         for case let chip as UIButton in pilaChips.arrangedSubviews {
             let vendedor: Usuario? = chip.tag == 0 ? nil : vendedores[chip.tag - 1]
             let activo = vendedor == vendedorSeleccionado
-            chip.configuration?.baseBackgroundColor = activo ? Tema.principal : .systemGray5
-            chip.configuration?.baseForegroundColor = activo ? .white : .label
+            Tema.marcar(chip: chip, activo: activo)
         }
     }
 
@@ -265,12 +309,8 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
         ventas.count
     }
 
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "El nombre del vendedor se lee de la relación venta ▸ vendedor."
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
+        let celda = tableView.dequeueReusableCell(withIdentifier: CeldaTarjeta.id, for: indexPath) as! CeldaTarjeta
         let venta = ventas[indexPath.row]
         let anulada = venta.anulada
         let cliente = venta.cliente
@@ -279,45 +319,37 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
             .split(separator: " ").first.map(String.init) ?? "-"
         let detalle = "\(primerNombreVendedor) · \(venta.producto?.nombre ?? "-") × \(venta.cantidad)"
 
-        var contenido = UIListContentConfiguration.subtitleCell()
         let categoria = cliente?.categoria() ?? .regular
-        contenido.image = UI.cuadroTexto(cliente?.iniciales ?? "?", fondo: categoria.color)
-        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
-        contenido.imageToTextPadding = 12
+        celda.franja.backgroundColor = anulada ? Tema.error : Tema.principal
+        celda.icono.image = UI.cuadroTexto(cliente?.iniciales ?? "?", fondo: categoria.color, lado: 44)
+        celda.icono.alpha = anulada ? 0.5 : 1
 
-        contenido.attributedText = Self.texto(cliente?.nombre ?? "-", tachado: anulada,
-                                              fuente: .systemFont(ofSize: 16, weight: .semibold),
-                                              color: anulada ? .secondaryLabel : .label)
+        celda.titulo.attributedText = Self.texto(cliente?.nombre ?? "-", tachado: anulada,
+                                                 fuente: Tema.fuente(16, .semibold),
+                                                 color: anulada ? Tema.textoSecundario : .label)
 
-        let cuerpo = UIFont.preferredFont(forTextStyle: .subheadline)
         let secundario = NSMutableAttributedString(
-            attributedString: Self.texto(detalle, tachado: anulada, fuente: cuerpo, color: .secondaryLabel))
+            attributedString: Self.texto(detalle, tachado: anulada, fuente: Tema.fuente(13), color: Tema.textoSecundario))
         if anulada {
             secundario.append(Self.texto("\nMotivo: \(venta.motivoAnulacion ?? "-")", tachado: false,
-                                         fuente: .preferredFont(forTextStyle: .footnote), color: .systemGray))
+                                         fuente: Tema.fuente(12, .medium), color: Tema.tono(Tema.error)))
         }
-        contenido.secondaryAttributedText = secundario
-        contenido.textToSecondaryTextVerticalPadding = 3
-        celda.contentConfiguration = contenido
+        celda.subtitulo.attributedText = secundario
 
         let labelTotal = UILabel()
         labelTotal.attributedText = Self.texto(UI.soles(venta.total), tachado: anulada,
-                                               fuente: .monospacedDigitSystemFont(ofSize: 16, weight: .bold),
-                                               color: anulada ? .secondaryLabel : .label)
-        let lateral = UIStackView(arrangedSubviews: [labelTotal])
-        lateral.axis = .vertical
-        lateral.alignment = .trailing
-        lateral.spacing = 3
+                                               fuente: Tema.numero(16, .bold),
+                                               color: anulada ? Tema.textoSecundario : Tema.principal)
+        var lateral: [UIView] = [labelTotal]
         if anulada {
-            let etiqueta = UILabel()
-            etiqueta.text = "ANULADA"
-            etiqueta.font = .systemFont(ofSize: 11, weight: .bold)
-            etiqueta.textColor = Tema.error
-            lateral.addArrangedSubview(etiqueta)
+            lateral.append(UI.pastilla("ANULADA", color: Tema.error, fuente: Tema.fuente(11, .heavy)))
         }
-        lateral.frame.size = lateral.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        celda.accessoryView = lateral
+        celda.ponerLateral(lateral)
         return celda
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        entrada.aplicar(a: cell, en: indexPath)
     }
 
     /// Solo ventas no anuladas tienen la acción "Anular".
@@ -331,6 +363,7 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
             terminar(true)
         }
         anular.backgroundColor = Tema.error
+        anular.image = UIImage(systemName: "xmark.circle.fill")
         let configuracion = UISwipeActionsConfiguration(actions: [anular])
         configuracion.performsFirstActionWithFullSwipe = false
         return configuracion
