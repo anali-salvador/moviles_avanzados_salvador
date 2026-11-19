@@ -2816,17 +2816,17 @@
             <objects>
                 <viewController storyboardIdentifier="Resumen" id="sb013-dl-x013" userLabel="Resumen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sb1352-cp-x1352">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" userLabel="Cabecera" translatesAutoresizingMaskIntoConstraints="NO" id="sb1273-dr-x1273">
-                                <rect key="frame" x="16" y="70" width="361" height="139"/>
+                                <rect key="frame" x="16" y="70" width="361" height="108"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_teal_370x139" userLabel="Degradado" translatesAutoresizingMaskIntoConstraints="NO" id="sb1272-cr-x1272">
-                                        <rect key="frame" x="-28" y="-28" width="417" height="195"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_teal_370x108" userLabel="Degradado" translatesAutoresizingMaskIntoConstraints="NO" id="sb1272-cr-x1272">
+                                        <rect key="frame" x="-28" y="-28" width="417" height="164"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Jueves 19 de noviembre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1267-hq-x1267">
-                                        <rect key="frame" x="22" y="22" width="261" height="17"/>
+                                        <rect key="frame" x="22" y="14" width="261" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="sb1365-fq-x1365"/>
                                         </constraints>
@@ -2835,7 +2835,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Hola, Ana" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1268-iq-x1268">
-                                        <rect key="frame" x="22" y="43" width="261" height="38"/>
+                                        <rect key="frame" x="22" y="31" width="261" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="sb1369-jq-x1369"/>
                                         </constraints>
@@ -2844,14 +2844,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_ffffff_22_98x26" translatesAutoresizingMaskIntoConstraints="NO" id="sb1269-jq-x1269">
-                                        <rect key="frame" x="22" y="91" width="98" height="26"/>
+                                        <rect key="frame" x="22" y="72" width="98" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="98" id="sb1371-br-x1371"/>
                                             <constraint firstAttribute="height" constant="26" id="sb1373-dr-x1373"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Supervisor" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1270-ar-x1270">
-                                        <rect key="frame" x="22" y="91" width="89" height="26"/>
+                                        <rect key="frame" x="22" y="72" width="89" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="sb1377-hr-x1377"/>
                                         </constraints>
@@ -2860,7 +2860,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="sparkles" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1271-br-x1271">
-                                        <rect key="frame" x="299" y="46.33" width="40" height="44"/>
+                                        <rect key="frame" x="299" y="30.83" width="40" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="sb1379-jr-x1379"/>
                                             <constraint firstAttribute="height" constant="40" id="sb1381-bs-x1381"/>
@@ -2870,34 +2870,34 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="139" id="sb1357-hp-x1357"/>
+                                    <constraint firstAttribute="height" constant="108" id="sb1357-hp-x1357"/>
                                     <constraint firstItem="sb1272-cr-x1272" firstAttribute="leading" secondItem="sb1273-dr-x1273" secondAttribute="leading" constant="-28" id="sb1358-ip-x1358"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="trailing" secondItem="sb1272-cr-x1272" secondAttribute="trailing" constant="-28" id="sb1359-jp-x1359"/>
                                     <constraint firstItem="sb1272-cr-x1272" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="-28" id="sb1360-aq-x1360"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="bottom" secondItem="sb1272-cr-x1272" secondAttribute="bottom" constant="-28" id="sb1361-bq-x1361"/>
                                     <constraint firstItem="sb1267-hq-x1267" firstAttribute="leading" secondItem="sb1273-dr-x1273" secondAttribute="leading" constant="22" id="sb1362-cq-x1362"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="trailing" secondItem="sb1267-hq-x1267" secondAttribute="trailing" constant="78" id="sb1363-dq-x1363"/>
-                                    <constraint firstItem="sb1267-hq-x1267" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="22" id="sb1364-eq-x1364"/>
+                                    <constraint firstItem="sb1267-hq-x1267" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="14" id="sb1364-eq-x1364"/>
                                     <constraint firstItem="sb1268-iq-x1268" firstAttribute="leading" secondItem="sb1273-dr-x1273" secondAttribute="leading" constant="22" id="sb1366-gq-x1366"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="trailing" secondItem="sb1268-iq-x1268" secondAttribute="trailing" constant="78" id="sb1367-hq-x1367"/>
-                                    <constraint firstItem="sb1268-iq-x1268" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="43" id="sb1368-iq-x1368"/>
+                                    <constraint firstItem="sb1268-iq-x1268" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="31" id="sb1368-iq-x1368"/>
                                     <constraint firstItem="sb1269-jq-x1269" firstAttribute="leading" secondItem="sb1273-dr-x1273" secondAttribute="leading" constant="22" id="sb1370-ar-x1370"/>
-                                    <constraint firstItem="sb1269-jq-x1269" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="91" id="sb1372-cr-x1372"/>
+                                    <constraint firstItem="sb1269-jq-x1269" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="72" id="sb1372-cr-x1372"/>
                                     <constraint firstItem="sb1270-ar-x1270" firstAttribute="leading" secondItem="sb1273-dr-x1273" secondAttribute="leading" constant="22" id="sb1374-er-x1374"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="trailing" secondItem="sb1270-ar-x1270" secondAttribute="trailing" constant="250" id="sb1375-fr-x1375"/>
-                                    <constraint firstItem="sb1270-ar-x1270" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="91" id="sb1376-gr-x1376"/>
+                                    <constraint firstItem="sb1270-ar-x1270" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="72" id="sb1376-gr-x1376"/>
                                     <constraint firstItem="sb1273-dr-x1273" firstAttribute="trailing" secondItem="sb1271-br-x1271" secondAttribute="trailing" constant="22" id="sb1378-ir-x1378"/>
-                                    <constraint firstItem="sb1271-br-x1271" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="49.5" id="sb1380-as-x1380"/>
+                                    <constraint firstItem="sb1271-br-x1271" firstAttribute="top" secondItem="sb1273-dr-x1273" secondAttribute="top" constant="34" id="sb1380-as-x1380"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Indicador Vendido hoy" translatesAutoresizingMaskIntoConstraints="NO" id="sb1283-ds-x1283">
-                                <rect key="frame" x="16" y="225" width="179" height="160"/>
+                                <rect key="frame" x="16" y="190" width="179" height="130"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_179x160" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1282-cs-x1282">
-                                        <rect key="frame" x="-28" y="-28" width="235" height="216"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_179x130" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1282-cs-x1282">
+                                        <rect key="frame" x="-28" y="-28" width="235" height="186"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" userLabel="Ícono banknote.fill" translatesAutoresizingMaskIntoConstraints="NO" id="sb1276-gr-x1276">
-                                        <rect key="frame" x="16" y="16" width="34" height="34"/>
+                                        <rect key="frame" x="16" y="12" width="34" height="34"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_13_34" translatesAutoresizingMaskIntoConstraints="NO" id="sb1274-er-x1274">
                                                 <rect key="frame" x="0" y="0" width="34" height="34"/>
@@ -2922,7 +2922,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="VENDIDO HOY" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1277-hr-x1277">
-                                        <rect key="frame" x="16" y="60" width="147" height="15"/>
+                                        <rect key="frame" x="16" y="50" width="147" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb1405-fk-x1405"/>
                                         </constraints>
@@ -2931,7 +2931,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 437.78" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1278-ir-x1278">
-                                        <rect key="frame" x="16" y="81" width="147" height="29"/>
+                                        <rect key="frame" x="16" y="66" width="147" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="sb1409-jk-x1409"/>
                                         </constraints>
@@ -2940,7 +2940,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" userLabel="Píldora ▲ 25% vs ayer" translatesAutoresizingMaskIntoConstraints="NO" id="sb1281-bs-x1281">
-                                        <rect key="frame" x="16" y="116" width="100" height="23"/>
+                                        <rect key="frame" x="16" y="97" width="100" height="23"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_16a34a_16_100x23" translatesAutoresizingMaskIntoConstraints="NO" id="sb1279-jr-x1279">
                                                 <rect key="frame" x="0" y="0" width="100" height="23"/>
@@ -2968,31 +2968,31 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="179" id="sb1383-ds-x1383"/>
-                                    <constraint firstAttribute="height" constant="160" id="sb1385-fs-x1385"/>
+                                    <constraint firstAttribute="height" constant="130" id="sb1385-fs-x1385"/>
                                     <constraint firstItem="sb1282-cs-x1282" firstAttribute="leading" secondItem="sb1283-ds-x1283" secondAttribute="leading" constant="-28" id="sb1386-gs-x1386"/>
                                     <constraint firstItem="sb1283-ds-x1283" firstAttribute="trailing" secondItem="sb1282-cs-x1282" secondAttribute="trailing" constant="-28" id="sb1387-hs-x1387"/>
                                     <constraint firstItem="sb1282-cs-x1282" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="-28" id="sb1388-is-x1388"/>
                                     <constraint firstItem="sb1283-ds-x1283" firstAttribute="bottom" secondItem="sb1282-cs-x1282" secondAttribute="bottom" constant="-28" id="sb1389-js-x1389"/>
                                     <constraint firstItem="sb1276-gr-x1276" firstAttribute="leading" secondItem="sb1283-ds-x1283" secondAttribute="leading" constant="16" id="sb1390-at-x1390"/>
-                                    <constraint firstItem="sb1276-gr-x1276" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="16" id="sb1392-ct-x1392"/>
+                                    <constraint firstItem="sb1276-gr-x1276" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="12" id="sb1392-ct-x1392"/>
                                     <constraint firstItem="sb1277-hr-x1277" firstAttribute="leading" secondItem="sb1283-ds-x1283" secondAttribute="leading" constant="16" id="sb1402-ck-x1402"/>
                                     <constraint firstItem="sb1283-ds-x1283" firstAttribute="trailing" secondItem="sb1277-hr-x1277" secondAttribute="trailing" constant="16" id="sb1403-dk-x1403"/>
-                                    <constraint firstItem="sb1277-hr-x1277" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="60" id="sb1404-ek-x1404"/>
+                                    <constraint firstItem="sb1277-hr-x1277" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="50" id="sb1404-ek-x1404"/>
                                     <constraint firstItem="sb1278-ir-x1278" firstAttribute="leading" secondItem="sb1283-ds-x1283" secondAttribute="leading" constant="16" id="sb1406-gk-x1406"/>
                                     <constraint firstItem="sb1283-ds-x1283" firstAttribute="trailing" secondItem="sb1278-ir-x1278" secondAttribute="trailing" constant="16" id="sb1407-hk-x1407"/>
-                                    <constraint firstItem="sb1278-ir-x1278" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="81" id="sb1408-ik-x1408"/>
+                                    <constraint firstItem="sb1278-ir-x1278" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="66" id="sb1408-ik-x1408"/>
                                     <constraint firstItem="sb1281-bs-x1281" firstAttribute="leading" secondItem="sb1283-ds-x1283" secondAttribute="leading" constant="16" id="sb1410-al-x1410"/>
-                                    <constraint firstItem="sb1281-bs-x1281" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="116" id="sb1412-cl-x1412"/>
+                                    <constraint firstItem="sb1281-bs-x1281" firstAttribute="top" secondItem="sb1283-ds-x1283" secondAttribute="top" constant="97" id="sb1412-cl-x1412"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Indicador IGV del mes" translatesAutoresizingMaskIntoConstraints="NO" id="sb1290-at-x1290">
-                                <rect key="frame" x="207" y="225" width="179" height="160"/>
+                                <rect key="frame" x="207" y="190" width="179" height="130"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_179x160" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1289-js-x1289">
-                                        <rect key="frame" x="-28" y="-28" width="235" height="216"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_179x130" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1289-js-x1289">
+                                        <rect key="frame" x="-28" y="-28" width="235" height="186"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" userLabel="Ícono percent" translatesAutoresizingMaskIntoConstraints="NO" id="sb1286-gs-x1286">
-                                        <rect key="frame" x="16" y="16" width="34" height="34"/>
+                                        <rect key="frame" x="16" y="12" width="34" height="34"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_13_34" translatesAutoresizingMaskIntoConstraints="NO" id="sb1284-es-x1284">
                                                 <rect key="frame" x="0" y="0" width="34" height="34"/>
@@ -3017,7 +3017,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="IGV DEL MES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1287-hs-x1287">
-                                        <rect key="frame" x="16" y="60" width="147" height="15"/>
+                                        <rect key="frame" x="16" y="50" width="147" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb1445-fo-x1445"/>
                                         </constraints>
@@ -3026,7 +3026,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 128.52" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1288-is-x1288">
-                                        <rect key="frame" x="16" y="81" width="147" height="29"/>
+                                        <rect key="frame" x="16" y="66" width="147" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="sb1449-jo-x1449"/>
                                         </constraints>
@@ -3037,29 +3037,29 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="179" id="sb1423-dm-x1423"/>
-                                    <constraint firstAttribute="height" constant="160" id="sb1425-fm-x1425"/>
+                                    <constraint firstAttribute="height" constant="130" id="sb1425-fm-x1425"/>
                                     <constraint firstItem="sb1289-js-x1289" firstAttribute="leading" secondItem="sb1290-at-x1290" secondAttribute="leading" constant="-28" id="sb1426-gm-x1426"/>
                                     <constraint firstItem="sb1290-at-x1290" firstAttribute="trailing" secondItem="sb1289-js-x1289" secondAttribute="trailing" constant="-28" id="sb1427-hm-x1427"/>
                                     <constraint firstItem="sb1289-js-x1289" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="-28" id="sb1428-im-x1428"/>
                                     <constraint firstItem="sb1290-at-x1290" firstAttribute="bottom" secondItem="sb1289-js-x1289" secondAttribute="bottom" constant="-28" id="sb1429-jm-x1429"/>
                                     <constraint firstItem="sb1286-gs-x1286" firstAttribute="leading" secondItem="sb1290-at-x1290" secondAttribute="leading" constant="16" id="sb1430-an-x1430"/>
-                                    <constraint firstItem="sb1286-gs-x1286" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="16" id="sb1432-cn-x1432"/>
+                                    <constraint firstItem="sb1286-gs-x1286" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="12" id="sb1432-cn-x1432"/>
                                     <constraint firstItem="sb1287-hs-x1287" firstAttribute="leading" secondItem="sb1290-at-x1290" secondAttribute="leading" constant="16" id="sb1442-co-x1442"/>
                                     <constraint firstItem="sb1290-at-x1290" firstAttribute="trailing" secondItem="sb1287-hs-x1287" secondAttribute="trailing" constant="16" id="sb1443-do-x1443"/>
-                                    <constraint firstItem="sb1287-hs-x1287" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="60" id="sb1444-eo-x1444"/>
+                                    <constraint firstItem="sb1287-hs-x1287" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="50" id="sb1444-eo-x1444"/>
                                     <constraint firstItem="sb1288-is-x1288" firstAttribute="leading" secondItem="sb1290-at-x1290" secondAttribute="leading" constant="16" id="sb1446-go-x1446"/>
                                     <constraint firstItem="sb1290-at-x1290" firstAttribute="trailing" secondItem="sb1288-is-x1288" secondAttribute="trailing" constant="16" id="sb1447-ho-x1447"/>
-                                    <constraint firstItem="sb1288-is-x1288" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="81" id="sb1448-io-x1448"/>
+                                    <constraint firstItem="sb1288-is-x1288" firstAttribute="top" secondItem="sb1290-at-x1290" secondAttribute="top" constant="66" id="sb1448-io-x1448"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Gráfico 7 días" translatesAutoresizingMaskIntoConstraints="NO" id="sb1322-cm-x1322">
-                                <rect key="frame" x="16" y="401" width="361" height="240"/>
+                                <rect key="frame" x="16" y="332" width="361" height="174"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x240" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1321-bm-x1321">
-                                        <rect key="frame" x="-28" y="-28" width="417" height="296"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x174" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1321-bm-x1321">
+                                        <rect key="frame" x="-28" y="-28" width="417" height="230"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="chart.bar.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1291-bt-x1291">
-                                        <rect key="frame" x="18" y="18.33" width="18" height="17.33"/>
+                                        <rect key="frame" x="18" y="14.33" width="18" height="17.33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="sb1459-jp-x1459"/>
                                             <constraint firstAttribute="height" constant="18" id="sb1461-bq-x1461"/>
@@ -3068,7 +3068,7 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" weight="bold"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ventas de los últimos 7 días (S/)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1292-ct-x1292">
-                                        <rect key="frame" x="44" y="18" width="281" height="18"/>
+                                        <rect key="frame" x="44" y="14" width="281" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1465-fq-x1465"/>
                                         </constraints>
@@ -3077,7 +3077,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1293-dt-x1293">
-                                        <rect key="frame" x="18" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="18" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1469-jq-x1469"/>
                                         </constraints>
@@ -3086,21 +3086,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel V" translatesAutoresizingMaskIntoConstraints="NO" id="sb1294-et-x1294">
-                                        <rect key="frame" x="18" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="18" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1471-br-x1471"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1473-dr-x1473"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1473-dr-x1473"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x8" userLabel="Barra V" translatesAutoresizingMaskIntoConstraints="NO" id="sb1295-ft-x1295">
-                                        <rect key="frame" x="18" y="192" width="39.14" height="8"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x5" userLabel="Barra V" translatesAutoresizingMaskIntoConstraints="NO" id="sb1295-ft-x1295">
+                                        <rect key="frame" x="18" y="137" width="39.14" height="5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1475-fr-x1475"/>
-                                            <constraint firstAttribute="height" constant="8" id="sb1477-hr-x1477"/>
+                                            <constraint firstAttribute="height" constant="5" id="sb1477-hr-x1477"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="V" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1296-gt-x1296">
-                                        <rect key="frame" x="18" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="18" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1481-bs-x1481"/>
                                         </constraints>
@@ -3109,7 +3109,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="885.5" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1297-ht-x1297">
-                                        <rect key="frame" x="67.14" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="67.14" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1485-fs-x1485"/>
                                         </constraints>
@@ -3118,21 +3118,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel S" translatesAutoresizingMaskIntoConstraints="NO" id="sb1298-it-x1298">
-                                        <rect key="frame" x="67.14" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="67.14" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1487-hs-x1487"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1489-js-x1489"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1489-js-x1489"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x130" userLabel="Barra S" translatesAutoresizingMaskIntoConstraints="NO" id="sb1299-jt-x1299">
-                                        <rect key="frame" x="67.14" y="70" width="39.14" height="130"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x84" userLabel="Barra S" translatesAutoresizingMaskIntoConstraints="NO" id="sb1299-jt-x1299">
+                                        <rect key="frame" x="67.14" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1491-bt-x1491"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1493-dt-x1493"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1493-dt-x1493"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1300-ak-x1300">
-                                        <rect key="frame" x="67.14" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="67.14" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1497-ht-x1497"/>
                                         </constraints>
@@ -3141,7 +3141,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1301-bk-x1301">
-                                        <rect key="frame" x="116.29" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="116.29" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1501-bk-x1501"/>
                                         </constraints>
@@ -3150,21 +3150,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel D" translatesAutoresizingMaskIntoConstraints="NO" id="sb1302-ck-x1302">
-                                        <rect key="frame" x="116.29" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="116.29" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1503-dk-x1503"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1505-fk-x1505"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1505-fk-x1505"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x8" userLabel="Barra D" translatesAutoresizingMaskIntoConstraints="NO" id="sb1303-dk-x1303">
-                                        <rect key="frame" x="116.29" y="192" width="39.14" height="8"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x5" userLabel="Barra D" translatesAutoresizingMaskIntoConstraints="NO" id="sb1303-dk-x1303">
+                                        <rect key="frame" x="116.29" y="137" width="39.14" height="5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1507-hk-x1507"/>
-                                            <constraint firstAttribute="height" constant="8" id="sb1509-jk-x1509"/>
+                                            <constraint firstAttribute="height" constant="5" id="sb1509-jk-x1509"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="D" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1304-ek-x1304">
-                                        <rect key="frame" x="116.29" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="116.29" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1513-dl-x1513"/>
                                         </constraints>
@@ -3173,7 +3173,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="135.7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1305-fk-x1305">
-                                        <rect key="frame" x="165.43" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="165.43" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1517-hl-x1517"/>
                                         </constraints>
@@ -3182,21 +3182,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel L" translatesAutoresizingMaskIntoConstraints="NO" id="sb1306-gk-x1306">
-                                        <rect key="frame" x="165.43" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="165.43" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1519-jl-x1519"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1521-bm-x1521"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1521-bm-x1521"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x20" userLabel="Barra L" translatesAutoresizingMaskIntoConstraints="NO" id="sb1307-hk-x1307">
-                                        <rect key="frame" x="165.43" y="180" width="39.14" height="20"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x13" userLabel="Barra L" translatesAutoresizingMaskIntoConstraints="NO" id="sb1307-hk-x1307">
+                                        <rect key="frame" x="165.43" y="129" width="39.14" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1523-dm-x1523"/>
-                                            <constraint firstAttribute="height" constant="20" id="sb1525-fm-x1525"/>
+                                            <constraint firstAttribute="height" constant="13" id="sb1525-fm-x1525"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="L" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1308-ik-x1308">
-                                        <rect key="frame" x="165.43" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="165.43" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1529-jm-x1529"/>
                                         </constraints>
@@ -3205,7 +3205,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="325.68" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1309-jk-x1309">
-                                        <rect key="frame" x="214.57" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="214.57" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1533-dn-x1533"/>
                                         </constraints>
@@ -3214,21 +3214,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel M" translatesAutoresizingMaskIntoConstraints="NO" id="sb1310-al-x1310">
-                                        <rect key="frame" x="214.57" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="214.57" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1535-fn-x1535"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1537-hn-x1537"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1537-hn-x1537"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x48" userLabel="Barra M" translatesAutoresizingMaskIntoConstraints="NO" id="sb1311-bl-x1311">
-                                        <rect key="frame" x="214.57" y="152" width="39.14" height="48"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x31" userLabel="Barra M" translatesAutoresizingMaskIntoConstraints="NO" id="sb1311-bl-x1311">
+                                        <rect key="frame" x="214.57" y="111" width="39.14" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1539-jn-x1539"/>
-                                            <constraint firstAttribute="height" constant="48" id="sb1541-bo-x1541"/>
+                                            <constraint firstAttribute="height" constant="31" id="sb1541-bo-x1541"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="M" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1312-cl-x1312">
-                                        <rect key="frame" x="214.57" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="214.57" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1545-fo-x1545"/>
                                         </constraints>
@@ -3237,7 +3237,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="350" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1313-dl-x1313">
-                                        <rect key="frame" x="263.71" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="263.71" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1549-jo-x1549"/>
                                         </constraints>
@@ -3246,21 +3246,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel X" translatesAutoresizingMaskIntoConstraints="NO" id="sb1314-el-x1314">
-                                        <rect key="frame" x="263.71" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="263.71" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1551-bp-x1551"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1553-dp-x1553"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1553-dp-x1553"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x51" userLabel="Barra X" translatesAutoresizingMaskIntoConstraints="NO" id="sb1315-fl-x1315">
-                                        <rect key="frame" x="263.71" y="149" width="39.14" height="51"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_teal_39x33" userLabel="Barra X" translatesAutoresizingMaskIntoConstraints="NO" id="sb1315-fl-x1315">
+                                        <rect key="frame" x="263.71" y="109" width="39.14" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1555-fp-x1555"/>
-                                            <constraint firstAttribute="height" constant="51" id="sb1557-hp-x1557"/>
+                                            <constraint firstAttribute="height" constant="33" id="sb1557-hp-x1557"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1316-gl-x1316">
-                                        <rect key="frame" x="263.71" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="263.71" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1561-bq-x1561"/>
                                         </constraints>
@@ -3269,7 +3269,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="437.78" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1317-hl-x1317">
-                                        <rect key="frame" x="312.86" y="52" width="30.14" height="12"/>
+                                        <rect key="frame" x="312.86" y="42" width="30.14" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="sb1565-fq-x1565"/>
                                         </constraints>
@@ -3278,21 +3278,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_riel" userLabel="Riel J" translatesAutoresizingMaskIntoConstraints="NO" id="sb1318-il-x1318">
-                                        <rect key="frame" x="312.86" y="70" width="39.14" height="130"/>
+                                        <rect key="frame" x="312.86" y="58" width="39.14" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1567-hq-x1567"/>
-                                            <constraint firstAttribute="height" constant="130" id="sb1569-jq-x1569"/>
+                                            <constraint firstAttribute="height" constant="84" id="sb1569-jq-x1569"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_coral_39x64" userLabel="Barra J" translatesAutoresizingMaskIntoConstraints="NO" id="sb1319-jl-x1319">
-                                        <rect key="frame" x="312.86" y="136" width="39.14" height="64"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_barra_coral_39x42" userLabel="Barra J" translatesAutoresizingMaskIntoConstraints="NO" id="sb1319-jl-x1319">
+                                        <rect key="frame" x="312.86" y="100" width="39.14" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39.14" id="sb1571-br-x1571"/>
-                                            <constraint firstAttribute="height" constant="64" id="sb1573-dr-x1573"/>
+                                            <constraint firstAttribute="height" constant="42" id="sb1573-dr-x1573"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="J" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1320-am-x1320">
-                                        <rect key="frame" x="312.86" y="206" width="30.14" height="16"/>
+                                        <rect key="frame" x="312.86" y="146" width="30.14" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb1577-hr-x1577"/>
                                         </constraints>
@@ -3302,96 +3302,96 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="sb1453-dp-x1453"/>
+                                    <constraint firstAttribute="height" constant="174" id="sb1453-dp-x1453"/>
                                     <constraint firstItem="sb1321-bm-x1321" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="-28" id="sb1454-ep-x1454"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1321-bm-x1321" secondAttribute="trailing" constant="-28" id="sb1455-fp-x1455"/>
                                     <constraint firstItem="sb1321-bm-x1321" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="-28" id="sb1456-gp-x1456"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="bottom" secondItem="sb1321-bm-x1321" secondAttribute="bottom" constant="-28" id="sb1457-hp-x1457"/>
                                     <constraint firstItem="sb1291-bt-x1291" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="18" id="sb1458-ip-x1458"/>
-                                    <constraint firstItem="sb1291-bt-x1291" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="18" id="sb1460-aq-x1460"/>
+                                    <constraint firstItem="sb1291-bt-x1291" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="14" id="sb1460-aq-x1460"/>
                                     <constraint firstItem="sb1292-ct-x1292" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="44" id="sb1462-cq-x1462"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1292-ct-x1292" secondAttribute="trailing" constant="36" id="sb1463-dq-x1463"/>
-                                    <constraint firstItem="sb1292-ct-x1292" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="18" id="sb1464-eq-x1464"/>
+                                    <constraint firstItem="sb1292-ct-x1292" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="14" id="sb1464-eq-x1464"/>
                                     <constraint firstItem="sb1293-dt-x1293" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="18" id="sb1466-gq-x1466"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1293-dt-x1293" secondAttribute="trailing" constant="312.86" id="sb1467-hq-x1467"/>
-                                    <constraint firstItem="sb1293-dt-x1293" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1468-iq-x1468"/>
+                                    <constraint firstItem="sb1293-dt-x1293" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1468-iq-x1468"/>
                                     <constraint firstItem="sb1294-et-x1294" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="18" id="sb1470-ar-x1470"/>
-                                    <constraint firstItem="sb1294-et-x1294" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1472-cr-x1472"/>
+                                    <constraint firstItem="sb1294-et-x1294" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1472-cr-x1472"/>
                                     <constraint firstItem="sb1295-ft-x1295" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="18" id="sb1474-er-x1474"/>
-                                    <constraint firstItem="sb1295-ft-x1295" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="192" id="sb1476-gr-x1476"/>
+                                    <constraint firstItem="sb1295-ft-x1295" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="137" id="sb1476-gr-x1476"/>
                                     <constraint firstItem="sb1296-gt-x1296" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="18" id="sb1478-ir-x1478"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1296-gt-x1296" secondAttribute="trailing" constant="312.86" id="sb1479-jr-x1479"/>
-                                    <constraint firstItem="sb1296-gt-x1296" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1480-as-x1480"/>
+                                    <constraint firstItem="sb1296-gt-x1296" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1480-as-x1480"/>
                                     <constraint firstItem="sb1297-ht-x1297" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="67.14" id="sb1482-cs-x1482"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1297-ht-x1297" secondAttribute="trailing" constant="263.71" id="sb1483-ds-x1483"/>
-                                    <constraint firstItem="sb1297-ht-x1297" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1484-es-x1484"/>
+                                    <constraint firstItem="sb1297-ht-x1297" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1484-es-x1484"/>
                                     <constraint firstItem="sb1298-it-x1298" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="67.14" id="sb1486-gs-x1486"/>
-                                    <constraint firstItem="sb1298-it-x1298" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1488-is-x1488"/>
+                                    <constraint firstItem="sb1298-it-x1298" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1488-is-x1488"/>
                                     <constraint firstItem="sb1299-jt-x1299" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="67.14" id="sb1490-at-x1490"/>
-                                    <constraint firstItem="sb1299-jt-x1299" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1492-ct-x1492"/>
+                                    <constraint firstItem="sb1299-jt-x1299" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1492-ct-x1492"/>
                                     <constraint firstItem="sb1300-ak-x1300" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="67.14" id="sb1494-et-x1494"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1300-ak-x1300" secondAttribute="trailing" constant="263.71" id="sb1495-ft-x1495"/>
-                                    <constraint firstItem="sb1300-ak-x1300" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1496-gt-x1496"/>
+                                    <constraint firstItem="sb1300-ak-x1300" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1496-gt-x1496"/>
                                     <constraint firstItem="sb1301-bk-x1301" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="116.29" id="sb1498-it-x1498"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1301-bk-x1301" secondAttribute="trailing" constant="214.57" id="sb1499-jt-x1499"/>
-                                    <constraint firstItem="sb1301-bk-x1301" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1500-ak-x1500"/>
+                                    <constraint firstItem="sb1301-bk-x1301" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1500-ak-x1500"/>
                                     <constraint firstItem="sb1302-ck-x1302" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="116.29" id="sb1502-ck-x1502"/>
-                                    <constraint firstItem="sb1302-ck-x1302" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1504-ek-x1504"/>
+                                    <constraint firstItem="sb1302-ck-x1302" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1504-ek-x1504"/>
                                     <constraint firstItem="sb1303-dk-x1303" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="116.29" id="sb1506-gk-x1506"/>
-                                    <constraint firstItem="sb1303-dk-x1303" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="192" id="sb1508-ik-x1508"/>
+                                    <constraint firstItem="sb1303-dk-x1303" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="137" id="sb1508-ik-x1508"/>
                                     <constraint firstItem="sb1304-ek-x1304" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="116.29" id="sb1510-al-x1510"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1304-ek-x1304" secondAttribute="trailing" constant="214.57" id="sb1511-bl-x1511"/>
-                                    <constraint firstItem="sb1304-ek-x1304" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1512-cl-x1512"/>
+                                    <constraint firstItem="sb1304-ek-x1304" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1512-cl-x1512"/>
                                     <constraint firstItem="sb1305-fk-x1305" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="165.43" id="sb1514-el-x1514"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1305-fk-x1305" secondAttribute="trailing" constant="165.43" id="sb1515-fl-x1515"/>
-                                    <constraint firstItem="sb1305-fk-x1305" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1516-gl-x1516"/>
+                                    <constraint firstItem="sb1305-fk-x1305" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1516-gl-x1516"/>
                                     <constraint firstItem="sb1306-gk-x1306" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="165.43" id="sb1518-il-x1518"/>
-                                    <constraint firstItem="sb1306-gk-x1306" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1520-am-x1520"/>
+                                    <constraint firstItem="sb1306-gk-x1306" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1520-am-x1520"/>
                                     <constraint firstItem="sb1307-hk-x1307" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="165.43" id="sb1522-cm-x1522"/>
-                                    <constraint firstItem="sb1307-hk-x1307" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="180" id="sb1524-em-x1524"/>
+                                    <constraint firstItem="sb1307-hk-x1307" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="129" id="sb1524-em-x1524"/>
                                     <constraint firstItem="sb1308-ik-x1308" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="165.43" id="sb1526-gm-x1526"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1308-ik-x1308" secondAttribute="trailing" constant="165.43" id="sb1527-hm-x1527"/>
-                                    <constraint firstItem="sb1308-ik-x1308" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1528-im-x1528"/>
+                                    <constraint firstItem="sb1308-ik-x1308" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1528-im-x1528"/>
                                     <constraint firstItem="sb1309-jk-x1309" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="214.57" id="sb1530-an-x1530"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1309-jk-x1309" secondAttribute="trailing" constant="116.29" id="sb1531-bn-x1531"/>
-                                    <constraint firstItem="sb1309-jk-x1309" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1532-cn-x1532"/>
+                                    <constraint firstItem="sb1309-jk-x1309" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1532-cn-x1532"/>
                                     <constraint firstItem="sb1310-al-x1310" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="214.57" id="sb1534-en-x1534"/>
-                                    <constraint firstItem="sb1310-al-x1310" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1536-gn-x1536"/>
+                                    <constraint firstItem="sb1310-al-x1310" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1536-gn-x1536"/>
                                     <constraint firstItem="sb1311-bl-x1311" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="214.57" id="sb1538-in-x1538"/>
-                                    <constraint firstItem="sb1311-bl-x1311" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="152" id="sb1540-ao-x1540"/>
+                                    <constraint firstItem="sb1311-bl-x1311" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="111" id="sb1540-ao-x1540"/>
                                     <constraint firstItem="sb1312-cl-x1312" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="214.57" id="sb1542-co-x1542"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1312-cl-x1312" secondAttribute="trailing" constant="116.29" id="sb1543-do-x1543"/>
-                                    <constraint firstItem="sb1312-cl-x1312" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1544-eo-x1544"/>
+                                    <constraint firstItem="sb1312-cl-x1312" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1544-eo-x1544"/>
                                     <constraint firstItem="sb1313-dl-x1313" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="263.71" id="sb1546-go-x1546"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1313-dl-x1313" secondAttribute="trailing" constant="67.14" id="sb1547-ho-x1547"/>
-                                    <constraint firstItem="sb1313-dl-x1313" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1548-io-x1548"/>
+                                    <constraint firstItem="sb1313-dl-x1313" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1548-io-x1548"/>
                                     <constraint firstItem="sb1314-el-x1314" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="263.71" id="sb1550-ap-x1550"/>
-                                    <constraint firstItem="sb1314-el-x1314" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1552-cp-x1552"/>
+                                    <constraint firstItem="sb1314-el-x1314" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1552-cp-x1552"/>
                                     <constraint firstItem="sb1315-fl-x1315" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="263.71" id="sb1554-ep-x1554"/>
-                                    <constraint firstItem="sb1315-fl-x1315" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="149" id="sb1556-gp-x1556"/>
+                                    <constraint firstItem="sb1315-fl-x1315" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="109" id="sb1556-gp-x1556"/>
                                     <constraint firstItem="sb1316-gl-x1316" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="263.71" id="sb1558-ip-x1558"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1316-gl-x1316" secondAttribute="trailing" constant="67.14" id="sb1559-jp-x1559"/>
-                                    <constraint firstItem="sb1316-gl-x1316" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1560-aq-x1560"/>
+                                    <constraint firstItem="sb1316-gl-x1316" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1560-aq-x1560"/>
                                     <constraint firstItem="sb1317-hl-x1317" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="312.86" id="sb1562-cq-x1562"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1317-hl-x1317" secondAttribute="trailing" constant="18" id="sb1563-dq-x1563"/>
-                                    <constraint firstItem="sb1317-hl-x1317" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="52" id="sb1564-eq-x1564"/>
+                                    <constraint firstItem="sb1317-hl-x1317" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="42" id="sb1564-eq-x1564"/>
                                     <constraint firstItem="sb1318-il-x1318" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="312.86" id="sb1566-gq-x1566"/>
-                                    <constraint firstItem="sb1318-il-x1318" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="70" id="sb1568-iq-x1568"/>
+                                    <constraint firstItem="sb1318-il-x1318" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="58" id="sb1568-iq-x1568"/>
                                     <constraint firstItem="sb1319-jl-x1319" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="312.86" id="sb1570-ar-x1570"/>
-                                    <constraint firstItem="sb1319-jl-x1319" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="136" id="sb1572-cr-x1572"/>
+                                    <constraint firstItem="sb1319-jl-x1319" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="100" id="sb1572-cr-x1572"/>
                                     <constraint firstItem="sb1320-am-x1320" firstAttribute="leading" secondItem="sb1322-cm-x1322" secondAttribute="leading" constant="312.86" id="sb1574-er-x1574"/>
                                     <constraint firstItem="sb1322-cm-x1322" firstAttribute="trailing" secondItem="sb1320-am-x1320" secondAttribute="trailing" constant="18" id="sb1575-fr-x1575"/>
-                                    <constraint firstItem="sb1320-am-x1320" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="206" id="sb1576-gr-x1576"/>
+                                    <constraint firstItem="sb1320-am-x1320" firstAttribute="top" secondItem="sb1322-cm-x1322" secondAttribute="top" constant="146" id="sb1576-gr-x1576"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Ranking" translatesAutoresizingMaskIntoConstraints="NO" id="sb1338-in-x1338">
-                                <rect key="frame" x="16" y="657" width="361" height="156"/>
+                                <rect key="frame" x="16" y="518" width="361" height="132"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x156" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1337-hn-x1337">
-                                        <rect key="frame" x="-28" y="-28" width="417" height="212"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x132" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1337-hn-x1337">
+                                        <rect key="frame" x="-28" y="-28" width="417" height="188"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="trophy.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1323-dm-x1323">
-                                        <rect key="frame" x="18" y="17.33" width="18" height="19.67"/>
+                                        <rect key="frame" x="18" y="13.33" width="18" height="19.67"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="sb1587-hs-x1587"/>
                                             <constraint firstAttribute="height" constant="18" id="sb1589-js-x1589"/>
@@ -3400,7 +3400,7 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" weight="bold"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ranking de vendedores (mes)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1324-em-x1324">
-                                        <rect key="frame" x="44" y="18" width="281" height="18"/>
+                                        <rect key="frame" x="44" y="14" width="281" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1593-dt-x1593"/>
                                         </constraints>
@@ -3409,14 +3409,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_100_30" translatesAutoresizingMaskIntoConstraints="NO" id="sb1325-fm-x1325">
-                                        <rect key="frame" x="18" y="54.5" width="30" height="30"/>
+                                        <rect key="frame" x="18" y="46.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="sb1595-ft-x1595"/>
                                             <constraint firstAttribute="height" constant="30" id="sb1597-ht-x1597"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1326-gm-x1326">
-                                        <rect key="frame" x="18" y="54.5" width="21" height="30"/>
+                                        <rect key="frame" x="18" y="46.5" width="21" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="sb1601-bk-x1601"/>
                                         </constraints>
@@ -3425,7 +3425,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lucía Pérez" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1327-hm-x1327">
-                                        <rect key="frame" x="60" y="52" width="171" height="18"/>
+                                        <rect key="frame" x="60" y="44" width="171" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1605-fk-x1605"/>
                                         </constraints>
@@ -3434,7 +3434,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 1648.30" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1328-im-x1328">
-                                        <rect key="frame" x="240" y="52" width="103" height="18"/>
+                                        <rect key="frame" x="240" y="44" width="103" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1609-jk-x1609"/>
                                         </constraints>
@@ -3443,27 +3443,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_e2f3f1_100_292x10" translatesAutoresizingMaskIntoConstraints="NO" id="sb1329-jm-x1329">
-                                        <rect key="frame" x="60" y="77" width="283" height="10"/>
+                                        <rect key="frame" x="60" y="69" width="283" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="sb1613-dl-x1613"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_0f766e_100_292x10" translatesAutoresizingMaskIntoConstraints="NO" id="sb1330-an-x1330">
-                                        <rect key="frame" x="60" y="77" width="292" height="10"/>
+                                        <rect key="frame" x="60" y="69" width="292" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="292" id="sb1615-fl-x1615"/>
                                             <constraint firstAttribute="height" constant="10" id="sb1617-hl-x1617"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_e2f3f1_100_30" translatesAutoresizingMaskIntoConstraints="NO" id="sb1331-bn-x1331">
-                                        <rect key="frame" x="18" y="105.5" width="30" height="30"/>
+                                        <rect key="frame" x="18" y="88.5" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="sb1619-jl-x1619"/>
                                             <constraint firstAttribute="height" constant="30" id="sb1621-bm-x1621"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1332-cn-x1332">
-                                        <rect key="frame" x="18" y="105.5" width="21" height="30"/>
+                                        <rect key="frame" x="18" y="88.5" width="21" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="sb1625-fm-x1625"/>
                                         </constraints>
@@ -3472,7 +3472,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Mario Ruiz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1333-dn-x1333">
-                                        <rect key="frame" x="60" y="103" width="171" height="18"/>
+                                        <rect key="frame" x="60" y="86" width="171" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1629-jm-x1629"/>
                                         </constraints>
@@ -3481,7 +3481,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 486.38" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1334-en-x1334">
-                                        <rect key="frame" x="240" y="103" width="103" height="18"/>
+                                        <rect key="frame" x="240" y="86" width="103" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1633-dn-x1633"/>
                                         </constraints>
@@ -3490,13 +3490,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_e2f3f1_100_292x10" translatesAutoresizingMaskIntoConstraints="NO" id="sb1335-fn-x1335">
-                                        <rect key="frame" x="60" y="128" width="283" height="10"/>
+                                        <rect key="frame" x="60" y="111" width="283" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="sb1637-hn-x1637"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_0f766e_100_86x10" translatesAutoresizingMaskIntoConstraints="NO" id="sb1336-gn-x1336">
-                                        <rect key="frame" x="60" y="128" width="86" height="10"/>
+                                        <rect key="frame" x="60" y="111" width="86" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="86" id="sb1639-jn-x1639"/>
                                             <constraint firstAttribute="height" constant="10" id="sb1641-bo-x1641"/>
@@ -3504,58 +3504,58 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="156" id="sb1581-bs-x1581"/>
+                                    <constraint firstAttribute="height" constant="132" id="sb1581-bs-x1581"/>
                                     <constraint firstItem="sb1337-hn-x1337" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="-28" id="sb1582-cs-x1582"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1337-hn-x1337" secondAttribute="trailing" constant="-28" id="sb1583-ds-x1583"/>
                                     <constraint firstItem="sb1337-hn-x1337" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="-28" id="sb1584-es-x1584"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="bottom" secondItem="sb1337-hn-x1337" secondAttribute="bottom" constant="-28" id="sb1585-fs-x1585"/>
                                     <constraint firstItem="sb1323-dm-x1323" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="18" id="sb1586-gs-x1586"/>
-                                    <constraint firstItem="sb1323-dm-x1323" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="18" id="sb1588-is-x1588"/>
+                                    <constraint firstItem="sb1323-dm-x1323" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="14" id="sb1588-is-x1588"/>
                                     <constraint firstItem="sb1324-em-x1324" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="44" id="sb1590-at-x1590"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1324-em-x1324" secondAttribute="trailing" constant="36" id="sb1591-bt-x1591"/>
-                                    <constraint firstItem="sb1324-em-x1324" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="18" id="sb1592-ct-x1592"/>
+                                    <constraint firstItem="sb1324-em-x1324" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="14" id="sb1592-ct-x1592"/>
                                     <constraint firstItem="sb1325-fm-x1325" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="18" id="sb1594-et-x1594"/>
-                                    <constraint firstItem="sb1325-fm-x1325" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="54.5" id="sb1596-gt-x1596"/>
+                                    <constraint firstItem="sb1325-fm-x1325" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="46.5" id="sb1596-gt-x1596"/>
                                     <constraint firstItem="sb1326-gm-x1326" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="18" id="sb1598-it-x1598"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1326-gm-x1326" secondAttribute="trailing" constant="322" id="sb1599-jt-x1599"/>
-                                    <constraint firstItem="sb1326-gm-x1326" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="54.5" id="sb1600-ak-x1600"/>
+                                    <constraint firstItem="sb1326-gm-x1326" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="46.5" id="sb1600-ak-x1600"/>
                                     <constraint firstItem="sb1327-hm-x1327" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1602-ck-x1602"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1327-hm-x1327" secondAttribute="trailing" constant="130" id="sb1603-dk-x1603"/>
-                                    <constraint firstItem="sb1327-hm-x1327" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="52" id="sb1604-ek-x1604"/>
+                                    <constraint firstItem="sb1327-hm-x1327" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="44" id="sb1604-ek-x1604"/>
                                     <constraint firstItem="sb1328-im-x1328" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="240" id="sb1606-gk-x1606"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1328-im-x1328" secondAttribute="trailing" constant="18" id="sb1607-hk-x1607"/>
-                                    <constraint firstItem="sb1328-im-x1328" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="52" id="sb1608-ik-x1608"/>
+                                    <constraint firstItem="sb1328-im-x1328" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="44" id="sb1608-ik-x1608"/>
                                     <constraint firstItem="sb1329-jm-x1329" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1610-al-x1610"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1329-jm-x1329" secondAttribute="trailing" constant="18" id="sb1611-bl-x1611"/>
-                                    <constraint firstItem="sb1329-jm-x1329" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="77" id="sb1612-cl-x1612"/>
+                                    <constraint firstItem="sb1329-jm-x1329" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="69" id="sb1612-cl-x1612"/>
                                     <constraint firstItem="sb1330-an-x1330" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1614-el-x1614"/>
-                                    <constraint firstItem="sb1330-an-x1330" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="77" id="sb1616-gl-x1616"/>
+                                    <constraint firstItem="sb1330-an-x1330" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="69" id="sb1616-gl-x1616"/>
                                     <constraint firstItem="sb1331-bn-x1331" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="18" id="sb1618-il-x1618"/>
-                                    <constraint firstItem="sb1331-bn-x1331" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="105.5" id="sb1620-am-x1620"/>
+                                    <constraint firstItem="sb1331-bn-x1331" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="88.5" id="sb1620-am-x1620"/>
                                     <constraint firstItem="sb1332-cn-x1332" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="18" id="sb1622-cm-x1622"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1332-cn-x1332" secondAttribute="trailing" constant="322" id="sb1623-dm-x1623"/>
-                                    <constraint firstItem="sb1332-cn-x1332" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="105.5" id="sb1624-em-x1624"/>
+                                    <constraint firstItem="sb1332-cn-x1332" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="88.5" id="sb1624-em-x1624"/>
                                     <constraint firstItem="sb1333-dn-x1333" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1626-gm-x1626"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1333-dn-x1333" secondAttribute="trailing" constant="130" id="sb1627-hm-x1627"/>
-                                    <constraint firstItem="sb1333-dn-x1333" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="103" id="sb1628-im-x1628"/>
+                                    <constraint firstItem="sb1333-dn-x1333" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="86" id="sb1628-im-x1628"/>
                                     <constraint firstItem="sb1334-en-x1334" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="240" id="sb1630-an-x1630"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1334-en-x1334" secondAttribute="trailing" constant="18" id="sb1631-bn-x1631"/>
-                                    <constraint firstItem="sb1334-en-x1334" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="103" id="sb1632-cn-x1632"/>
+                                    <constraint firstItem="sb1334-en-x1334" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="86" id="sb1632-cn-x1632"/>
                                     <constraint firstItem="sb1335-fn-x1335" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1634-en-x1634"/>
                                     <constraint firstItem="sb1338-in-x1338" firstAttribute="trailing" secondItem="sb1335-fn-x1335" secondAttribute="trailing" constant="18" id="sb1635-fn-x1635"/>
-                                    <constraint firstItem="sb1335-fn-x1335" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="128" id="sb1636-gn-x1636"/>
+                                    <constraint firstItem="sb1335-fn-x1335" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="111" id="sb1636-gn-x1636"/>
                                     <constraint firstItem="sb1336-gn-x1336" firstAttribute="leading" secondItem="sb1338-in-x1338" secondAttribute="leading" constant="60" id="sb1638-in-x1638"/>
-                                    <constraint firstItem="sb1336-gn-x1336" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="128" id="sb1640-ao-x1640"/>
+                                    <constraint firstItem="sb1336-gn-x1336" firstAttribute="top" secondItem="sb1338-in-x1338" secondAttribute="top" constant="111" id="sb1640-ao-x1640"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Stock bajo" translatesAutoresizingMaskIntoConstraints="NO" id="sb1350-ap-x1350">
-                                <rect key="frame" x="16" y="829" width="361" height="102"/>
+                                <rect key="frame" x="16" y="662" width="361" height="88"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x102" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1349-jo-x1349">
-                                        <rect key="frame" x="-28" y="-28" width="417" height="158"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_370x88" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1349-jo-x1349">
+                                        <rect key="frame" x="-28" y="-28" width="417" height="144"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1339-jn-x1339">
-                                        <rect key="frame" x="18" y="18" width="18" height="17.67"/>
+                                        <rect key="frame" x="18" y="14" width="18" height="17.67"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="sb1651-bp-x1651"/>
                                             <constraint firstAttribute="height" constant="18" id="sb1653-dp-x1653"/>
@@ -3564,7 +3564,7 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" weight="bold"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Stock bajo (≤ 5)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1340-ao-x1340">
-                                        <rect key="frame" x="44" y="18" width="281" height="18"/>
+                                        <rect key="frame" x="44" y="14" width="281" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1657-hp-x1657"/>
                                         </constraints>
@@ -3573,7 +3573,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" userLabel="Ícono shippingbox.fill" translatesAutoresizingMaskIntoConstraints="NO" id="sb1343-do-x1343">
-                                        <rect key="frame" x="18" y="52" width="32" height="32"/>
+                                        <rect key="frame" x="18" y="44" width="32" height="32"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_f97316_13_32" translatesAutoresizingMaskIntoConstraints="NO" id="sb1341-bo-x1341">
                                                 <rect key="frame" x="0" y="0" width="32" height="32"/>
@@ -3598,7 +3598,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" userLabel="Píldora Reponer" translatesAutoresizingMaskIntoConstraints="NO" id="sb1346-go-x1346">
-                                        <rect key="frame" x="275" y="57" width="68" height="23"/>
+                                        <rect key="frame" x="275" y="49" width="68" height="23"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_capsula_f97316_16_68x23" translatesAutoresizingMaskIntoConstraints="NO" id="sb1344-eo-x1344">
                                                 <rect key="frame" x="0" y="0" width="68" height="23"/>
@@ -3624,7 +3624,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="3 u." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1347-ho-x1347">
-                                        <rect key="frame" x="249" y="59" width="16" height="18"/>
+                                        <rect key="frame" x="249" y="51" width="16" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1685-fs-x1685"/>
                                         </constraints>
@@ -3633,7 +3633,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Teclado" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1348-io-x1348">
-                                        <rect key="frame" x="60" y="59" width="141" height="18"/>
+                                        <rect key="frame" x="60" y="51" width="141" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="sb1689-js-x1689"/>
                                         </constraints>
@@ -3643,26 +3643,26 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="102" id="sb1645-fo-x1645"/>
+                                    <constraint firstAttribute="height" constant="88" id="sb1645-fo-x1645"/>
                                     <constraint firstItem="sb1349-jo-x1349" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="-28" id="sb1646-go-x1646"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="trailing" secondItem="sb1349-jo-x1349" secondAttribute="trailing" constant="-28" id="sb1647-ho-x1647"/>
                                     <constraint firstItem="sb1349-jo-x1349" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="-28" id="sb1648-io-x1648"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="bottom" secondItem="sb1349-jo-x1349" secondAttribute="bottom" constant="-28" id="sb1649-jo-x1649"/>
                                     <constraint firstItem="sb1339-jn-x1339" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="18" id="sb1650-ap-x1650"/>
-                                    <constraint firstItem="sb1339-jn-x1339" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="18" id="sb1652-cp-x1652"/>
+                                    <constraint firstItem="sb1339-jn-x1339" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="14" id="sb1652-cp-x1652"/>
                                     <constraint firstItem="sb1340-ao-x1340" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="44" id="sb1654-ep-x1654"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="trailing" secondItem="sb1340-ao-x1340" secondAttribute="trailing" constant="36" id="sb1655-fp-x1655"/>
-                                    <constraint firstItem="sb1340-ao-x1340" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="18" id="sb1656-gp-x1656"/>
+                                    <constraint firstItem="sb1340-ao-x1340" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="14" id="sb1656-gp-x1656"/>
                                     <constraint firstItem="sb1343-do-x1343" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="18" id="sb1658-ip-x1658"/>
-                                    <constraint firstItem="sb1343-do-x1343" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="52" id="sb1660-aq-x1660"/>
+                                    <constraint firstItem="sb1343-do-x1343" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="44" id="sb1660-aq-x1660"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="trailing" secondItem="sb1346-go-x1346" secondAttribute="trailing" constant="18" id="sb1670-ar-x1670"/>
-                                    <constraint firstItem="sb1346-go-x1346" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="57" id="sb1672-cr-x1672"/>
+                                    <constraint firstItem="sb1346-go-x1346" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="49" id="sb1672-cr-x1672"/>
                                     <constraint firstItem="sb1347-ho-x1347" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="249" id="sb1682-cs-x1682"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="trailing" secondItem="sb1347-ho-x1347" secondAttribute="trailing" constant="96" id="sb1683-ds-x1683"/>
-                                    <constraint firstItem="sb1347-ho-x1347" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="59" id="sb1684-es-x1684"/>
+                                    <constraint firstItem="sb1347-ho-x1347" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="51" id="sb1684-es-x1684"/>
                                     <constraint firstItem="sb1348-io-x1348" firstAttribute="leading" secondItem="sb1350-ap-x1350" secondAttribute="leading" constant="60" id="sb1686-gs-x1686"/>
                                     <constraint firstItem="sb1350-ap-x1350" firstAttribute="trailing" secondItem="sb1348-io-x1348" secondAttribute="trailing" constant="160" id="sb1687-hs-x1687"/>
-                                    <constraint firstItem="sb1348-io-x1348" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="59" id="sb1688-is-x1688"/>
+                                    <constraint firstItem="sb1348-io-x1348" firstAttribute="top" secondItem="sb1350-ap-x1350" secondAttribute="top" constant="51" id="sb1688-is-x1688"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3671,24 +3671,23 @@
                             <constraint firstItem="sb1352-cp-x1352" firstAttribute="trailing" secondItem="sb1273-dr-x1273" secondAttribute="trailing" constant="16" id="sb1355-fp-x1355"/>
                             <constraint firstItem="sb1273-dr-x1273" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="70" id="sb1356-gp-x1356"/>
                             <constraint firstItem="sb1283-ds-x1283" firstAttribute="leading" secondItem="sb1352-cp-x1352" secondAttribute="leading" constant="16" id="sb1382-cs-x1382"/>
-                            <constraint firstItem="sb1283-ds-x1283" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="225" id="sb1384-es-x1384"/>
+                            <constraint firstItem="sb1283-ds-x1283" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="190" id="sb1384-es-x1384"/>
                             <constraint firstItem="sb1290-at-x1290" firstAttribute="leading" secondItem="sb1352-cp-x1352" secondAttribute="leading" constant="207" id="sb1422-cm-x1422"/>
-                            <constraint firstItem="sb1290-at-x1290" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="225" id="sb1424-em-x1424"/>
+                            <constraint firstItem="sb1290-at-x1290" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="190" id="sb1424-em-x1424"/>
                             <constraint firstItem="sb1322-cm-x1322" firstAttribute="leading" secondItem="sb1352-cp-x1352" secondAttribute="leading" constant="16" id="sb1450-ap-x1450"/>
                             <constraint firstItem="sb1352-cp-x1352" firstAttribute="trailing" secondItem="sb1322-cm-x1322" secondAttribute="trailing" constant="16" id="sb1451-bp-x1451"/>
-                            <constraint firstItem="sb1322-cm-x1322" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="401" id="sb1452-cp-x1452"/>
+                            <constraint firstItem="sb1322-cm-x1322" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="332" id="sb1452-cp-x1452"/>
                             <constraint firstItem="sb1338-in-x1338" firstAttribute="leading" secondItem="sb1352-cp-x1352" secondAttribute="leading" constant="16" id="sb1578-ir-x1578"/>
                             <constraint firstItem="sb1352-cp-x1352" firstAttribute="trailing" secondItem="sb1338-in-x1338" secondAttribute="trailing" constant="16" id="sb1579-jr-x1579"/>
-                            <constraint firstItem="sb1338-in-x1338" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="657" id="sb1580-as-x1580"/>
+                            <constraint firstItem="sb1338-in-x1338" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="518" id="sb1580-as-x1580"/>
                             <constraint firstItem="sb1350-ap-x1350" firstAttribute="leading" secondItem="sb1352-cp-x1352" secondAttribute="leading" constant="16" id="sb1642-co-x1642"/>
                             <constraint firstItem="sb1352-cp-x1352" firstAttribute="trailing" secondItem="sb1350-ap-x1350" secondAttribute="trailing" constant="16" id="sb1643-do-x1643"/>
-                            <constraint firstItem="sb1350-ap-x1350" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="829" id="sb1644-eo-x1644"/>
+                            <constraint firstItem="sb1350-ap-x1350" firstAttribute="top" secondItem="sb1352-cp-x1352" secondAttribute="top" constant="662" id="sb1644-eo-x1644"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sb1353-dp-x1353"/>
                         <color key="backgroundColor" name="Fondo"/>
                     </view>
                     <navigationItem key="navigationItem" title="Resumen" largeTitleDisplayMode="always" id="sb1351-bp-x1351"/>
-                    <size key="freeformSize" width="393" height="960"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sb1691-bt-x1691" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4353,24 +4352,24 @@
             <objects>
                 <viewController storyboardIdentifier="NuevaVenta" id="sb010-al-x010" userLabel="Nueva venta" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sb2024-em-x2024">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="930"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" userLabel="Tarjeta vendedor" translatesAutoresizingMaskIntoConstraints="NO" id="sb1979-jr-x1979">
-                                <rect key="frame" x="24" y="201" width="345" height="106"/>
+                                <rect key="frame" x="24" y="177" width="345" height="92"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_teal_354x106" userLabel="Degradado" translatesAutoresizingMaskIntoConstraints="NO" id="sb1978-ir-x1978">
-                                        <rect key="frame" x="-28" y="-28" width="401" height="162"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_teal_354x92" userLabel="Degradado" translatesAutoresizingMaskIntoConstraints="NO" id="sb1978-ir-x1978">
+                                        <rect key="frame" x="-28" y="-28" width="401" height="148"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_circulo_vendedor" translatesAutoresizingMaskIntoConstraints="NO" id="sb1973-dr-x1973">
-                                        <rect key="frame" x="18" y="27" width="52" height="52"/>
+                                        <rect key="frame" x="18" y="20" width="52" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="sb2035-fn-x2035"/>
                                             <constraint firstAttribute="height" constant="52" id="sb2037-hn-x2037"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1974-er-x1974">
-                                        <rect key="frame" x="18" y="27" width="43" height="52"/>
+                                        <rect key="frame" x="18" y="20" width="43" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="sb2041-bo-x2041"/>
                                         </constraints>
@@ -4379,7 +4378,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="SESIÓN ACTIVA · VENDEDOR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1975-fr-x1975">
-                                        <rect key="frame" x="84" y="18" width="243" height="13"/>
+                                        <rect key="frame" x="84" y="11" width="243" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="sb2045-fo-x2045"/>
                                         </constraints>
@@ -4388,7 +4387,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lucía Pérez" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1976-gr-x1976">
-                                        <rect key="frame" x="84" y="33" width="243" height="24"/>
+                                        <rect key="frame" x="84" y="26" width="243" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="sb2049-jo-x2049"/>
                                         </constraints>
@@ -4397,7 +4396,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Sesión iniciada · la venta se registra a tu nombre" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1977-hr-x1977">
-                                        <rect key="frame" x="84" y="59" width="243" height="29"/>
+                                        <rect key="frame" x="84" y="52" width="243" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="sb2053-dp-x2053"/>
                                         </constraints>
@@ -4407,7 +4406,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="106" id="sb2029-jm-x2029"/>
+                                    <constraint firstAttribute="height" constant="92" id="sb2029-jm-x2029"/>
                                     <constraint firstItem="sb1978-ir-x1978" firstAttribute="leading" secondItem="sb1979-jr-x1979" secondAttribute="leading" constant="-28" id="sb2030-an-x2030"/>
                                     <constraint firstItem="sb1979-jr-x1979" firstAttribute="trailing" secondItem="sb1978-ir-x1978" secondAttribute="trailing" constant="-28" id="sb2031-bn-x2031"/>
                                     <constraint firstItem="sb1978-ir-x1978" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="-28" id="sb2032-cn-x2032"/>
@@ -4419,17 +4418,17 @@
                                     <constraint firstItem="sb1974-er-x1974" firstAttribute="centerY" secondItem="sb1979-jr-x1979" secondAttribute="centerY" id="sb2040-ao-x2040"/>
                                     <constraint firstItem="sb1975-fr-x1975" firstAttribute="leading" secondItem="sb1979-jr-x1979" secondAttribute="leading" constant="84" id="sb2042-co-x2042"/>
                                     <constraint firstItem="sb1979-jr-x1979" firstAttribute="trailing" secondItem="sb1975-fr-x1975" secondAttribute="trailing" constant="18" id="sb2043-do-x2043"/>
-                                    <constraint firstItem="sb1975-fr-x1975" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="18" id="sb2044-eo-x2044"/>
+                                    <constraint firstItem="sb1975-fr-x1975" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="11" id="sb2044-eo-x2044"/>
                                     <constraint firstItem="sb1976-gr-x1976" firstAttribute="leading" secondItem="sb1979-jr-x1979" secondAttribute="leading" constant="84" id="sb2046-go-x2046"/>
                                     <constraint firstItem="sb1979-jr-x1979" firstAttribute="trailing" secondItem="sb1976-gr-x1976" secondAttribute="trailing" constant="18" id="sb2047-ho-x2047"/>
-                                    <constraint firstItem="sb1976-gr-x1976" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="33" id="sb2048-io-x2048"/>
+                                    <constraint firstItem="sb1976-gr-x1976" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="26" id="sb2048-io-x2048"/>
                                     <constraint firstItem="sb1977-hr-x1977" firstAttribute="leading" secondItem="sb1979-jr-x1979" secondAttribute="leading" constant="84" id="sb2050-ap-x2050"/>
                                     <constraint firstItem="sb1979-jr-x1979" firstAttribute="trailing" secondItem="sb1977-hr-x1977" secondAttribute="trailing" constant="18" id="sb2051-bp-x2051"/>
-                                    <constraint firstItem="sb1977-hr-x1977" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="59" id="sb2052-cp-x2052"/>
+                                    <constraint firstItem="sb1977-hr-x1977" firstAttribute="top" secondItem="sb1979-jr-x1979" secondAttribute="top" constant="52" id="sb2052-cp-x2052"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DATOS DE LA VENTA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1980-as-x1980">
-                                <rect key="frame" x="24" y="331" width="345" height="15"/>
+                                <rect key="frame" x="24" y="285" width="345" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="sb2057-hp-x2057"/>
                                 </constraints>
@@ -4438,13 +4437,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" userLabel="Tarjeta Cliente" translatesAutoresizingMaskIntoConstraints="NO" id="sb1988-is-x1988">
-                                <rect key="frame" x="24" y="350" width="345" height="68"/>
+                                <rect key="frame" x="24" y="304" width="345" height="56"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x68" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1987-hs-x1987">
-                                        <rect key="frame" x="-28" y="-28" width="401" height="124"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x56" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1987-hs-x1987">
+                                        <rect key="frame" x="-28" y="-28" width="401" height="112"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" userLabel="Ícono person.fill" translatesAutoresizingMaskIntoConstraints="NO" id="sb1983-ds-x1983">
-                                        <rect key="frame" x="14" y="14" width="40" height="40"/>
+                                        <rect key="frame" x="14" y="8" width="40" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_13_40" translatesAutoresizingMaskIntoConstraints="NO" id="sb1981-bs-x1981">
                                                 <rect key="frame" x="0" y="0" width="40" height="40"/>
@@ -4469,7 +4468,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CLIENTE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1984-es-x1984">
-                                        <rect key="frame" x="66" y="15" width="219" height="15"/>
+                                        <rect key="frame" x="66" y="9" width="219" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb2081-bs-x2081"/>
                                         </constraints>
@@ -4478,7 +4477,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Elegir" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1985-fs-x1985">
-                                        <rect key="frame" x="66" y="33" width="219" height="20"/>
+                                        <rect key="frame" x="66" y="27" width="219" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="sb2085-fs-x2085"/>
                                         </constraints>
@@ -4487,7 +4486,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="chevron.right.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1986-gs-x1986">
-                                        <rect key="frame" x="305" y="20.67" width="26" height="26.33"/>
+                                        <rect key="frame" x="305" y="14.67" width="26" height="26.33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="26" id="sb2087-hs-x2087"/>
                                             <constraint firstAttribute="height" constant="26" id="sb2089-js-x2089"/>
@@ -4497,31 +4496,31 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="sb2061-bq-x2061"/>
+                                    <constraint firstAttribute="height" constant="56" id="sb2061-bq-x2061"/>
                                     <constraint firstItem="sb1987-hs-x1987" firstAttribute="leading" secondItem="sb1988-is-x1988" secondAttribute="leading" constant="-28" id="sb2062-cq-x2062"/>
                                     <constraint firstItem="sb1988-is-x1988" firstAttribute="trailing" secondItem="sb1987-hs-x1987" secondAttribute="trailing" constant="-28" id="sb2063-dq-x2063"/>
                                     <constraint firstItem="sb1987-hs-x1987" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="-28" id="sb2064-eq-x2064"/>
                                     <constraint firstItem="sb1988-is-x1988" firstAttribute="bottom" secondItem="sb1987-hs-x1987" secondAttribute="bottom" constant="-28" id="sb2065-fq-x2065"/>
                                     <constraint firstItem="sb1983-ds-x1983" firstAttribute="leading" secondItem="sb1988-is-x1988" secondAttribute="leading" constant="14" id="sb2066-gq-x2066"/>
-                                    <constraint firstItem="sb1983-ds-x1983" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="14" id="sb2068-iq-x2068"/>
+                                    <constraint firstItem="sb1983-ds-x1983" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="8" id="sb2068-iq-x2068"/>
                                     <constraint firstItem="sb1984-es-x1984" firstAttribute="leading" secondItem="sb1988-is-x1988" secondAttribute="leading" constant="66" id="sb2078-ir-x2078"/>
                                     <constraint firstItem="sb1988-is-x1988" firstAttribute="trailing" secondItem="sb1984-es-x1984" secondAttribute="trailing" constant="60" id="sb2079-jr-x2079"/>
-                                    <constraint firstItem="sb1984-es-x1984" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="15" id="sb2080-as-x2080"/>
+                                    <constraint firstItem="sb1984-es-x1984" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="9" id="sb2080-as-x2080"/>
                                     <constraint firstItem="sb1985-fs-x1985" firstAttribute="leading" secondItem="sb1988-is-x1988" secondAttribute="leading" constant="66" id="sb2082-cs-x2082"/>
                                     <constraint firstItem="sb1988-is-x1988" firstAttribute="trailing" secondItem="sb1985-fs-x1985" secondAttribute="trailing" constant="60" id="sb2083-ds-x2083"/>
-                                    <constraint firstItem="sb1985-fs-x1985" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="33" id="sb2084-es-x2084"/>
+                                    <constraint firstItem="sb1985-fs-x1985" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="27" id="sb2084-es-x2084"/>
                                     <constraint firstItem="sb1988-is-x1988" firstAttribute="trailing" secondItem="sb1986-gs-x1986" secondAttribute="trailing" constant="14" id="sb2086-gs-x2086"/>
-                                    <constraint firstItem="sb1986-gs-x1986" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="21" id="sb2088-is-x2088"/>
+                                    <constraint firstItem="sb1986-gs-x1986" firstAttribute="top" secondItem="sb1988-is-x1988" secondAttribute="top" constant="15" id="sb2088-is-x2088"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Tarjeta Producto" translatesAutoresizingMaskIntoConstraints="NO" id="sb1996-gt-x1996">
-                                <rect key="frame" x="24" y="430" width="345" height="68"/>
+                                <rect key="frame" x="24" y="368" width="345" height="56"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x68" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1995-ft-x1995">
-                                        <rect key="frame" x="-28" y="-28" width="401" height="124"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x56" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb1995-ft-x1995">
+                                        <rect key="frame" x="-28" y="-28" width="401" height="112"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" userLabel="Ícono shippingbox.fill" translatesAutoresizingMaskIntoConstraints="NO" id="sb1991-bt-x1991">
-                                        <rect key="frame" x="14" y="14" width="40" height="40"/>
+                                        <rect key="frame" x="14" y="8" width="40" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_13_40" translatesAutoresizingMaskIntoConstraints="NO" id="sb1989-js-x1989">
                                                 <rect key="frame" x="0" y="0" width="40" height="40"/>
@@ -4546,7 +4545,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PRODUCTO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1992-ct-x1992">
-                                        <rect key="frame" x="66" y="15" width="219" height="15"/>
+                                        <rect key="frame" x="66" y="9" width="219" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb2113-dl-x2113"/>
                                         </constraints>
@@ -4555,7 +4554,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Elegir" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb1993-dt-x1993">
-                                        <rect key="frame" x="66" y="33" width="219" height="20"/>
+                                        <rect key="frame" x="66" y="27" width="219" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="sb2117-hl-x2117"/>
                                         </constraints>
@@ -4564,7 +4563,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" image="chevron.right.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sb1994-et-x1994">
-                                        <rect key="frame" x="305" y="20.67" width="26" height="26.33"/>
+                                        <rect key="frame" x="305" y="14.67" width="26" height="26.33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="26" id="sb2119-jl-x2119"/>
                                             <constraint firstAttribute="height" constant="26" id="sb2121-bm-x2121"/>
@@ -4574,31 +4573,31 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="sb2093-dt-x2093"/>
+                                    <constraint firstAttribute="height" constant="56" id="sb2093-dt-x2093"/>
                                     <constraint firstItem="sb1995-ft-x1995" firstAttribute="leading" secondItem="sb1996-gt-x1996" secondAttribute="leading" constant="-28" id="sb2094-et-x2094"/>
                                     <constraint firstItem="sb1996-gt-x1996" firstAttribute="trailing" secondItem="sb1995-ft-x1995" secondAttribute="trailing" constant="-28" id="sb2095-ft-x2095"/>
                                     <constraint firstItem="sb1995-ft-x1995" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="-28" id="sb2096-gt-x2096"/>
                                     <constraint firstItem="sb1996-gt-x1996" firstAttribute="bottom" secondItem="sb1995-ft-x1995" secondAttribute="bottom" constant="-28" id="sb2097-ht-x2097"/>
                                     <constraint firstItem="sb1991-bt-x1991" firstAttribute="leading" secondItem="sb1996-gt-x1996" secondAttribute="leading" constant="14" id="sb2098-it-x2098"/>
-                                    <constraint firstItem="sb1991-bt-x1991" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="14" id="sb2100-ak-x2100"/>
+                                    <constraint firstItem="sb1991-bt-x1991" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="8" id="sb2100-ak-x2100"/>
                                     <constraint firstItem="sb1992-ct-x1992" firstAttribute="leading" secondItem="sb1996-gt-x1996" secondAttribute="leading" constant="66" id="sb2110-al-x2110"/>
                                     <constraint firstItem="sb1996-gt-x1996" firstAttribute="trailing" secondItem="sb1992-ct-x1992" secondAttribute="trailing" constant="60" id="sb2111-bl-x2111"/>
-                                    <constraint firstItem="sb1992-ct-x1992" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="15" id="sb2112-cl-x2112"/>
+                                    <constraint firstItem="sb1992-ct-x1992" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="9" id="sb2112-cl-x2112"/>
                                     <constraint firstItem="sb1993-dt-x1993" firstAttribute="leading" secondItem="sb1996-gt-x1996" secondAttribute="leading" constant="66" id="sb2114-el-x2114"/>
                                     <constraint firstItem="sb1996-gt-x1996" firstAttribute="trailing" secondItem="sb1993-dt-x1993" secondAttribute="trailing" constant="60" id="sb2115-fl-x2115"/>
-                                    <constraint firstItem="sb1993-dt-x1993" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="33" id="sb2116-gl-x2116"/>
+                                    <constraint firstItem="sb1993-dt-x1993" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="27" id="sb2116-gl-x2116"/>
                                     <constraint firstItem="sb1996-gt-x1996" firstAttribute="trailing" secondItem="sb1994-et-x1994" secondAttribute="trailing" constant="14" id="sb2118-il-x2118"/>
-                                    <constraint firstItem="sb1994-et-x1994" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="21" id="sb2120-am-x2120"/>
+                                    <constraint firstItem="sb1994-et-x1994" firstAttribute="top" secondItem="sb1996-gt-x1996" secondAttribute="top" constant="15" id="sb2120-am-x2120"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Tarjeta cantidad" translatesAutoresizingMaskIntoConstraints="NO" id="sb2005-fk-x2005">
-                                <rect key="frame" x="24" y="510" width="345" height="68"/>
+                                <rect key="frame" x="24" y="432" width="345" height="56"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x68" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb2004-ek-x2004">
-                                        <rect key="frame" x="-28" y="-28" width="401" height="124"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x56" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb2004-ek-x2004">
+                                        <rect key="frame" x="-28" y="-28" width="401" height="112"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" userLabel="Ícono number" translatesAutoresizingMaskIntoConstraints="NO" id="sb1999-jt-x1999">
-                                        <rect key="frame" x="14" y="14" width="40" height="40"/>
+                                        <rect key="frame" x="14" y="8" width="40" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_cuadro_0f766e_13_40" translatesAutoresizingMaskIntoConstraints="NO" id="sb1997-ht-x1997">
                                                 <rect key="frame" x="0" y="0" width="40" height="40"/>
@@ -4623,7 +4622,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CANTIDAD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2000-ak-x2000">
-                                        <rect key="frame" x="66" y="17" width="111" height="15"/>
+                                        <rect key="frame" x="66" y="11" width="111" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb2145-fo-x2145"/>
                                         </constraints>
@@ -4632,7 +4631,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="(stock -)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2001-bk-x2001">
-                                        <rect key="frame" x="66" y="35" width="111" height="16"/>
+                                        <rect key="frame" x="66" y="29" width="111" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="sb2149-jo-x2149"/>
                                         </constraints>
@@ -4641,7 +4640,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2002-ck-x2002">
-                                        <rect key="frame" x="214" y="18.5" width="11" height="31"/>
+                                        <rect key="frame" x="214" y="12.5" width="11" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="sb2153-dp-x2153"/>
                                         </constraints>
@@ -4650,7 +4649,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="999" translatesAutoresizingMaskIntoConstraints="NO" id="sb2003-dk-x2003">
-                                        <rect key="frame" x="237" y="18" width="94" height="32"/>
+                                        <rect key="frame" x="237" y="12" width="94" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="94" id="sb2155-fp-x2155"/>
                                             <constraint firstAttribute="height" constant="32" id="sb2157-hp-x2157"/>
@@ -4658,28 +4657,28 @@
                                     </stepper>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="sb2125-fm-x2125"/>
+                                    <constraint firstAttribute="height" constant="56" id="sb2125-fm-x2125"/>
                                     <constraint firstItem="sb2004-ek-x2004" firstAttribute="leading" secondItem="sb2005-fk-x2005" secondAttribute="leading" constant="-28" id="sb2126-gm-x2126"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="trailing" secondItem="sb2004-ek-x2004" secondAttribute="trailing" constant="-28" id="sb2127-hm-x2127"/>
                                     <constraint firstItem="sb2004-ek-x2004" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="-28" id="sb2128-im-x2128"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="bottom" secondItem="sb2004-ek-x2004" secondAttribute="bottom" constant="-28" id="sb2129-jm-x2129"/>
                                     <constraint firstItem="sb1999-jt-x1999" firstAttribute="leading" secondItem="sb2005-fk-x2005" secondAttribute="leading" constant="14" id="sb2130-an-x2130"/>
-                                    <constraint firstItem="sb1999-jt-x1999" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="14" id="sb2132-cn-x2132"/>
+                                    <constraint firstItem="sb1999-jt-x1999" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="8" id="sb2132-cn-x2132"/>
                                     <constraint firstItem="sb2000-ak-x2000" firstAttribute="leading" secondItem="sb2005-fk-x2005" secondAttribute="leading" constant="66" id="sb2142-co-x2142"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="trailing" secondItem="sb2000-ak-x2000" secondAttribute="trailing" constant="168" id="sb2143-do-x2143"/>
-                                    <constraint firstItem="sb2000-ak-x2000" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="17" id="sb2144-eo-x2144"/>
+                                    <constraint firstItem="sb2000-ak-x2000" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="11" id="sb2144-eo-x2144"/>
                                     <constraint firstItem="sb2001-bk-x2001" firstAttribute="leading" secondItem="sb2005-fk-x2005" secondAttribute="leading" constant="66" id="sb2146-go-x2146"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="trailing" secondItem="sb2001-bk-x2001" secondAttribute="trailing" constant="168" id="sb2147-ho-x2147"/>
-                                    <constraint firstItem="sb2001-bk-x2001" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="35" id="sb2148-io-x2148"/>
+                                    <constraint firstItem="sb2001-bk-x2001" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="29" id="sb2148-io-x2148"/>
                                     <constraint firstItem="sb2002-ck-x2002" firstAttribute="leading" secondItem="sb2005-fk-x2005" secondAttribute="leading" constant="214" id="sb2150-ap-x2150"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="trailing" secondItem="sb2002-ck-x2002" secondAttribute="trailing" constant="120" id="sb2151-bp-x2151"/>
-                                    <constraint firstItem="sb2002-ck-x2002" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="18.5" id="sb2152-cp-x2152"/>
+                                    <constraint firstItem="sb2002-ck-x2002" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="12.5" id="sb2152-cp-x2152"/>
                                     <constraint firstItem="sb2005-fk-x2005" firstAttribute="trailing" secondItem="sb2003-dk-x2003" secondAttribute="trailing" constant="14" id="sb2154-ep-x2154"/>
-                                    <constraint firstItem="sb2003-dk-x2003" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="18" id="sb2156-gp-x2156"/>
+                                    <constraint firstItem="sb2003-dk-x2003" firstAttribute="top" secondItem="sb2005-fk-x2005" secondAttribute="top" constant="12" id="sb2156-gp-x2156"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="RESUMEN (CALCULADO)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2006-gk-x2006">
-                                <rect key="frame" x="24" y="602" width="345" height="15"/>
+                                <rect key="frame" x="24" y="504" width="345" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="sb2161-bq-x2161"/>
                                 </constraints>
@@ -4688,13 +4687,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" userLabel="Tarjeta resumen" translatesAutoresizingMaskIntoConstraints="NO" id="sb2014-el-x2014">
-                                <rect key="frame" x="24" y="621" width="345" height="113"/>
+                                <rect key="frame" x="24" y="523" width="345" height="93"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x113" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb2013-dl-x2013">
-                                        <rect key="frame" x="-28" y="-28" width="401" height="169"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_tarjeta_354x93" userLabel="Fondo tarjeta" translatesAutoresizingMaskIntoConstraints="NO" id="sb2013-dl-x2013">
+                                        <rect key="frame" x="-28" y="-28" width="401" height="149"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2007-hk-x2007">
-                                        <rect key="frame" x="16" y="16" width="151" height="19"/>
+                                        <rect key="frame" x="16" y="11" width="151" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2173-dr-x2173"/>
                                         </constraints>
@@ -4703,7 +4702,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 0.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2008-ik-x2008">
-                                        <rect key="frame" x="176" y="16" width="153" height="19"/>
+                                        <rect key="frame" x="176" y="11" width="153" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2177-hr-x2177"/>
                                         </constraints>
@@ -4712,7 +4711,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Descuento" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2009-jk-x2009">
-                                        <rect key="frame" x="16" y="47" width="151" height="19"/>
+                                        <rect key="frame" x="16" y="37" width="151" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2181-bs-x2181"/>
                                         </constraints>
@@ -4721,7 +4720,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 0.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2010-al-x2010">
-                                        <rect key="frame" x="176" y="47" width="153" height="19"/>
+                                        <rect key="frame" x="176" y="37" width="153" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2185-fs-x2185"/>
                                         </constraints>
@@ -4730,7 +4729,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="IGV 18%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2011-bl-x2011">
-                                        <rect key="frame" x="16" y="78" width="151" height="19"/>
+                                        <rect key="frame" x="16" y="63" width="151" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2189-js-x2189"/>
                                         </constraints>
@@ -4739,7 +4738,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 0.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2012-cl-x2012">
-                                        <rect key="frame" x="176" y="78" width="153" height="19"/>
+                                        <rect key="frame" x="176" y="63" width="153" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="19" id="sb2193-dt-x2193"/>
                                         </constraints>
@@ -4749,39 +4748,39 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="113" id="sb2165-fq-x2165"/>
+                                    <constraint firstAttribute="height" constant="93" id="sb2165-fq-x2165"/>
                                     <constraint firstItem="sb2013-dl-x2013" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="-28" id="sb2166-gq-x2166"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2013-dl-x2013" secondAttribute="trailing" constant="-28" id="sb2167-hq-x2167"/>
                                     <constraint firstItem="sb2013-dl-x2013" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="-28" id="sb2168-iq-x2168"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="bottom" secondItem="sb2013-dl-x2013" secondAttribute="bottom" constant="-28" id="sb2169-jq-x2169"/>
                                     <constraint firstItem="sb2007-hk-x2007" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="16" id="sb2170-ar-x2170"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2007-hk-x2007" secondAttribute="trailing" constant="178" id="sb2171-br-x2171"/>
-                                    <constraint firstItem="sb2007-hk-x2007" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="16" id="sb2172-cr-x2172"/>
+                                    <constraint firstItem="sb2007-hk-x2007" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="11" id="sb2172-cr-x2172"/>
                                     <constraint firstItem="sb2008-ik-x2008" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="176" id="sb2174-er-x2174"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2008-ik-x2008" secondAttribute="trailing" constant="16" id="sb2175-fr-x2175"/>
-                                    <constraint firstItem="sb2008-ik-x2008" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="16" id="sb2176-gr-x2176"/>
+                                    <constraint firstItem="sb2008-ik-x2008" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="11" id="sb2176-gr-x2176"/>
                                     <constraint firstItem="sb2009-jk-x2009" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="16" id="sb2178-ir-x2178"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2009-jk-x2009" secondAttribute="trailing" constant="178" id="sb2179-jr-x2179"/>
-                                    <constraint firstItem="sb2009-jk-x2009" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="47" id="sb2180-as-x2180"/>
+                                    <constraint firstItem="sb2009-jk-x2009" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="37" id="sb2180-as-x2180"/>
                                     <constraint firstItem="sb2010-al-x2010" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="176" id="sb2182-cs-x2182"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2010-al-x2010" secondAttribute="trailing" constant="16" id="sb2183-ds-x2183"/>
-                                    <constraint firstItem="sb2010-al-x2010" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="47" id="sb2184-es-x2184"/>
+                                    <constraint firstItem="sb2010-al-x2010" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="37" id="sb2184-es-x2184"/>
                                     <constraint firstItem="sb2011-bl-x2011" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="16" id="sb2186-gs-x2186"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2011-bl-x2011" secondAttribute="trailing" constant="178" id="sb2187-hs-x2187"/>
-                                    <constraint firstItem="sb2011-bl-x2011" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="78" id="sb2188-is-x2188"/>
+                                    <constraint firstItem="sb2011-bl-x2011" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="63" id="sb2188-is-x2188"/>
                                     <constraint firstItem="sb2012-cl-x2012" firstAttribute="leading" secondItem="sb2014-el-x2014" secondAttribute="leading" constant="176" id="sb2190-at-x2190"/>
                                     <constraint firstItem="sb2014-el-x2014" firstAttribute="trailing" secondItem="sb2012-cl-x2012" secondAttribute="trailing" constant="16" id="sb2191-bt-x2191"/>
-                                    <constraint firstItem="sb2012-cl-x2012" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="78" id="sb2192-ct-x2192"/>
+                                    <constraint firstItem="sb2012-cl-x2012" firstAttribute="top" secondItem="sb2014-el-x2014" secondAttribute="top" constant="63" id="sb2192-ct-x2192"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Tarjeta total" translatesAutoresizingMaskIntoConstraints="NO" id="sb2019-jl-x2019">
-                                <rect key="frame" x="24" y="746" width="345" height="77"/>
+                                <rect key="frame" x="24" y="624" width="345" height="62"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_total_354x77" translatesAutoresizingMaskIntoConstraints="NO" id="sb2015-fl-x2015">
-                                        <rect key="frame" x="0" y="0" width="345" height="77"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_total_354x62" translatesAutoresizingMaskIntoConstraints="NO" id="sb2015-fl-x2015">
+                                        <rect key="frame" x="0" y="0" width="345" height="62"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TOTAL A PAGAR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2016-gl-x2016">
-                                        <rect key="frame" x="18" y="22.5" width="141" height="15"/>
+                                        <rect key="frame" x="18" y="15" width="141" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb2205-fk-x2205"/>
                                         </constraints>
@@ -4790,7 +4789,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="IGV incluido" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2017-hl-x2017">
-                                        <rect key="frame" x="18" y="39.5" width="141" height="15"/>
+                                        <rect key="frame" x="18" y="32" width="141" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="sb2209-jk-x2209"/>
                                         </constraints>
@@ -4799,7 +4798,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="S/ 0.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="sb2018-il-x2018">
-                                        <rect key="frame" x="168" y="18" width="159" height="41"/>
+                                        <rect key="frame" x="168" y="10.5" width="159" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="sb2213-dl-x2213"/>
                                         </constraints>
@@ -4809,24 +4808,24 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="77" id="sb2197-ht-x2197"/>
+                                    <constraint firstAttribute="height" constant="62" id="sb2197-ht-x2197"/>
                                     <constraint firstItem="sb2015-fl-x2015" firstAttribute="leading" secondItem="sb2019-jl-x2019" secondAttribute="leading" id="sb2198-it-x2198"/>
                                     <constraint firstItem="sb2019-jl-x2019" firstAttribute="trailing" secondItem="sb2015-fl-x2015" secondAttribute="trailing" id="sb2199-jt-x2199"/>
                                     <constraint firstItem="sb2015-fl-x2015" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" id="sb2200-ak-x2200"/>
                                     <constraint firstItem="sb2019-jl-x2019" firstAttribute="bottom" secondItem="sb2015-fl-x2015" secondAttribute="bottom" id="sb2201-bk-x2201"/>
                                     <constraint firstItem="sb2016-gl-x2016" firstAttribute="leading" secondItem="sb2019-jl-x2019" secondAttribute="leading" constant="18" id="sb2202-ck-x2202"/>
                                     <constraint firstItem="sb2019-jl-x2019" firstAttribute="trailing" secondItem="sb2016-gl-x2016" secondAttribute="trailing" constant="186" id="sb2203-dk-x2203"/>
-                                    <constraint firstItem="sb2016-gl-x2016" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="22.5" id="sb2204-ek-x2204"/>
+                                    <constraint firstItem="sb2016-gl-x2016" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="15" id="sb2204-ek-x2204"/>
                                     <constraint firstItem="sb2017-hl-x2017" firstAttribute="leading" secondItem="sb2019-jl-x2019" secondAttribute="leading" constant="18" id="sb2206-gk-x2206"/>
                                     <constraint firstItem="sb2019-jl-x2019" firstAttribute="trailing" secondItem="sb2017-hl-x2017" secondAttribute="trailing" constant="186" id="sb2207-hk-x2207"/>
-                                    <constraint firstItem="sb2017-hl-x2017" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="39.5" id="sb2208-ik-x2208"/>
+                                    <constraint firstItem="sb2017-hl-x2017" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="32" id="sb2208-ik-x2208"/>
                                     <constraint firstItem="sb2018-il-x2018" firstAttribute="leading" secondItem="sb2019-jl-x2019" secondAttribute="leading" constant="168" id="sb2210-al-x2210"/>
                                     <constraint firstItem="sb2019-jl-x2019" firstAttribute="trailing" secondItem="sb2018-il-x2018" secondAttribute="trailing" constant="18" id="sb2211-bl-x2211"/>
-                                    <constraint firstItem="sb2018-il-x2018" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="18" id="sb2212-cl-x2212"/>
+                                    <constraint firstItem="sb2018-il-x2018" firstAttribute="top" secondItem="sb2019-jl-x2019" secondAttribute="top" constant="10.5" id="sb2212-cl-x2212"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" userLabel="Botón Registrar venta" translatesAutoresizingMaskIntoConstraints="NO" id="sb2022-cm-x2022">
-                                <rect key="frame" x="24" y="847" width="345" height="54"/>
+                                <rect key="frame" x="24" y="702" width="345" height="54"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="sb_boton_coral_354x54" translatesAutoresizingMaskIntoConstraints="NO" id="sb2020-am-x2020">
                                         <rect key="frame" x="-28" y="-28" width="401" height="110"/>
@@ -4857,37 +4856,36 @@
                         <constraints>
                             <constraint firstItem="sb1979-jr-x1979" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2026-gm-x2026"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb1979-jr-x1979" secondAttribute="trailing" constant="24" id="sb2027-hm-x2027"/>
-                            <constraint firstItem="sb1979-jr-x1979" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="201" id="sb2028-im-x2028"/>
+                            <constraint firstItem="sb1979-jr-x1979" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="177" id="sb2028-im-x2028"/>
                             <constraint firstItem="sb1980-as-x1980" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2054-ep-x2054"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb1980-as-x1980" secondAttribute="trailing" constant="24" id="sb2055-fp-x2055"/>
-                            <constraint firstItem="sb1980-as-x1980" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="331" id="sb2056-gp-x2056"/>
+                            <constraint firstItem="sb1980-as-x1980" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="285" id="sb2056-gp-x2056"/>
                             <constraint firstItem="sb1988-is-x1988" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2058-ip-x2058"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb1988-is-x1988" secondAttribute="trailing" constant="24" id="sb2059-jp-x2059"/>
-                            <constraint firstItem="sb1988-is-x1988" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="350" id="sb2060-aq-x2060"/>
+                            <constraint firstItem="sb1988-is-x1988" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="304" id="sb2060-aq-x2060"/>
                             <constraint firstItem="sb1996-gt-x1996" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2090-at-x2090"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb1996-gt-x1996" secondAttribute="trailing" constant="24" id="sb2091-bt-x2091"/>
-                            <constraint firstItem="sb1996-gt-x1996" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="430" id="sb2092-ct-x2092"/>
+                            <constraint firstItem="sb1996-gt-x1996" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="368" id="sb2092-ct-x2092"/>
                             <constraint firstItem="sb2005-fk-x2005" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2122-cm-x2122"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb2005-fk-x2005" secondAttribute="trailing" constant="24" id="sb2123-dm-x2123"/>
-                            <constraint firstItem="sb2005-fk-x2005" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="510" id="sb2124-em-x2124"/>
+                            <constraint firstItem="sb2005-fk-x2005" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="432" id="sb2124-em-x2124"/>
                             <constraint firstItem="sb2006-gk-x2006" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2158-ip-x2158"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb2006-gk-x2006" secondAttribute="trailing" constant="24" id="sb2159-jp-x2159"/>
-                            <constraint firstItem="sb2006-gk-x2006" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="602" id="sb2160-aq-x2160"/>
+                            <constraint firstItem="sb2006-gk-x2006" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="504" id="sb2160-aq-x2160"/>
                             <constraint firstItem="sb2014-el-x2014" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2162-cq-x2162"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb2014-el-x2014" secondAttribute="trailing" constant="24" id="sb2163-dq-x2163"/>
-                            <constraint firstItem="sb2014-el-x2014" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="621" id="sb2164-eq-x2164"/>
+                            <constraint firstItem="sb2014-el-x2014" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="523" id="sb2164-eq-x2164"/>
                             <constraint firstItem="sb2019-jl-x2019" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2194-et-x2194"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb2019-jl-x2019" secondAttribute="trailing" constant="24" id="sb2195-ft-x2195"/>
-                            <constraint firstItem="sb2019-jl-x2019" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="746" id="sb2196-gt-x2196"/>
+                            <constraint firstItem="sb2019-jl-x2019" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="624" id="sb2196-gt-x2196"/>
                             <constraint firstItem="sb2022-cm-x2022" firstAttribute="leading" secondItem="sb2024-em-x2024" secondAttribute="leading" constant="24" id="sb2214-el-x2214"/>
                             <constraint firstItem="sb2024-em-x2024" firstAttribute="trailing" secondItem="sb2022-cm-x2022" secondAttribute="trailing" constant="24" id="sb2215-fl-x2215"/>
-                            <constraint firstItem="sb2022-cm-x2022" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="847" id="sb2216-gl-x2216"/>
+                            <constraint firstItem="sb2022-cm-x2022" firstAttribute="top" secondItem="sb2024-em-x2024" secondAttribute="top" constant="702" id="sb2216-gl-x2216"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sb2025-fm-x2025"/>
                         <color key="backgroundColor" name="Fondo"/>
                     </view>
                     <navigationItem key="navigationItem" title="Venta" largeTitleDisplayMode="always" id="sb2023-dm-x2023"/>
-                    <size key="freeformSize" width="393" height="930"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sb2227-hm-x2227" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5676,12 +5674,12 @@
         <image name="sb_avatar_LP" width="34" height="34"/>
         <image name="sb_avatar_grande_AT" width="148" height="148"/>
         <image name="sb_avatar_grande_LP" width="148" height="148"/>
-        <image name="sb_barra_coral_39x64" width="39" height="64"/>
-        <image name="sb_barra_teal_39x130" width="39" height="130"/>
-        <image name="sb_barra_teal_39x20" width="39" height="20"/>
-        <image name="sb_barra_teal_39x48" width="39" height="48"/>
-        <image name="sb_barra_teal_39x51" width="39" height="51"/>
-        <image name="sb_barra_teal_39x8" width="39" height="8"/>
+        <image name="sb_barra_coral_39x42" width="39" height="42"/>
+        <image name="sb_barra_teal_39x13" width="39" height="13"/>
+        <image name="sb_barra_teal_39x31" width="39" height="31"/>
+        <image name="sb_barra_teal_39x33" width="39" height="33"/>
+        <image name="sb_barra_teal_39x5" width="39" height="5"/>
+        <image name="sb_barra_teal_39x84" width="39" height="84"/>
         <image name="sb_boton_coral_354x54" width="410" height="110"/>
         <image name="sb_campo_354x70" width="410" height="126"/>
         <image name="sb_capsula_0f766e_100_292x10" width="292" height="10"/>
@@ -5726,23 +5724,23 @@
         <image name="sb_ic_MO_14b8a6" width="44" height="44"/>
         <image name="sb_ic_TE_f59e0b" width="44" height="44"/>
         <image name="sb_logo" width="160" height="160"/>
-        <image name="sb_riel" width="39" height="130"/>
-        <image name="sb_tarjeta_179x160" width="235" height="216"/>
-        <image name="sb_tarjeta_354x113" width="410" height="169"/>
+        <image name="sb_riel" width="39" height="84"/>
+        <image name="sb_tarjeta_179x130" width="235" height="186"/>
         <image name="sb_tarjeta_354x126" width="410" height="182"/>
         <image name="sb_tarjeta_354x243" width="410" height="299"/>
-        <image name="sb_tarjeta_354x68" width="410" height="124"/>
-        <image name="sb_tarjeta_370x102" width="426" height="158"/>
-        <image name="sb_tarjeta_370x156" width="426" height="212"/>
-        <image name="sb_tarjeta_370x240" width="426" height="296"/>
+        <image name="sb_tarjeta_354x56" width="410" height="112"/>
+        <image name="sb_tarjeta_354x93" width="410" height="149"/>
+        <image name="sb_tarjeta_370x132" width="426" height="188"/>
+        <image name="sb_tarjeta_370x174" width="426" height="230"/>
         <image name="sb_tarjeta_370x72" width="426" height="128"/>
         <image name="sb_tarjeta_370x76" width="426" height="132"/>
         <image name="sb_tarjeta_370x81" width="426" height="137"/>
+        <image name="sb_tarjeta_370x88" width="426" height="144"/>
         <image name="sb_teal_179x100" width="235" height="156"/>
-        <image name="sb_teal_354x106" width="410" height="162"/>
-        <image name="sb_teal_370x139" width="426" height="195"/>
+        <image name="sb_teal_354x92" width="410" height="148"/>
+        <image name="sb_teal_370x108" width="426" height="164"/>
         <image name="sb_teal_370x98" width="426" height="154"/>
-        <image name="sb_total_354x77" width="354" height="77"/>
+        <image name="sb_total_354x62" width="354" height="62"/>
         <image name="arrow.right" catalog="system" width="128" height="128"/>
         <image name="banknote.fill" catalog="system" width="128" height="128"/>
         <image name="briefcase.fill" catalog="system" width="128" height="128"/>
