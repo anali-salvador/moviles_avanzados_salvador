@@ -7,22 +7,27 @@ class LoginViewController: UIViewController {
     private let campoUsuario = UI.campoTarjeta("Tu usuario")
     private let campoClave = UI.campoTarjeta("Tu clave", oculto: true)
     private let mensajeError = MensajeError()
+    private var fondo: FondoAnimado!
+    private let logo = LoginViewController.crearLogo()
+    private var logoMostrado = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Tema.fondo
+        view.backgroundColor = Tema.azulNoche
+        fondo = agregarFondoAnimado()
         // Texto del botón de volver en la pantalla de registro.
         navigationItem.backButtonTitle = "Ingresar"
 
         let titulo = UILabel()
         titulo.text = "Ventas Tecsup"
-        titulo.font = .systemFont(ofSize: 30, weight: .bold)
+        titulo.font = Tema.fuente(34, .heavy)
+        titulo.textColor = .white
         titulo.textAlignment = .center
 
         let subtitulo = UILabel()
         subtitulo.text = "Inicia sesión para continuar"
-        subtitulo.font = .preferredFont(forTextStyle: .subheadline)
-        subtitulo.textColor = .secondaryLabel
+        subtitulo.font = Tema.fuente(16, .medium)
+        subtitulo.textColor = UIColor.white.withAlphaComponent(0.8)
         subtitulo.textAlignment = .center
 
         campoUsuario.returnKeyType = .next
@@ -30,22 +35,29 @@ class LoginViewController: UIViewController {
         campoUsuario.delegate = self
         campoClave.delegate = self
 
-        let botonIngresar = UI.botonPrincipal("Ingresar")
+        let botonIngresar = Tema.botonAcento("Ingresar", icono: "arrow.right")
+        botonIngresar.configuration?.imagePlacement = .trailing
         botonIngresar.addTarget(self, action: #selector(ingresar), for: .touchUpInside)
 
         let pila = UI.pila([
-            Self.logo(), titulo, subtitulo,
+            Self.centrado(logo), titulo, subtitulo,
             UI.tarjetaCampo("Usuario", campoUsuario),
             UI.tarjetaCampo("Clave", campoClave),
             Self.centrado(mensajeError),
             botonIngresar,
             pieCrearCuenta()
         ], en: view)
-        pila.spacing = 12
-        pila.setCustomSpacing(16, after: pila.arrangedSubviews[0])
+        pila.spacing = 14
+        pila.setCustomSpacing(20, after: pila.arrangedSubviews[0])
         pila.setCustomSpacing(4, after: titulo)
-        pila.setCustomSpacing(28, after: subtitulo)
+        pila.setCustomSpacing(32, after: subtitulo)
+        pila.setCustomSpacing(22, after: pila.arrangedSubviews[4])
+        pila.setCustomSpacing(22, after: pila.arrangedSubviews[5])
         pila.setCustomSpacing(16, after: botonIngresar)
+
+        // El logo empieza oculto y entra con un rebote al abrir la pantalla.
+        logo.alpha = 0
+        logo.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,10 +65,29 @@ class LoginViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fondo.iniciar()
+        guard !logoMostrado else { return }
+        logoMostrado = true
+        UIView.animate(withDuration: 0.8, delay: 0.1, usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.6, options: []) {
+            self.logo.alpha = 1
+            self.logo.transform = .identity
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fondo.detener()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
     // MARK: - Acciones (la lógica no cambia)
 
@@ -94,48 +125,54 @@ class LoginViewController: UIViewController {
 
     // MARK: - Vistas
 
-    /// Cuadrado azul redondeado con un carrito blanco.
-    private static func logo() -> UIView {
-        let cuadro = UIView()
-        cuadro.backgroundColor = Tema.principal
-        cuadro.layer.cornerRadius = 22
-        cuadro.translatesAutoresizingMaskIntoConstraints = false
+    /// Círculo translúcido con borde claro y un carrito blanco.
+    private static func crearLogo() -> UIView {
+        let lado: CGFloat = 104
+        let circulo = UIView()
+        circulo.backgroundColor = UIColor.white.withAlphaComponent(0.14)
+        circulo.layer.cornerRadius = lado / 2
+        circulo.layer.borderWidth = 3
+        circulo.layer.borderColor = UIColor.white.withAlphaComponent(0.75).cgColor
+        circulo.sombra(color: .black, opacidad: 0.25, radio: 18, desplazamiento: 8)
+        circulo.translatesAutoresizingMaskIntoConstraints = false
 
         let carrito = UIImageView(image: UIImage(systemName: "cart.fill"))
         carrito.tintColor = .white
-        carrito.preferredSymbolConfiguration = .init(pointSize: 40, weight: .semibold)
+        carrito.preferredSymbolConfiguration = .init(pointSize: 42, weight: .semibold)
         carrito.translatesAutoresizingMaskIntoConstraints = false
-        cuadro.addSubview(carrito)
+        circulo.addSubview(carrito)
 
         NSLayoutConstraint.activate([
-            cuadro.widthAnchor.constraint(equalToConstant: 90),
-            cuadro.heightAnchor.constraint(equalToConstant: 90),
-            carrito.centerXAnchor.constraint(equalTo: cuadro.centerXAnchor),
-            carrito.centerYAnchor.constraint(equalTo: cuadro.centerYAnchor)
+            circulo.widthAnchor.constraint(equalToConstant: lado),
+            circulo.heightAnchor.constraint(equalToConstant: lado),
+            carrito.centerXAnchor.constraint(equalTo: circulo.centerXAnchor, constant: -2),
+            carrito.centerYAnchor.constraint(equalTo: circulo.centerYAnchor)
         ])
-        return centrado(cuadro)
+        return circulo
     }
 
     /// "¿Primera vez? Crear cuenta", con "Crear cuenta" como botón.
     private func pieCrearCuenta() -> UIView {
         let pregunta = UILabel()
         pregunta.text = "¿Primera vez?"
-        pregunta.font = .preferredFont(forTextStyle: .subheadline)
-        pregunta.textColor = .secondaryLabel
+        pregunta.font = Tema.fuente(15, .medium)
+        pregunta.textColor = UIColor.white.withAlphaComponent(0.8)
 
         var config = UIButton.Configuration.plain()
         config.title = "Crear cuenta"
+        config.baseForegroundColor = .white
         config.contentInsets = .init(top: 6, leading: 2, bottom: 6, trailing: 2)
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { atributos in
             var nuevos = atributos
-            nuevos.font = .systemFont(ofSize: 15, weight: .bold)
+            nuevos.font = Tema.fuente(15, .bold)
+            nuevos.underlineStyle = NSUnderlineStyle.single
             return nuevos
         }
         let boton = UIButton(configuration: config)
         boton.addTarget(self, action: #selector(crearCuenta), for: .touchUpInside)
 
         let fila = UIStackView(arrangedSubviews: [pregunta, boton])
-        fila.spacing = 2
+        fila.spacing = 4
         fila.alignment = .center
         return Self.centrado(fila)
     }

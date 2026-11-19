@@ -7,7 +7,8 @@ extension UI {
     static func campoTarjeta(_ placeholder: String, oculto: Bool = false) -> UITextField {
         let campo = UITextField()
         campo.placeholder = placeholder
-        campo.font = .preferredFont(forTextStyle: .body)
+        campo.font = Tema.fuente(17, .medium)
+        campo.tintColor = Tema.principalOscuro
         campo.borderStyle = .none
         campo.autocapitalizationType = .none
         campo.autocorrectionType = .no
@@ -18,10 +19,10 @@ extension UI {
         return campo
     }
 
-    /// Tarjeta blanca con borde suave: etiqueta pequeña en mayúsculas arriba y el campo debajo.
+    /// Tarjeta blanca semitransparente (va sobre el fondo animado): etiqueta arriba y el campo debajo.
     /// `accesorio` va a la derecha de la etiqueta (por ejemplo, el aviso de disponibilidad).
     static func tarjetaCampo(_ etiqueta: String, _ campo: UITextField, accesorio: UIView? = nil) -> UIView {
-        let titulo = etiquetaSeccion(etiqueta)
+        let titulo = Tema.etiqueta(etiqueta, color: Tema.principalOscuro)
 
         let cabecera = UIStackView(arrangedSubviews: [titulo])
         cabecera.spacing = 8
@@ -39,10 +40,10 @@ extension UI {
         let tarjeta = TarjetaConBorde()
         tarjeta.addSubview(interior)
         NSLayoutConstraint.activate([
-            interior.topAnchor.constraint(equalTo: tarjeta.topAnchor, constant: 10),
-            interior.bottomAnchor.constraint(equalTo: tarjeta.bottomAnchor, constant: -8),
-            interior.leadingAnchor.constraint(equalTo: tarjeta.leadingAnchor, constant: 14),
-            interior.trailingAnchor.constraint(equalTo: tarjeta.trailingAnchor, constant: -14)
+            interior.topAnchor.constraint(equalTo: tarjeta.topAnchor, constant: 12),
+            interior.bottomAnchor.constraint(equalTo: tarjeta.bottomAnchor, constant: -10),
+            interior.leadingAnchor.constraint(equalTo: tarjeta.leadingAnchor, constant: 18),
+            interior.trailingAnchor.constraint(equalTo: tarjeta.trailingAnchor, constant: -18)
         ])
         // Tocar cualquier parte de la tarjeta enfoca el campo.
         tarjeta.addGestureRecognizer(UITapGestureRecognizer(target: campo, action: #selector(UIResponder.becomeFirstResponder)))
@@ -60,28 +61,25 @@ extension UI {
     }
 }
 
-/// Tarjeta blanca con borde suave que se adapta al modo oscuro.
+/// Tarjeta blanca semitransparente con borde claro, para ir sobre el fondo animado.
+/// Siempre usa el estilo claro para que el texto oscuro se lea igual en modo oscuro.
 final class TarjetaConBorde: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = Tema.tarjeta
-        layer.cornerRadius = 16
+        overrideUserInterfaceStyle = .light
+        backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        layer.cornerRadius = Tema.radio
         layer.cornerCurve = .continuous
         layer.borderWidth = 1
-        actualizarBorde()
-        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (vista: TarjetaConBorde, _) in
-            vista.actualizarBorde()
-        }
+        layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
+        sombra(color: .black, opacidad: 0.12, radio: 16, desplazamiento: 8)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) no se usa") }
-
-    private func actualizarBorde() {
-        layer.borderColor = UIColor.separator.resolvedColor(with: traitCollection).cgColor
-    }
 }
 
-/// Mensaje de error en rojo con ícono de alerta. Se oculta cuando no hay texto.
+/// Mensaje de error en rojo con ícono de alerta, dentro de una cápsula clara para leerse
+/// sobre el fondo animado. Se oculta cuando no hay texto.
 final class MensajeError: UIStackView {
     private let label = UILabel()
 
@@ -112,6 +110,12 @@ final class MensajeError: UIStackView {
         addArrangedSubview(label)
         spacing = 6
         alignment = .center
+        isLayoutMarginsRelativeArrangement = true
+        directionalLayoutMargins = .init(top: 8, leading: 14, bottom: 8, trailing: 16)
+        overrideUserInterfaceStyle = .light
+        backgroundColor = UIColor.white.withAlphaComponent(0.92)
+        layer.cornerRadius = 18
+        layer.cornerCurve = .continuous
         isHidden = true
     }
 

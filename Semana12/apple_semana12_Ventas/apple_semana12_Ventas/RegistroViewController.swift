@@ -11,16 +11,20 @@ class RegistroViewController: UIViewController {
     private let selectorRol = UISegmentedControl(items: ["Vendedor", "Supervisor"])
     private let avisoUsuario = UILabel()
     private let mensajeError = MensajeError()
+    private var fondo: FondoAnimado!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Crear cuenta"
-        view.backgroundColor = Tema.fondo
+        view.backgroundColor = Tema.azulNoche
+        fondo = agregarFondoAnimado()
+        configurarBarra()
 
         campoNombre.autocapitalizationType = .words
         selectorRol.selectedSegmentIndex = 0
+        estilizarSelectorRol()
 
-        avisoUsuario.font = .systemFont(ofSize: 12, weight: .semibold)
+        avisoUsuario.font = Tema.fuente(12, .bold)
         avisoUsuario.textAlignment = .right
         campoUsuario.addTarget(self, action: #selector(usuarioCambio), for: .editingChanged)
 
@@ -30,17 +34,17 @@ class RegistroViewController: UIViewController {
             campo.returnKeyType = campo === campoConfirmar ? .done : .next
         }
 
-        let botonRegistrar = UI.botonPrincipal("Registrarme")
+        let botonRegistrar = Tema.botonAcento("Registrarme", icono: "person.badge.plus")
         botonRegistrar.addTarget(self, action: #selector(registrar), for: .touchUpInside)
 
         let nota = UILabel()
         nota.text = "Al registrarte entrarás directamente a la app con las pestañas de tu rol."
-        nota.font = .preferredFont(forTextStyle: .footnote)
-        nota.textColor = .secondaryLabel
+        nota.font = Tema.fuente(13, .medium)
+        nota.textColor = UIColor.white.withAlphaComponent(0.75)
         nota.textAlignment = .center
         nota.numberOfLines = 0
 
-        let etiquetaRol = UI.etiquetaSeccion("Tu rol")
+        let etiquetaRol = Tema.etiqueta("Tu rol", color: UIColor.white.withAlphaComponent(0.85))
         let tarjetaConfirmar = UI.tarjetaCampo("Confirmar clave", campoConfirmar)
 
         let pila = UI.pila([
@@ -53,9 +57,57 @@ class RegistroViewController: UIViewController {
             botonRegistrar, nota
         ], en: view)
         pila.spacing = 12
-        pila.setCustomSpacing(20, after: tarjetaConfirmar)
-        pila.setCustomSpacing(6, after: etiquetaRol)
-        pila.setCustomSpacing(20, after: selectorRol)
+        pila.setCustomSpacing(22, after: tarjetaConfirmar)
+        pila.setCustomSpacing(8, after: etiquetaRol)
+        pila.setCustomSpacing(22, after: selectorRol)
+        pila.setCustomSpacing(22, after: pila.arrangedSubviews[6])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Barra oscura: flechas y estado en blanco sobre el fondo animado.
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fondo.iniciar()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = Tema.principal
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fondo.detener()
+    }
+
+    // MARK: - Estilo
+
+    /// Barra transparente con el título en blanco.
+    private func configurarBarra() {
+        let apariencia = UINavigationBarAppearance()
+        apariencia.configureWithTransparentBackground()
+        apariencia.titleTextAttributes = [.font: Tema.fuente(17, .bold), .foregroundColor: UIColor.white]
+        apariencia.largeTitleTextAttributes = [.font: Tema.fuente(34, .bold), .foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = apariencia
+        navigationItem.scrollEdgeAppearance = apariencia
+        navigationItem.compactAppearance = apariencia
+    }
+
+    /// Selector translúcido: el rol elegido en blanco con texto teal.
+    private func estilizarSelectorRol() {
+        selectorRol.backgroundColor = UIColor.white.withAlphaComponent(0.16)
+        selectorRol.selectedSegmentTintColor = .white
+        selectorRol.setTitleTextAttributes([.font: Tema.fuente(15, .bold),
+                                            .foregroundColor: Tema.principalOscuro], for: .selected)
+        selectorRol.setTitleTextAttributes([.font: Tema.fuente(15, .semibold),
+                                            .foregroundColor: UIColor.white], for: .normal)
+        selectorRol.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
 
     // MARK: - Aviso en vivo
