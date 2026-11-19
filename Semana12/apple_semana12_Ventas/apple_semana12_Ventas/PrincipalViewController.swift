@@ -13,13 +13,13 @@ class PrincipalViewController: UITabBarController {
                 pestana(ResumenViewController(), "Resumen", "chart.bar.fill"),
                 pestana(VentasEquipoViewController(), "Ventas", "list.bullet.rectangle.fill"),
                 pestana(productos(), "Productos", "shippingbox.fill"),
-                pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2.fill"),
+                pestana(ClientesViewController(style: .plain), "Clientes", "person.2.fill"),
                 pestana(CuentaViewController(), "Cuenta", "person.crop.circle.fill")
             ]
         } else {
             viewControllers = [
                 pestana(productos(), "Productos", "shippingbox.fill"),
-                pestana(ClientesViewController(style: .insetGrouped), "Clientes", "person.2.fill"),
+                pestana(ClientesViewController(style: .plain), "Clientes", "person.2.fill"),
                 pestana(NuevaVentaViewController(), "Venta", "cart.fill.badge.plus"),
                 pestana(MisVentasViewController(), "Mis ventas", "list.bullet.rectangle.fill"),
                 pestana(CuentaViewController(), "Cuenta", "person.crop.circle.fill")
@@ -28,7 +28,7 @@ class PrincipalViewController: UITabBarController {
     }
 
     private func productos() -> UIViewController {
-        ProductosViewController(style: .insetGrouped)
+        ProductosViewController(style: .plain)
     }
 
     private func pestana(_ controlador: UIViewController, _ titulo: String, _ icono: String) -> UINavigationController {

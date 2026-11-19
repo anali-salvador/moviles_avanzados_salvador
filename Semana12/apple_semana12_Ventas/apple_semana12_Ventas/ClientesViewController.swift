@@ -5,7 +5,6 @@ import CoreData
 /// Vendedor y Supervisor crean y editan; solo el Supervisor borra.
 class ClientesViewController: UITableViewController {
 
-    private let celdaId = "ClienteCelda"
     private let esSupervisor = Sesion.shared.usuarioActual?.rol == "Supervisor"
 
     private var clientes: [Cliente] = []
@@ -13,6 +12,7 @@ class ClientesViewController: UITableViewController {
 
     private let buscador = UISearchController(searchResultsController: nil)
     private let labelVacio = UILabel()
+    private let entrada = EntradaFilas()
 
     private var contexto: NSManagedObjectContext { UI.contexto }
 
@@ -21,7 +21,7 @@ class ClientesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Clientes"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
+        tableView.prepararParaTarjetas()
 
         buscador.searchResultsUpdater = self
         buscador.obscuresBackgroundDuringPresentation = false
@@ -34,12 +34,17 @@ class ClientesViewController: UITableViewController {
             barButtonSystemItem: .add, target: self, action: #selector(agregar))
 
         labelVacio.text = "No hay clientes"
-        labelVacio.textColor = .secondaryLabel
+        labelVacio.font = Tema.fuente(16, .medium)
+        labelVacio.textColor = Tema.textoSecundario
         labelVacio.textAlignment = .center
+
+        tableView.tableFooterView = Tema.pieTabla(
+            "Categoría y \"comprado\" se calculan con las ventas no anuladas; no se guardan.", ancho: view.bounds.width)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        entrada.reiniciar()
         recargar()
     }
 
@@ -76,30 +81,26 @@ class ClientesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
+        let celda = tableView.dequeueReusableCell(withIdentifier: CeldaTarjeta.id, for: indexPath) as! CeldaTarjeta
         let cliente = clientes[indexPath.row]
         let total = cliente.totalComprado()
         let categoria = cliente.categoria(para: total)
 
-        var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.image = UI.cuadroTexto(cliente.iniciales, fondo: categoria.color)
-        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
-        contenido.imageToTextPadding = 12
-        contenido.text = cliente.nombre
-        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
-        contenido.secondaryText = "Doc: \(cliente.documento ?? "-")"
-        contenido.secondaryTextProperties.color = .secondaryLabel
-        contenido.textToSecondaryTextVerticalPadding = 3
-        celda.contentConfiguration = contenido
+        celda.franja.backgroundColor = categoria.color
+        celda.icono.image = UI.cuadroTexto(cliente.iniciales, fondo: categoria.color, lado: 44)
+        celda.icono.layer.cornerRadius = 22
+        celda.icono.clipsToBounds = true
+        celda.titulo.text = cliente.nombre
+        celda.subtitulo.text = "Doc: \(cliente.documento ?? "-")"
 
         let labelTotal = UILabel()
         labelTotal.text = UI.soles(total)
-        labelTotal.font = .monospacedDigitSystemFont(ofSize: 15, weight: .semibold)
+        labelTotal.font = Tema.numero(16, .bold)
 
         let labelComprado = UILabel()
         labelComprado.text = "comprado"
-        labelComprado.font = .systemFont(ofSize: 12)
-        labelComprado.textColor = .secondaryLabel
+        labelComprado.font = Tema.fuente(12)
+        labelComprado.textColor = Tema.textoSecundario
 
         let filaCategoria = UIStackView(arrangedSubviews: [
             labelComprado, UI.pastilla(categoria.rawValue, color: categoria.color)
@@ -107,12 +108,12 @@ class ClientesViewController: UITableViewController {
         filaCategoria.spacing = 6
         filaCategoria.alignment = .center
 
-        celda.accessoryView = UI.lateral([labelTotal, filaCategoria])
+        celda.ponerLateral([labelTotal, filaCategoria])
         return celda
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Categoría y \"comprado\" se calculan con las ventas no anuladas; no se guardan."
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        entrada.aplicar(a: cell, en: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -132,6 +133,8 @@ class ClientesViewController: UITableViewController {
             self?.borrar(cliente)
             terminar(true)
         }
+        borrar.backgroundColor = Tema.error
+        borrar.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [borrar])
     }
 

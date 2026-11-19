@@ -5,7 +5,6 @@ import CoreData
 /// Supervisor: crea, edita y borra. Vendedor: solo consulta y busca.
 class ProductosViewController: UITableViewController {
 
-    private let celdaId = "ProductoCelda"
     private let esSupervisor = Sesion.shared.usuarioActual?.rol == "Supervisor"
 
     private var productos: [Producto] = []
@@ -16,6 +15,7 @@ class ProductosViewController: UITableViewController {
     private let buscador = UISearchController(searchResultsController: nil)
     private let pilaChips = UIStackView()
     private let labelVacio = UILabel()
+    private let entrada = EntradaFilas()
 
     private var contexto: NSManagedObjectContext { UI.contexto }
 
@@ -24,7 +24,7 @@ class ProductosViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Productos"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
+        tableView.prepararParaTarjetas()
 
         buscador.searchResultsUpdater = self
         buscador.obscuresBackgroundDuringPresentation = false
@@ -41,12 +41,17 @@ class ProductosViewController: UITableViewController {
         configurarChips()
 
         labelVacio.text = "No hay productos"
-        labelVacio.textColor = .secondaryLabel
+        labelVacio.font = Tema.fuente(16, .medium)
+        labelVacio.textColor = Tema.textoSecundario
         labelVacio.textAlignment = .center
+
+        tableView.tableFooterView = Tema.pieTabla(
+            "Vista del supervisor. El vendedor solo consulta: sin \"+\" y sin borrar.", ancho: view.bounds.width)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        entrada.reiniciar()
         recargar()
     }
 
@@ -138,9 +143,7 @@ class ProductosViewController: UITableViewController {
     private func dibujarChips() {
         pilaChips.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for (indice, nombre) in (["Todas"] + categorias).enumerated() {
-            let chip = UIButton(configuration: .gray())
-            chip.configuration?.title = nombre
-            chip.configuration?.cornerStyle = .capsule
+            let chip = Tema.chip(nombre)
             chip.tag = indice
             chip.addTarget(self, action: #selector(elegirCategoria(_:)), for: .touchUpInside)
             pilaChips.addArrangedSubview(chip)
@@ -152,8 +155,7 @@ class ProductosViewController: UITableViewController {
         for case let chip as UIButton in pilaChips.arrangedSubviews {
             let nombre: String? = chip.tag == 0 ? nil : categorias[chip.tag - 1]
             let activo = nombre?.lowercased() == categoriaSeleccionada?.lowercased()
-            chip.configuration?.baseBackgroundColor = activo ? Tema.principal : .systemGray5
-            chip.configuration?.baseForegroundColor = activo ? .white : .label
+            Tema.marcar(chip: chip, activo: activo)
         }
     }
 
@@ -169,32 +171,26 @@ class ProductosViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
+        let celda = tableView.dequeueReusableCell(withIdentifier: CeldaTarjeta.id, for: indexPath) as! CeldaTarjeta
         let producto = productos[indexPath.row]
+        let colorStock = Self.colorStock(producto.stock)
 
-        var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.image = UI.cuadroTexto(UI.dosLetras(producto.nombre), fondo: UI.colorFijo(para: producto.nombre))
-        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
-        contenido.imageToTextPadding = 12
-        contenido.text = producto.nombre
-        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
-        contenido.secondaryText = producto.categoria ?? "-"
-        contenido.secondaryTextProperties.color = .secondaryLabel
-        contenido.textToSecondaryTextVerticalPadding = 3
-        celda.contentConfiguration = contenido
+        celda.franja.backgroundColor = colorStock
+        celda.icono.image = UI.cuadroTexto(UI.dosLetras(producto.nombre), fondo: UI.colorFijo(para: producto.nombre), lado: 44)
+        celda.titulo.text = producto.nombre
+        celda.subtitulo.text = producto.categoria ?? "-"
 
         let labelPrecio = UILabel()
         labelPrecio.text = Self.formatoPrecio(producto.precio)
-        labelPrecio.font = .monospacedDigitSystemFont(ofSize: 15, weight: .semibold)
-        let stock = UI.pastilla("\(producto.stock) u.", color: Self.colorStock(producto.stock))
-        celda.accessoryView = UI.lateral([labelPrecio, stock])
-
-        celda.selectionStyle = esSupervisor ? .default : .none
+        labelPrecio.font = Tema.numero(16, .bold)
+        labelPrecio.textColor = Tema.principal
+        let stock = UI.pastilla("\(producto.stock) u.", color: colorStock)
+        celda.ponerLateral([labelPrecio, stock])
         return celda
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Vista del supervisor. El vendedor solo consulta: sin \"+\" y sin borrar."
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        entrada.aplicar(a: cell, en: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -215,6 +211,7 @@ class ProductosViewController: UITableViewController {
             terminar(true)
         }
         borrar.backgroundColor = Tema.error
+        borrar.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [borrar])
     }
 
@@ -307,7 +304,7 @@ class ProductosViewController: UITableViewController {
 
     static func colorStock(_ stock: Int32) -> UIColor {
         switch stock {
-        case ...5: return Tema.error
+        case ...5: return Tema.acento
         case 6...10: return Tema.aviso
         default: return Tema.exito
         }
