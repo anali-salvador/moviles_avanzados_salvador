@@ -32,7 +32,7 @@ class MisVentasViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Mis ventas"
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
 
         buscador.searchResultsUpdater = self
         buscador.obscuresBackgroundDuringPresentation = false
@@ -45,7 +45,7 @@ class MisVentasViewController: UIViewController {
         let iniciales = UILabel()
         iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
         iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
-        iniciales.textColor = .systemBlue
+        iniciales.textColor = Tema.principal
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
 
         let indicadores = UIStackView(arrangedSubviews: [
@@ -185,7 +185,7 @@ class MisVentasViewController: UIViewController {
         pila.spacing = 4
         pila.isLayoutMarginsRelativeArrangement = true
         pila.directionalLayoutMargins = .init(top: 12, leading: 14, bottom: 12, trailing: 14)
-        pila.backgroundColor = .secondarySystemGroupedBackground
+        pila.backgroundColor = Tema.tarjeta
         pila.layer.cornerRadius = 12
         return pila
     }
@@ -213,8 +213,8 @@ extension MisVentasViewController: UITableViewDataSource {
 
         var contenido = UIListContentConfiguration.subtitleCell()
         contenido.image = anulada
-            ? UI.cuadroIcono("xmark", fondo: .systemRed.withAlphaComponent(0.15), color: .systemRed)
-            : UI.cuadroIcono("checkmark", fondo: .systemGreen)
+            ? UI.cuadroIcono("xmark", fondo: Tema.error.withAlphaComponent(0.15), color: Tema.error)
+            : UI.cuadroIcono("checkmark", fondo: Tema.exito)
         contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
         contenido.imageToTextPadding = 12
         contenido.text = venta.cliente?.nombre ?? "-"
@@ -231,7 +231,7 @@ extension MisVentasViewController: UITableViewDataSource {
                                                color: anulada ? .secondaryLabel : .label)
         var lateral: [UIView] = [labelTotal]
         if anulada {
-            lateral.append(UI.pastilla("Anulada", color: .systemRed))
+            lateral.append(UI.pastilla("Anulada", color: Tema.error))
         }
         celda.accessoryView = UI.lateral(lateral)
         celda.selectionStyle = .none

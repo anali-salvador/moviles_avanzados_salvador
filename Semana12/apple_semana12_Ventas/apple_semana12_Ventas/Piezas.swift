@@ -19,8 +19,8 @@ extension UI {
     /// Color fijo para un texto: el mismo nombre siempre da el mismo color.
     /// (No se usa hashValue porque cambia en cada ejecución.)
     static func colorFijo(para texto: String?) -> UIColor {
-        let paleta: [UIColor] = [.systemBlue, .systemIndigo, .systemTeal, .systemOrange,
-                                 .systemPink, .systemGreen, .systemPurple, .systemBrown]
+        let paleta: [UIColor] = [Tema.principalOscuro, Tema.principalClaro, Tema.acento, Tema.exito,
+                                 Tema.aviso, UIColor(hex: 0x0E7490), UIColor(hex: 0x7C3AED), UIColor(hex: 0x475569)]
         let suma = (texto ?? "").lowercased().unicodeScalars.reduce(0) { $0 &+ Int($1.value) }
         return paleta[suma % paleta.count]
     }
@@ -29,9 +29,9 @@ extension UI {
     static func cuadroTexto(_ texto: String, fondo: UIColor, lado: CGFloat = 42) -> UIImage {
         UIGraphicsImageRenderer(size: CGSize(width: lado, height: lado)).image { _ in
             fondo.setFill()
-            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: lado * 0.24).fill()
+            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: lado * 0.32).fill()
             let atributos: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: lado * 0.36, weight: .bold),
+                .font: Tema.fuente(lado * 0.36, .bold),
                 .foregroundColor: UIColor.white
             ]
             let tamano = (texto as NSString).size(withAttributes: atributos)
@@ -44,7 +44,7 @@ extension UI {
     static func cuadroIcono(_ simbolo: String, fondo: UIColor, color: UIColor = .white, lado: CGFloat = 42) -> UIImage {
         UIGraphicsImageRenderer(size: CGSize(width: lado, height: lado)).image { _ in
             fondo.setFill()
-            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: lado * 0.24).fill()
+            UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: lado, height: lado), cornerRadius: lado * 0.32).fill()
             let configuracion = UIImage.SymbolConfiguration(pointSize: lado * 0.4, weight: .bold)
             guard let icono = UIImage(systemName: simbolo, withConfiguration: configuracion)?
                 .withTintColor(color, renderingMode: .alwaysOriginal) else { return }
@@ -54,28 +54,10 @@ extension UI {
         }.withRenderingMode(.alwaysOriginal)
     }
 
-    /// Píldora: fondo de color, texto (blanco por defecto) y bordes de cápsula.
-    static func pastilla(_ texto: String, color: UIColor, textoColor: UIColor = .white,
-                         fuente: UIFont = .systemFont(ofSize: 12, weight: .semibold)) -> UIView {
-        let label = UILabel()
-        label.text = texto
-        label.font = fuente
-        label.textColor = textoColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        let fondo = UIView()
-        fondo.backgroundColor = color
-        fondo.layer.cornerRadius = (fuente.lineHeight + 6) / 2
-        fondo.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: fondo.topAnchor, constant: 3),
-            label.bottomAnchor.constraint(equalTo: fondo.bottomAnchor, constant: -3),
-            label.leadingAnchor.constraint(equalTo: fondo.leadingAnchor, constant: 9),
-            label.trailingAnchor.constraint(equalTo: fondo.trailingAnchor, constant: -9)
-        ])
-        fondo.setContentHuggingPriority(.required, for: .horizontal)
-        fondo.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return fondo
+    /// Píldora suave con la paleta del tema.
+    static func pastilla(_ texto: String, color: UIColor,
+                         fuente: UIFont = Tema.fuente(12, .bold)) -> UIView {
+        Tema.pildora(texto, color: color, fuente: fuente)
     }
 
     /// Pila vertical alineada a la derecha, con su tamaño ya calculado, lista para `accessoryView`.

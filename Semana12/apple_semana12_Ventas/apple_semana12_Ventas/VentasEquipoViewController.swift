@@ -26,13 +26,13 @@ class VentasEquipoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Ventas"
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
 
         // Iniciales del usuario de la sesión, solo informativas.
         let iniciales = UILabel()
         iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
         iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
-        iniciales.textColor = .systemBlue
+        iniciales.textColor = Tema.principal
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
 
         selectorPeriodo.selectedSegmentIndex = Periodo.todas.rawValue
@@ -176,7 +176,7 @@ class VentasEquipoViewController: UIViewController {
         for case let chip as UIButton in pilaChips.arrangedSubviews {
             let vendedor: Usuario? = chip.tag == 0 ? nil : vendedores[chip.tag - 1]
             let activo = vendedor == vendedorSeleccionado
-            chip.configuration?.baseBackgroundColor = activo ? .systemBlue : .systemGray5
+            chip.configuration?.baseBackgroundColor = activo ? Tema.principal : .systemGray5
             chip.configuration?.baseForegroundColor = activo ? .white : .label
         }
     }
@@ -312,7 +312,7 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
             let etiqueta = UILabel()
             etiqueta.text = "ANULADA"
             etiqueta.font = .systemFont(ofSize: 11, weight: .bold)
-            etiqueta.textColor = .systemRed
+            etiqueta.textColor = Tema.error
             lateral.addArrangedSubview(etiqueta)
         }
         lateral.frame.size = lateral.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
@@ -330,7 +330,7 @@ extension VentasEquipoViewController: UITableViewDataSource, UITableViewDelegate
             self?.pedirAnulacion(de: venta)
             terminar(true)
         }
-        anular.backgroundColor = .systemRed
+        anular.backgroundColor = Tema.error
         let configuracion = UISwipeActionsConfiguration(actions: [anular])
         configuracion.performsFirstActionWithFullSwipe = false
         return configuracion

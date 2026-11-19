@@ -49,30 +49,14 @@ extension UI {
         return tarjeta
     }
 
-    /// Etiqueta pequeña, gris y en mayúsculas.
+    /// Etiqueta pequeña en mayúsculas (estilo del tema).
     static func etiquetaSeccion(_ texto: String) -> UILabel {
-        let label = UILabel()
-        label.text = texto.uppercased()
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = .secondaryLabel
-        return label
+        Tema.etiqueta(texto)
     }
 
-    /// Botón azul de ancho completo con esquinas redondeadas.
+    /// Botón principal con degradado teal.
     static func botonPrincipal(_ titulo: String) -> UIButton {
-        var config = UIButton.Configuration.filled()
-        config.title = titulo
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.cornerStyle = .large
-        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { atributos in
-            var nuevos = atributos
-            nuevos.font = .systemFont(ofSize: 17, weight: .semibold)
-            return nuevos
-        }
-        let boton = UIButton(configuration: config)
-        boton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        return boton
+        Tema.botonPrincipal(titulo)
     }
 }
 
@@ -80,8 +64,9 @@ extension UI {
 final class TarjetaConBorde: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .secondarySystemGroupedBackground
-        layer.cornerRadius = 12
+        backgroundColor = Tema.tarjeta
+        layer.cornerRadius = 16
+        layer.cornerCurve = .continuous
         layer.borderWidth = 1
         actualizarBorde()
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (vista: TarjetaConBorde, _) in
@@ -115,12 +100,12 @@ final class MensajeError: UIStackView {
     init() {
         super.init(frame: .zero)
         let icono = UIImageView(image: UIImage(systemName: "exclamationmark.triangle.fill"))
-        icono.tintColor = .systemRed
+        icono.tintColor = Tema.error
         icono.preferredSymbolConfiguration = .init(pointSize: 14, weight: .semibold)
         icono.setContentHuggingPriority(.required, for: .horizontal)
 
-        label.textColor = .systemRed
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = Tema.error
+        label.font = Tema.fuente(14, .semibold)
         label.numberOfLines = 0
 
         addArrangedSubview(icono)

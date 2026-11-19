@@ -27,7 +27,7 @@ class NuevaVentaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Venta"
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
 
         stepper.minimumValue = 1
         stepper.maximumValue = 999
@@ -69,7 +69,7 @@ class NuevaVentaViewController: UIViewController {
         circulo.font = .systemFont(ofSize: 16, weight: .bold)
         circulo.textColor = .white
         circulo.textAlignment = .center
-        circulo.backgroundColor = .systemBlue
+        circulo.backgroundColor = Tema.principal
         circulo.layer.cornerRadius = 22
         circulo.clipsToBounds = true
         circulo.widthAnchor.constraint(equalToConstant: 44).isActive = true
@@ -78,7 +78,7 @@ class NuevaVentaViewController: UIViewController {
         let nombre = UILabel()
         nombre.text = "\(usuario?.nombre ?? "-") · \(usuario?.rol ?? "Vendedor")"
         nombre.font = .systemFont(ofSize: 16, weight: .semibold)
-        nombre.textColor = .systemBlue
+        nombre.textColor = Tema.principal
         nombre.numberOfLines = 0
 
         let nota = UILabel()
@@ -96,7 +96,7 @@ class NuevaVentaViewController: UIViewController {
         fila.alignment = .center
         fila.isLayoutMarginsRelativeArrangement = true
         fila.directionalLayoutMargins = .init(top: 14, leading: 14, bottom: 14, trailing: 14)
-        fila.backgroundColor = .systemBlue.withAlphaComponent(0.1)
+        fila.backgroundColor = Tema.principal.withAlphaComponent(0.1)
         fila.layer.cornerRadius = 14
         return fila
     }
@@ -214,7 +214,7 @@ class NuevaVentaViewController: UIViewController {
         }
 
         let tarjeta = UIView()
-        tarjeta.backgroundColor = .secondarySystemGroupedBackground
+        tarjeta.backgroundColor = Tema.tarjeta
         tarjeta.layer.cornerRadius = 12
         tarjeta.clipsToBounds = true
         tarjeta.addSubview(pila)
@@ -294,7 +294,7 @@ class NuevaVentaViewController: UIViewController {
         if let descuento = calculo?.descuento, descuento > 0 {
             etiquetaDescuento.text = "Descuento VIP 10%"
             valorDescuento.text = "- \(UI.soles(descuento))"
-            valorDescuento.textColor = .systemGreen
+            valorDescuento.textColor = Tema.exito
         } else {
             etiquetaDescuento.text = "Descuento"
             valorDescuento.text = UI.soles(0)

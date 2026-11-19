@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
         // Texto del botón de volver en la pantalla de registro.
         navigationItem.backButtonTitle = "Ingresar"
 
@@ -97,7 +97,7 @@ class LoginViewController: UIViewController {
     /// Cuadrado azul redondeado con un carrito blanco.
     private static func logo() -> UIView {
         let cuadro = UIView()
-        cuadro.backgroundColor = .systemBlue
+        cuadro.backgroundColor = Tema.principal
         cuadro.layer.cornerRadius = 22
         cuadro.translatesAutoresizingMaskIntoConstraints = false
 

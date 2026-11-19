@@ -30,7 +30,7 @@ class ResumenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
 
         scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.alwaysBounceVertical = true
@@ -132,7 +132,7 @@ class ResumenViewController: UIViewController {
         textos.axis = .vertical
         textos.spacing = 2
 
-        let rol = pastilla(usuario?.rol ?? "-", color: .systemPurple, fuente: .systemFont(ofSize: 14, weight: .semibold))
+        let rol = pastilla(usuario?.rol ?? "-", color: Tema.principal, fuente: .systemFont(ofSize: 14, weight: .semibold))
         rol.setContentHuggingPriority(.required, for: .horizontal)
         rol.setContentCompressionResistancePriority(.required, for: .horizontal)
 
@@ -149,8 +149,8 @@ class ResumenViewController: UIViewController {
         let cambio = (valor - anterior) / anterior * 100
         let porcentaje = String(format: "%.0f%%", abs(cambio))
         if porcentaje == "0%" { return ("= 0% vs ayer", .secondaryLabel) }
-        return cambio > 0 ? ("▲ \(porcentaje) vs ayer", .systemGreen)
-                          : ("▼ \(porcentaje) vs ayer", .systemRed)
+        return cambio > 0 ? ("▲ \(porcentaje) vs ayer", Tema.exito)
+                          : ("▼ \(porcentaje) vs ayer", Tema.error)
     }
 
     private func tarjetaIndicador(_ nombre: String, _ valor: String, comparacion: (String, UIColor)?) -> UIView {
@@ -215,7 +215,7 @@ class ResumenViewController: UIViewController {
             area.heightAnchor.constraint(equalToConstant: 120).isActive = true
 
             let barra = UIView()
-            barra.backgroundColor = dia.esHoy ? .systemBlue : .systemBlue.withAlphaComponent(0.18)
+            barra.backgroundColor = dia.esHoy ? Tema.principal : Tema.principal.withAlphaComponent(0.18)
             barra.layer.cornerRadius = 6
             barra.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             barra.translatesAutoresizingMaskIntoConstraints = false
@@ -279,8 +279,8 @@ class ResumenViewController: UIViewController {
             label.attributedText = linea
 
             let barra = UIProgressView(progressViewStyle: .default)
-            barra.progressTintColor = .systemBlue
-            barra.trackTintColor = .systemBlue.withAlphaComponent(0.12)
+            barra.progressTintColor = Tema.principal
+            barra.trackTintColor = Tema.principal.withAlphaComponent(0.12)
             barra.progress = Float(item.total / primero.total)
             barra.heightAnchor.constraint(equalToConstant: 8).isActive = true
             barra.layer.cornerRadius = 4
@@ -318,7 +318,7 @@ class ResumenViewController: UIViewController {
             nombre.font = .preferredFont(forTextStyle: .body)
             nombre.numberOfLines = 0
 
-            let reponer = pastilla("Reponer", color: .systemRed, fuente: .systemFont(ofSize: 12, weight: .semibold))
+            let reponer = pastilla("Reponer", color: Tema.error, fuente: .systemFont(ofSize: 12, weight: .semibold))
             reponer.setContentHuggingPriority(.required, for: .horizontal)
             reponer.setContentCompressionResistancePriority(.required, for: .horizontal)
 
@@ -379,7 +379,7 @@ class ResumenViewController: UIViewController {
         interior.translatesAutoresizingMaskIntoConstraints = false
 
         let fondo = UIView()
-        fondo.backgroundColor = .secondarySystemGroupedBackground
+        fondo.backgroundColor = Tema.tarjeta
         fondo.layer.cornerRadius = 16
         fondo.addSubview(interior)
         NSLayoutConstraint.activate([

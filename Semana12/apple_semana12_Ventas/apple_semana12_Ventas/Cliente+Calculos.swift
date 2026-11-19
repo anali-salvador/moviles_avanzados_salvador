@@ -10,9 +10,9 @@ extension Cliente {
 
         var color: UIColor {
             switch self {
-            case .regular: return .systemGray
-            case .frecuente: return .systemBlue
-            case .vip: return .systemPurple
+            case .regular: return Tema.exito
+            case .frecuente: return Tema.aviso
+            case .vip: return Tema.acento
             }
         }
     }

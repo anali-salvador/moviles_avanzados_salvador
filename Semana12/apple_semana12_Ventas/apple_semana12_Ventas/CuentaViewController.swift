@@ -5,7 +5,7 @@ class CuentaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Tema.fondo
 
         let usuario = Sesion.shared.usuarioActual
 
@@ -19,7 +19,7 @@ class CuentaViewController: UIViewController {
         let labelRol = dato("Rol", usuario?.rol)
 
         let botonCerrar = UI.boton("Cerrar sesión", principal: false)
-        botonCerrar.tintColor = .systemRed
+        botonCerrar.tintColor = Tema.error
         botonCerrar.addTarget(self, action: #selector(cerrarSesion), for: .touchUpInside)
 
         let pila = UI.pila([labelNombre, labelUsuario, labelRol, botonCerrar], en: view)

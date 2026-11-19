@@ -15,7 +15,7 @@ class RegistroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Crear cuenta"
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = Tema.fondo
 
         campoNombre.autocapitalizationType = .words
         selectorRol.selectedSegmentIndex = 0
@@ -67,10 +67,10 @@ class RegistroViewController: UIViewController {
             avisoUsuario.text = nil
         } else if existeUsuario(usuario) {
             avisoUsuario.text = "Ese usuario ya existe"
-            avisoUsuario.textColor = .systemRed
+            avisoUsuario.textColor = Tema.error
         } else {
             avisoUsuario.text = "✓ Disponible"
-            avisoUsuario.textColor = .systemGreen
+            avisoUsuario.textColor = Tema.exito
         }
     }
 

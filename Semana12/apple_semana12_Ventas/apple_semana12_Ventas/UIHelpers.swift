@@ -19,16 +19,12 @@ enum UI {
     }
 
     static func boton(_ titulo: String, principal: Bool = true) -> UIButton {
-        var config: UIButton.Configuration = principal ? .filled() : .plain()
-        config.title = titulo
-        let boton = UIButton(configuration: config)
-        boton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        return boton
+        principal ? Tema.botonPrincipal(titulo) : Tema.botonSuave(titulo, color: Tema.principal)
     }
 
     static func labelError() -> UILabel {
         let label = UILabel()
-        label.textColor = .systemRed
+        label.textColor = Tema.error
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .footnote)

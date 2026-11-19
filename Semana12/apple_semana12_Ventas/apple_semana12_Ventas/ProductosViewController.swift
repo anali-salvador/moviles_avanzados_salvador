@@ -152,7 +152,7 @@ class ProductosViewController: UITableViewController {
         for case let chip as UIButton in pilaChips.arrangedSubviews {
             let nombre: String? = chip.tag == 0 ? nil : categorias[chip.tag - 1]
             let activo = nombre?.lowercased() == categoriaSeleccionada?.lowercased()
-            chip.configuration?.baseBackgroundColor = activo ? .systemBlue : .systemGray5
+            chip.configuration?.baseBackgroundColor = activo ? Tema.principal : .systemGray5
             chip.configuration?.baseForegroundColor = activo ? .white : .label
         }
     }
@@ -214,7 +214,7 @@ class ProductosViewController: UITableViewController {
             self?.borrar(self?.productos[indexPath.row])
             terminar(true)
         }
-        borrar.backgroundColor = .systemRed
+        borrar.backgroundColor = Tema.error
         return UISwipeActionsConfiguration(actions: [borrar])
     }
 
@@ -307,9 +307,9 @@ class ProductosViewController: UITableViewController {
 
     static func colorStock(_ stock: Int32) -> UIColor {
         switch stock {
-        case ...5: return .systemRed
-        case 6...10: return .systemOrange
-        default: return .systemGreen
+        case ...5: return Tema.error
+        case 6...10: return Tema.aviso
+        default: return Tema.exito
         }
     }
 }
