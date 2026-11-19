@@ -6,7 +6,6 @@ class MisVentasViewController: UIViewController {
 
     private enum Periodo: Int { case todas, hoy, mes }
 
-    private let celdaId = "VentaCelda"
     private var ventas: [Venta] = []
     private var textoBusqueda = ""
 
@@ -15,7 +14,8 @@ class MisVentasViewController: UIViewController {
     private let cantidadHoy = UILabel()
     private let cantidadMes = UILabel()
     private let selectorPeriodo = UISegmentedControl(items: ["Todas", "Hoy", "Mes"])
-    private let tabla = UITableView(frame: .zero, style: .insetGrouped)
+    private let tabla = UITableView(frame: .zero, style: .plain)
+    private let entrada = EntradaFilas()
     private let buscador = UISearchController(searchResultsController: nil)
     private let labelVacio = UILabel()
 
@@ -42,51 +42,55 @@ class MisVentasViewController: UIViewController {
         definesPresentationContext = true
 
         // Iniciales del vendedor de la sesión, solo informativas.
-        let iniciales = UILabel()
-        iniciales.text = UI.iniciales(de: Sesion.shared.usuarioActual?.nombre)
-        iniciales.font = .systemFont(ofSize: 17, weight: .semibold)
-        iniciales.textColor = Tema.principal
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: iniciales)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: Self.avatar(Sesion.shared.usuarioActual?.nombre))
 
         let indicadores = UIStackView(arrangedSubviews: [
-            tarjeta("Hoy", valorHoy, cantidadHoy), tarjeta("Mes", valorMes, cantidadMes)
+            tarjeta("Hoy", "sun.max.fill", valorHoy, cantidadHoy, colores: Tema.degradadoTeal),
+            tarjeta("Mes", "calendar", valorMes, cantidadMes, colores: Tema.degradadoCoral)
         ])
         indicadores.spacing = 12
         indicadores.distribution = .fillEqually
 
         selectorPeriodo.selectedSegmentIndex = Periodo.todas.rawValue
+        Tema.estilizar(selectorPeriodo)
         selectorPeriodo.addTarget(self, action: #selector(cambioPeriodo), for: .valueChanged)
 
         let cabecera = UIStackView(arrangedSubviews: [indicadores, selectorPeriodo])
         cabecera.axis = .vertical
-        cabecera.spacing = 12
+        cabecera.spacing = 14
         cabecera.translatesAutoresizingMaskIntoConstraints = false
 
         tabla.translatesAutoresizingMaskIntoConstraints = false
         tabla.dataSource = self
+        tabla.delegate = self
         tabla.allowsSelection = false
-        tabla.register(UITableViewCell.self, forCellReuseIdentifier: celdaId)
+        tabla.prepararParaTarjetas()
+        tabla.tableFooterView = Tema.pieTabla("Solo aparecen las ventas de este vendedor.", ancho: view.bounds.width)
 
         view.addSubview(cabecera)
         view.addSubview(tabla)
         let guia = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             cabecera.topAnchor.constraint(equalTo: guia.topAnchor, constant: 8),
-            cabecera.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: 20),
-            cabecera.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -20),
+            cabecera.leadingAnchor.constraint(equalTo: guia.leadingAnchor, constant: Tema.margen),
+            cabecera.trailingAnchor.constraint(equalTo: guia.trailingAnchor, constant: -Tema.margen),
             tabla.topAnchor.constraint(equalTo: cabecera.bottomAnchor, constant: 4),
             tabla.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tabla.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tabla.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        labelVacio.textColor = .secondaryLabel
+        labelVacio.font = Tema.fuente(16, .medium)
+        labelVacio.textColor = Tema.textoSecundario
         labelVacio.textAlignment = .center
         labelVacio.numberOfLines = 0
+
+        Tema.animarEntrada([indicadores, selectorPeriodo])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        entrada.reiniciar()
         recargar()
     }
 
@@ -167,75 +171,92 @@ class MisVentasViewController: UIViewController {
 
     // MARK: - Vistas
 
-    private func tarjeta(_ titulo: String, _ valor: UILabel, _ cantidad: UILabel) -> UIView {
-        let etiqueta = UILabel()
-        etiqueta.text = titulo
-        etiqueta.font = .preferredFont(forTextStyle: .subheadline)
-        etiqueta.textColor = .secondaryLabel
+    /// Tarjeta de resumen con degradado y texto blanco.
+    private func tarjeta(_ titulo: String, _ simbolo: String, _ valor: UILabel, _ cantidad: UILabel,
+                         colores: [UIColor]) -> UIView {
+        let icono = UIImageView(image: UIImage(systemName: simbolo))
+        icono.tintColor = .white
+        icono.preferredSymbolConfiguration = .init(pointSize: 13, weight: .bold)
 
-        valor.font = .monospacedDigitSystemFont(ofSize: 22, weight: .bold)
+        let etiqueta = UILabel()
+        etiqueta.text = titulo.uppercased()
+        etiqueta.font = Tema.fuente(12, .bold)
+        etiqueta.textColor = UIColor.white.withAlphaComponent(0.85)
+
+        let cabecera = UIStackView(arrangedSubviews: [icono, etiqueta])
+        cabecera.spacing = 6
+        cabecera.alignment = .center
+
+        valor.font = Tema.numero(24, .heavy)
+        valor.textColor = .white
         valor.adjustsFontSizeToFitWidth = true
         valor.minimumScaleFactor = 0.6
 
-        cantidad.font = .preferredFont(forTextStyle: .footnote)
-        cantidad.textColor = .secondaryLabel
+        cantidad.font = Tema.fuente(13, .semibold)
+        cantidad.textColor = UIColor.white.withAlphaComponent(0.85)
 
-        let pila = UIStackView(arrangedSubviews: [etiqueta, valor, cantidad])
+        let pila = UIStackView(arrangedSubviews: [cabecera, valor, cantidad])
         pila.axis = .vertical
+        pila.alignment = .leading
         pila.spacing = 4
-        pila.isLayoutMarginsRelativeArrangement = true
-        pila.directionalLayoutMargins = .init(top: 12, leading: 14, bottom: 12, trailing: 14)
-        pila.backgroundColor = Tema.tarjeta
-        pila.layer.cornerRadius = 12
-        return pila
+        return Tema.tarjetaDegradado(pila, colores: colores, relleno: 16)
+    }
+
+    /// Círculo teal con las iniciales del usuario de la sesión.
+    static func avatar(_ nombre: String?) -> UIView {
+        let label = UILabel()
+        label.text = UI.iniciales(de: nombre)
+        label.font = Tema.fuente(13, .bold)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.backgroundColor = Tema.principal
+        label.layer.cornerRadius = 17
+        label.clipsToBounds = true
+        label.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        label.widthAnchor.constraint(equalToConstant: 34).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        return label
     }
 }
 
 // MARK: - Tabla
 
-extension MisVentasViewController: UITableViewDataSource {
+extension MisVentasViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         ventas.count
     }
 
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Solo aparecen las ventas de este vendedor."
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tableView.dequeueReusableCell(withIdentifier: celdaId, for: indexPath)
+        let celda = tableView.dequeueReusableCell(withIdentifier: CeldaTarjeta.id, for: indexPath) as! CeldaTarjeta
         let venta = ventas[indexPath.row]
         let anulada = venta.anulada
 
         let fecha = venta.fecha.map { formatoFecha.string(from: $0) } ?? "-"
         let detalle = "\(fecha) · \(venta.producto?.nombre ?? "-") × \(venta.cantidad)"
 
-        var contenido = UIListContentConfiguration.subtitleCell()
-        contenido.image = anulada
-            ? UI.cuadroIcono("xmark", fondo: Tema.error.withAlphaComponent(0.15), color: Tema.error)
-            : UI.cuadroIcono("checkmark", fondo: Tema.exito)
-        contenido.imageProperties.maximumSize = CGSize(width: 42, height: 42)
-        contenido.imageToTextPadding = 12
-        contenido.text = venta.cliente?.nombre ?? "-"
-        contenido.textProperties.font = .systemFont(ofSize: 16, weight: .semibold)
-        contenido.textProperties.color = anulada ? .secondaryLabel : .label
-        contenido.secondaryText = detalle
-        contenido.secondaryTextProperties.color = .secondaryLabel
-        contenido.textToSecondaryTextVerticalPadding = 3
-        celda.contentConfiguration = contenido
+        celda.franja.backgroundColor = anulada ? Tema.error : Tema.exito
+        celda.icono.image = anulada
+            ? UI.cuadroIcono("xmark", fondo: Tema.error.withAlphaComponent(0.15), color: Tema.error, lado: 44)
+            : UI.cuadroIcono("checkmark", fondo: Tema.exito, lado: 44)
+        celda.titulo.text = venta.cliente?.nombre ?? "-"
+        celda.titulo.textColor = anulada ? Tema.textoSecundario : .label
+        celda.subtitulo.text = detalle
 
         let labelTotal = UILabel()
         labelTotal.attributedText = Self.texto(UI.soles(venta.total), tachado: anulada,
-                                               fuente: .monospacedDigitSystemFont(ofSize: 15, weight: .semibold),
-                                               color: anulada ? .secondaryLabel : .label)
+                                               fuente: Tema.numero(16, .bold),
+                                               color: anulada ? Tema.textoSecundario : Tema.principal)
         var lateral: [UIView] = [labelTotal]
         if anulada {
             lateral.append(UI.pastilla("Anulada", color: Tema.error))
         }
-        celda.accessoryView = UI.lateral(lateral)
-        celda.selectionStyle = .none
+        celda.ponerLateral(lateral)
         return celda
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        entrada.aplicar(a: cell, en: indexPath)
     }
 
     private static func texto(_ texto: String, tachado: Bool, fuente: UIFont, color: UIColor) -> NSAttributedString {

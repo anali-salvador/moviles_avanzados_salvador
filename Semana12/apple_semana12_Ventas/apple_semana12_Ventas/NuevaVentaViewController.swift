@@ -34,18 +34,31 @@ class NuevaVentaViewController: UIViewController {
         stepper.value = 1
         stepper.addTarget(self, action: #selector(cambioCantidad), for: .valueChanged)
 
-        let botonRegistrar = UI.botonPrincipal("Registrar venta")
+        let botonRegistrar = Tema.botonAcento("Registrar venta", icono: "checkmark.circle.fill")
         botonRegistrar.addTarget(self, action: #selector(registrar), for: .touchUpInside)
 
-        let etiquetaResumen = UI.etiquetaSeccion("Resumen (calculado)")
-        let datos = tarjetaDatos()
-        let resumen = tarjetaResumen()
+        let etiquetaDatos = Tema.etiqueta("Datos de la venta")
+        let etiquetaResumen = Tema.etiqueta("Resumen (calculado)")
+        let vendedor = tarjetaVendedor()
+        let cantidad = tarjetaCantidad()
+        let total = tarjetaTotal()
 
-        let pila = UI.pila([tarjetaVendedor(), datos, etiquetaResumen, resumen, botonRegistrar], en: view)
-        pila.spacing = 16
-        pila.setCustomSpacing(24, after: datos)
-        pila.setCustomSpacing(6, after: etiquetaResumen)
-        pila.setCustomSpacing(24, after: resumen)
+        let pila = UI.pila([
+            vendedor,
+            etiquetaDatos,
+            tarjetaElegible("Cliente", "person.fill", valorCliente, accion: #selector(elegirCliente)),
+            tarjetaElegible("Producto", "shippingbox.fill", valorProducto, accion: #selector(elegirProducto)),
+            cantidad,
+            etiquetaResumen, tarjetaResumen(), total,
+            botonRegistrar
+        ], en: view)
+        pila.spacing = 12
+        pila.setCustomSpacing(24, after: vendedor)
+        pila.setCustomSpacing(4, after: etiquetaDatos)
+        pila.setCustomSpacing(24, after: cantidad)
+        pila.setCustomSpacing(4, after: etiquetaResumen)
+        pila.setCustomSpacing(24, after: total)
+        Tema.animarEntrada(pila.arrangedSubviews, paso: 0.04)
 
         actualizar()
     }
@@ -60,171 +73,158 @@ class NuevaVentaViewController: UIViewController {
 
     // MARK: - Vistas
 
-    /// Tarjeta azul clara con las iniciales y el nombre del vendedor de la sesión.
+    /// Tarjeta con degradado teal: iniciales y nombre del vendedor de la sesión en blanco.
     private func tarjetaVendedor() -> UIView {
         let usuario = Sesion.shared.usuarioActual
 
         let circulo = UILabel()
         circulo.text = UI.iniciales(de: usuario?.nombre)
-        circulo.font = .systemFont(ofSize: 16, weight: .bold)
+        circulo.font = Tema.fuente(18, .bold)
         circulo.textColor = .white
         circulo.textAlignment = .center
-        circulo.backgroundColor = Tema.principal
-        circulo.layer.cornerRadius = 22
+        circulo.backgroundColor = UIColor.white.withAlphaComponent(0.22)
+        circulo.layer.cornerRadius = 26
+        circulo.layer.borderWidth = 2
+        circulo.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
         circulo.clipsToBounds = true
-        circulo.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        circulo.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        circulo.widthAnchor.constraint(equalToConstant: 52).isActive = true
+        circulo.heightAnchor.constraint(equalToConstant: 52).isActive = true
+
+        let saludo = UILabel()
+        saludo.text = "VENDEDOR · \((usuario?.rol ?? "Vendedor").uppercased())"
+        saludo.font = Tema.fuente(11, .bold)
+        saludo.textColor = UIColor.white.withAlphaComponent(0.75)
 
         let nombre = UILabel()
-        nombre.text = "\(usuario?.nombre ?? "-") · \(usuario?.rol ?? "Vendedor")"
-        nombre.font = .systemFont(ofSize: 16, weight: .semibold)
-        nombre.textColor = Tema.principal
+        nombre.text = usuario?.nombre ?? "-"
+        nombre.font = Tema.fuente(20, .bold)
+        nombre.textColor = .white
         nombre.numberOfLines = 0
 
         let nota = UILabel()
         nota.text = "Sesión iniciada · la venta se registra a tu nombre"
-        nota.font = .preferredFont(forTextStyle: .caption1)
-        nota.textColor = .secondaryLabel
+        nota.font = Tema.fuente(12, .medium)
+        nota.textColor = UIColor.white.withAlphaComponent(0.85)
         nota.numberOfLines = 0
 
-        let textos = UIStackView(arrangedSubviews: [nombre, nota])
+        let textos = UIStackView(arrangedSubviews: [saludo, nombre, nota])
         textos.axis = .vertical
         textos.spacing = 2
 
         let fila = UIStackView(arrangedSubviews: [circulo, textos])
-        fila.spacing = 12
+        fila.spacing = 14
         fila.alignment = .center
-        fila.isLayoutMarginsRelativeArrangement = true
-        fila.directionalLayoutMargins = .init(top: 14, leading: 14, bottom: 14, trailing: 14)
-        fila.backgroundColor = Tema.principal.withAlphaComponent(0.1)
-        fila.layer.cornerRadius = 14
-        return fila
+        return Tema.tarjetaDegradado(fila)
     }
 
-    /// Lista agrupada: Cliente ›, Producto ›, Cantidad (stock N) con stepper.
-    private func tarjetaDatos() -> UIView {
-        for valor in [valorCliente, valorProducto] {
-            valor.font = .preferredFont(forTextStyle: .body)
-            valor.textAlignment = .right
-            valor.lineBreakMode = .byTruncatingTail
-        }
+    /// Tarjeta tocable: ícono, título pequeño, valor elegido y flecha ›.
+    private func tarjetaElegible(_ titulo: String, _ simbolo: String, _ valor: UILabel, accion: Selector) -> UIView {
+        valor.font = Tema.fuente(17, .semibold)
+        valor.lineBreakMode = .byTruncatingTail
 
-        labelStock.font = .preferredFont(forTextStyle: .subheadline)
-        labelStock.textColor = .secondaryLabel
-        labelCantidad.font = .monospacedDigitSystemFont(ofSize: 17, weight: .semibold)
+        let textos = UIStackView(arrangedSubviews: [Tema.etiqueta(titulo), valor])
+        textos.axis = .vertical
+        textos.spacing = 3
 
-        let filaCliente = filaElegible("Cliente", valorCliente, accion: #selector(elegirCliente))
-        let filaProducto = filaElegible("Producto", valorProducto, accion: #selector(elegirProducto))
-
-        let tituloCantidad = UILabel()
-        tituloCantidad.text = "Cantidad"
-        tituloCantidad.font = .preferredFont(forTextStyle: .body)
-        tituloCantidad.setContentHuggingPriority(.required, for: .horizontal)
-        let espacio = UIView()
-        let filaCantidad = UIStackView(arrangedSubviews: [tituloCantidad, labelStock, espacio, labelCantidad, stepper])
-        filaCantidad.spacing = 6
-        filaCantidad.setCustomSpacing(12, after: labelCantidad)
-        filaCantidad.alignment = .center
-
-        return tarjetaLista([filaCliente, filaProducto, filaCantidad])
-    }
-
-    /// Resumen: Subtotal, Descuento, IGV 18% y Total.
-    private func tarjetaResumen() -> UIView {
-        let filas = [
-            filaResumen("Subtotal", valorSubtotal),
-            filaResumen(etiquetaDescuento, valorDescuento),
-            filaResumen("IGV 18%", valorIGV),
-            filaResumen("Total", valorTotal, destacado: true)
-        ]
-        return tarjetaLista(filas)
-    }
-
-    /// Fila tocable con título a la izquierda, valor y flecha › a la derecha.
-    private func filaElegible(_ titulo: String, _ valor: UILabel, accion: Selector) -> UIView {
-        let etiqueta = UILabel()
-        etiqueta.text = titulo
-        etiqueta.font = .preferredFont(forTextStyle: .body)
-        etiqueta.setContentHuggingPriority(.required, for: .horizontal)
-        etiqueta.setContentCompressionResistancePriority(.required, for: .horizontal)
-
-        let flecha = UIImageView(image: UIImage(systemName: "chevron.right"))
-        flecha.tintColor = .tertiaryLabel
-        flecha.preferredSymbolConfiguration = .init(pointSize: 14, weight: .semibold)
+        let flecha = UIImageView(image: UIImage(systemName: "chevron.right.circle.fill"))
+        flecha.tintColor = Tema.principal
+        flecha.preferredSymbolConfiguration = .init(pointSize: 22, weight: .semibold)
         flecha.setContentHuggingPriority(.required, for: .horizontal)
 
-        let fila = UIStackView(arrangedSubviews: [etiqueta, valor, flecha])
-        fila.spacing = 8
+        let fila = UIStackView(arrangedSubviews: [Tema.icono(simbolo), textos, flecha])
+        fila.spacing = 12
         fila.alignment = .center
-        fila.isUserInteractionEnabled = true
-        fila.addGestureRecognizer(UITapGestureRecognizer(target: self, action: accion))
-        fila.accessibilityTraits = .button
-        return fila
+
+        let tarjeta = Tema.tarjeta(fila, relleno: 14)
+        tarjeta.addGestureRecognizer(UITapGestureRecognizer(target: self, action: accion))
+        tarjeta.isAccessibilityElement = true
+        tarjeta.accessibilityLabel = titulo
+        tarjeta.accessibilityTraits = .button
+        return tarjeta
     }
 
-    private func filaResumen(_ titulo: String, _ valor: UILabel, destacado: Bool = false) -> UIView {
-        let etiqueta = UILabel()
-        etiqueta.text = titulo
-        return filaResumen(etiqueta, valor, destacado: destacado)
+    /// Cantidad con el stock disponible y el stepper.
+    private func tarjetaCantidad() -> UIView {
+        labelStock.font = Tema.fuente(13, .medium)
+        labelStock.textColor = Tema.textoSecundario
+        labelCantidad.font = Tema.numero(26, .bold)
+        labelCantidad.textColor = Tema.principal
+        labelCantidad.setContentHuggingPriority(.required, for: .horizontal)
+        stepper.setContentHuggingPriority(.required, for: .horizontal)
+
+        let textos = UIStackView(arrangedSubviews: [Tema.etiqueta("Cantidad"), labelStock])
+        textos.axis = .vertical
+        textos.spacing = 3
+
+        let fila = UIStackView(arrangedSubviews: [Tema.icono("number"), textos, UIView(), labelCantidad, stepper])
+        fila.spacing = 12
+        fila.alignment = .center
+        return Tema.tarjeta(fila, relleno: 14)
     }
 
-    private func filaResumen(_ etiqueta: UILabel, _ valor: UILabel, destacado: Bool = false) -> UIView {
-        let peso: UIFont.Weight = destacado ? .bold : .regular
-        etiqueta.font = .systemFont(ofSize: 17, weight: peso)
-        valor.font = .monospacedDigitSystemFont(ofSize: 17, weight: peso)
-        valor.textAlignment = .right
-        return UIStackView(arrangedSubviews: [etiqueta, valor])
+    /// Subtotal, Descuento e IGV 18%.
+    private func tarjetaResumen() -> UIView {
+        let filas = UIStackView(arrangedSubviews: [
+            filaResumen("Subtotal", valorSubtotal),
+            filaResumen(etiquetaDescuento, valorDescuento),
+            filaResumen("IGV 18%", valorIGV)
+        ])
+        filas.axis = .vertical
+        filas.spacing = 12
+        return Tema.tarjeta(filas)
     }
 
-    /// Tarjeta blanca con filas separadas por líneas finas, como una lista agrupada.
-    private func tarjetaLista(_ filas: [UIView]) -> UIView {
-        let pila = UIStackView()
-        pila.axis = .vertical
-        pila.translatesAutoresizingMaskIntoConstraints = false
+    /// Total destacado con letra grande.
+    private func tarjetaTotal() -> UIView {
+        let titulo = Tema.etiqueta("Total a pagar", color: Tema.principal)
+        let nota = UILabel()
+        nota.text = "IGV incluido"
+        nota.font = Tema.fuente(12, .medium)
+        nota.textColor = Tema.textoSecundario
 
-        for (indice, fila) in filas.enumerated() {
-            let celda = UIView()
-            fila.translatesAutoresizingMaskIntoConstraints = false
-            celda.addSubview(fila)
-            NSLayoutConstraint.activate([
-                fila.topAnchor.constraint(equalTo: celda.topAnchor, constant: 8),
-                fila.bottomAnchor.constraint(equalTo: celda.bottomAnchor, constant: -8),
-                fila.leadingAnchor.constraint(equalTo: celda.leadingAnchor, constant: 16),
-                fila.trailingAnchor.constraint(equalTo: celda.trailingAnchor, constant: -16),
-                celda.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
-            ])
-            pila.addArrangedSubview(celda)
+        let textos = UIStackView(arrangedSubviews: [titulo, nota])
+        textos.axis = .vertical
+        textos.spacing = 2
 
-            if indice < filas.count - 1 {
-                let linea = UIView()
-                linea.backgroundColor = .separator
-                let escala = max(traitCollection.displayScale, 1)
-                linea.heightAnchor.constraint(equalToConstant: 1 / escala).isActive = true
-                let contenedor = UIView()
-                linea.translatesAutoresizingMaskIntoConstraints = false
-                contenedor.addSubview(linea)
-                NSLayoutConstraint.activate([
-                    linea.topAnchor.constraint(equalTo: contenedor.topAnchor),
-                    linea.bottomAnchor.constraint(equalTo: contenedor.bottomAnchor),
-                    linea.leadingAnchor.constraint(equalTo: contenedor.leadingAnchor, constant: 16),
-                    linea.trailingAnchor.constraint(equalTo: contenedor.trailingAnchor)
-                ])
-                pila.addArrangedSubview(contenedor)
-            }
-        }
+        valorTotal.font = Tema.numero(34, .heavy)
+        valorTotal.textColor = Tema.principal
+        valorTotal.textAlignment = .right
+        valorTotal.adjustsFontSizeToFitWidth = true
+        valorTotal.minimumScaleFactor = 0.5
+
+        let fila = UIStackView(arrangedSubviews: [textos, valorTotal])
+        fila.spacing = 12
+        fila.alignment = .center
+        fila.translatesAutoresizingMaskIntoConstraints = false
 
         let tarjeta = UIView()
-        tarjeta.backgroundColor = Tema.tarjeta
-        tarjeta.layer.cornerRadius = 12
-        tarjeta.clipsToBounds = true
-        tarjeta.addSubview(pila)
+        tarjeta.backgroundColor = Tema.dinamico(UIColor(hex: 0xE6F4F2), UIColor(hex: 0x123A3B))
+        tarjeta.layer.cornerRadius = Tema.radio
+        tarjeta.layer.cornerCurve = .continuous
+        tarjeta.layer.borderWidth = 2
+        tarjeta.layer.borderColor = Tema.principalClaro.withAlphaComponent(0.45).cgColor
+        tarjeta.addSubview(fila)
         NSLayoutConstraint.activate([
-            pila.topAnchor.constraint(equalTo: tarjeta.topAnchor),
-            pila.bottomAnchor.constraint(equalTo: tarjeta.bottomAnchor),
-            pila.leadingAnchor.constraint(equalTo: tarjeta.leadingAnchor),
-            pila.trailingAnchor.constraint(equalTo: tarjeta.trailingAnchor)
+            fila.topAnchor.constraint(equalTo: tarjeta.topAnchor, constant: 18),
+            fila.bottomAnchor.constraint(equalTo: tarjeta.bottomAnchor, constant: -18),
+            fila.leadingAnchor.constraint(equalTo: tarjeta.leadingAnchor, constant: 18),
+            fila.trailingAnchor.constraint(equalTo: tarjeta.trailingAnchor, constant: -18)
         ])
         return tarjeta
+    }
+
+    private func filaResumen(_ titulo: String, _ valor: UILabel) -> UIView {
+        let etiqueta = UILabel()
+        etiqueta.text = titulo
+        return filaResumen(etiqueta, valor)
+    }
+
+    private func filaResumen(_ etiqueta: UILabel, _ valor: UILabel) -> UIView {
+        etiqueta.font = Tema.fuente(16, .medium)
+        etiqueta.textColor = Tema.textoSecundario
+        valor.font = Tema.numero(16, .semibold)
+        valor.textAlignment = .right
+        return UIStackView(arrangedSubviews: [etiqueta, valor])
     }
 
     // MARK: - Selectores (sin cambios)
@@ -282,9 +282,9 @@ class NuevaVentaViewController: UIViewController {
 
     private func actualizar() {
         valorCliente.text = cliente?.nombre ?? "Elegir"
-        valorCliente.textColor = cliente == nil ? .tertiaryLabel : .secondaryLabel
+        valorCliente.textColor = cliente == nil ? .tertiaryLabel : .label
         valorProducto.text = producto?.nombre ?? "Elegir"
-        valorProducto.textColor = producto == nil ? .tertiaryLabel : .secondaryLabel
+        valorProducto.textColor = producto == nil ? .tertiaryLabel : .label
 
         labelStock.text = producto.map { "(stock \($0.stock))" } ?? "(stock -)"
         labelCantidad.text = "\(cantidad)"
